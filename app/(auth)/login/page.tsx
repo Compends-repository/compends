@@ -12,7 +12,9 @@ export default function LoginPage() {
   return (
     <main className="relative min-h-screen overflow-hidden no-scrollbar">
 
-      <div className="absolute inset-0 -z-10 bg-[url(https://cdn.discordapp.com/attachments/1453489569071763516/1457103555629678672/Screenshot_2026-01-03_at_2.08.50_PM.png?ex=6ac2b26f&is=6ac160ef&hm=6d539c144194cbbd37287fb95dd1c05190147688ad9e5e92f89f5eebbc407459)] bg-cover bg-center bg-no-repeat bg-fixed brightness-70 [image-rendering:pixelated]" />
+      <div className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat bg-fixed brightness-70 [image-rendering:pixelated]" 
+      style={{ backgroundImage: "url('/CapsuleDraft.webp')" }}
+      />
       
       <div className="flex h-dvh p-5">
 
@@ -37,7 +39,7 @@ export default function LoginPage() {
             Start your journey
           </h2>
 
-          <div className="mt-22">
+          <div className="mt-22 h-sm:mt-14">
             <FormLabels />
           </div>
         </div>

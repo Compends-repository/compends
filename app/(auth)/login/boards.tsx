@@ -34,7 +34,7 @@ export default function GamePresentation() {
   };
 
   return (
-    <section className="flex min-w-0 flex-1 flex-col items-center pb-4 justify-end">
+    <section className="flex min-w-0 flex-1 flex-col items-center pb-1 justify-end">
       <LogoOfTheGame />
       <motion.div
         variants={cardVariants}
