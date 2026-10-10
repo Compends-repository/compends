@@ -1,8 +1,11 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar } from "@/components/ui/calendar";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 import React from "react";
+
+import { Controller } from "react-hook-form";
+import type { Control, FieldErrors, UseFormWatch } from "react-hook-form";
 
 type FormData = {
   userName: string;
@@ -14,8 +17,9 @@ type FormData = {
 };
 
 type Step2Props = {
-  form: FormData;
-  setForm: React.Dispatch<React.SetStateAction<FormData>>;
+  control: Control<FormData>;
+  watch: UseFormWatch<FormData>;
+  errors: FieldErrors<FormData>;
 };
 
 function calcularIdade(nascimento: Date) {
@@ -29,57 +33,80 @@ function calcularIdade(nascimento: Date) {
   return idade;
 }
 
-export default function Step2({ form, setForm }: Step2Props) {
-  const date = form.birthDate;
-  const idade = date ? calcularIdade(date) : null;
-  const hoje = new Date()
-  const maxData = new Date(hoje.getFullYear() - 12, hoje.getMonth(), hoje.getDate())
+export default function Step2({ control, watch, errors }: Step2Props) {
+  const birthDate = watch("birthDate");
+  const idade = birthDate ? calcularIdade(birthDate) : null;
+
+  const hoje = new Date();
+  const maxData = new Date(
+    hoje.getFullYear() - 12,
+    hoje.getMonth(),
+    hoje.getDate(),
+  );
 
   return (
     <>
-      <p className="text-white ml-[67%] 2xl:ml-[71%] 2xl:text-[14px] mt-[15%]">
-        {date?.toLocaleDateString("en-US")}
-      </p>
-      <p className="text-white ml-[61%] 2xl:ml-[66%] 2xl:text-[14px] mt-[-8%]">
-        <strong>Você tem {idade} anos</strong>
-      </p>
-      <Calendar
-        mode="single"
-        selected={date}
-        required
-        onSelect={(d) => setForm((f) => ({ ...f, birthDate: d }))}
-        className="rounded-lg border mt-[-45%] 2xl:mt-[-45%]"
-        captionLayout="dropdown"
-        startMonth={new Date(1920, 0)}
-        defaultMonth={date ?? new Date(hoje.getFullYear() - 18, 0)}
-        disabled={{after: maxData}}
-        endMonth={maxData}
+      <Controller
+        name="birthDate"
+        control={control}
+        rules={{
+          required: "Informe sua data de nascimento",
+          validate: (d) =>
+            !d || d <= maxData || "Você precisa ter pelo menos 12 anos",
+        }}
+        render={({ field }) => (
+          <Calendar
+            className="rounded-lg border mt-[-10%] h-sm:mt-[-18%]"
+            mode="single"
+            selected={field.value}
+            onSelect={field.onChange}
+            captionLayout="dropdown"
+          />
+        )}
       />
-      <FieldDescription className="mt-[-10%] text-[#B9B9BD] ml-[2%]">
+
+      <p className="text-white ml-[67%] 2xl:ml-[71%] 2xl:text-[14px] mt-[-55%]">
+        {birthDate?.toLocaleDateString("en-US")}
+      </p>
+      <p className="text-white ml-[61%] 2xl:ml-[66%] 2xl:text-[14px] mt-[-8%] font-saira flex flex-row">
+        <strong>Você tem <span className="underline">{idade} anos</span></strong>
+      </p>
+      <FieldDescription className="mt-[19%] h-sm:mt-[32%] text-[#B9B9BD] ml-[2%]">
         Enter your real age.
       </FieldDescription>
 
-      <Separator className='2xl:mt-[-3%]'/>
+      <Separator className="2xl:mt-[-3%]" />
 
-      <label className="2xl:mt-[1%] 3xl:mt-[8%] flex items-start gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
-        <Checkbox
-          checked={form.opt1}
-          onCheckedChange={(c) => setForm((f) => ({ ...f, opt1: c === true }))}
-          className="w-4 h-4 focus:ring-0 focus:outline-none"
-        />
-        Declaro que as informações fornecidas, incluindo minha data de nascimento, são verdadeiras.
-      </label>
+      <Controller
+        name="opt1"
+        control={control}
+        render={({ field }) => (
+          <label className="2xl:mt-[1%] 3xl:mt-[8%] flex items-start gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
+            <Checkbox
+              checked={field.value}
+              onCheckedChange={field.onChange}
+              className="w-4 h-4 focus:ring-0 focus:outline-none"
+            />
+            Declaro que as informações fornecidas, incluindo minha data de
+            nascimento, são verdadeiras.
+          </label>
+        )}
+      />
 
-      <label className="flex items-center gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
-        <Checkbox
-        checked={form.opt2}
-          onCheckedChange={(c) => setForm((f) => ({ ...f, opt2: c === true }))}
-          value=""
-          className="w-4 h-4 focus:ring-0 focus:outline-none"
-        />
-        Accept the terms of Compends
-      </label>
-      <div className=""></div>
+      <Controller
+        name="opt2"
+        control={control}
+        render={({ field }) => (
+          <label className="flex items-center gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
+            <Checkbox
+              checked={field.value}
+              onCheckedChange={field.onChange}
+              className="w-4 h-4 focus:ring-0 focus:outline-none"
+            />
+            Accept the terms of Compends
+          </label>
+        )}
+      />
     </>
   );
 }

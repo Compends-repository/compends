@@ -3,31 +3,33 @@
 import React from "react";
 import { motion } from "motion/react";
 
+import { useForm } from 'react-hook-form'
+
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 
 export default function FormLabels() {
   const [step, setStep] = React.useState(1);
-  const [form, setForm] = React.useState({
-    userName: "",
-    email: "",
-    password: "",
-    birthDate: undefined,
-    opt1: false,
-    opt2: false,
-  });
+
+
+  const { register, handleSubmit, trigger, watch, control, formState: { errors } } = useForm({
+    defaultValues: {
+      userName: "",
+      email: "",
+      password: "",
+      birthDate: undefined,
+      opt1: false,
+      opt2: false,
+    }
+})
 
   function onSubmit(data) {
-    console.log(data);
+    console.log("Enviar", data)
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (step === 1) {
-      setStep(step + 1);
-    } else {
-      console.log("Enviar: ", form);
-    }
+  async function handleNext() {
+    const ok = await trigger([ 'userName', 'email', 'password', 'birthDate', 'op1', 'opt2' ])
+    if (ok) setStep(2)
   }
 
   function handleBack() {
@@ -36,15 +38,15 @@ export default function FormLabels() {
   return (
     <div className="flex justify-center">
       <form
-        className="flex min-h-[70vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
-        onSubmit={handleSubmit}
+        className="flex min-h-[50vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        {step === 1 && <Step1 form={form} setForm={setForm} />}
+        {step === 1 && <Step1 register={register} watch={watch} errors={errors}/>}
 
-        {step === 2 && <Step2 form={form} setForm={setForm} />}
+        {step === 2 && <Step2 control={control} watch={watch} errors={errors}/>}
 
         {step === 1 && (
-          <button type="submit" className="text-white">
+          <button type="submit" onClick={handleNext} className="text-white">
             Próximo
           </button>
         )}
@@ -60,7 +62,7 @@ export default function FormLabels() {
           </>
         )}
 
-        <p className="fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 left-20 text-[var(--chart-3)] font-bold pb-4 text-[15px]">Etapa: {step}</p>
+        <p className="fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 left-20 text-[var(--chart-2)] font-bold font-saira pb-4 text-[15px] ">Etapa: {step}</p>
       </form>
     </div>
   );
