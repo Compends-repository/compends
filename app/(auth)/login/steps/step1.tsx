@@ -16,21 +16,14 @@ import type {
   FieldErrors,
 } from "react-hook-form";
 
+import type { FormValues } from "../labels";
 
 
-type FormData = {
-  userName: string;
-  email: string;
-  password: string;
-  birthDate: Date | undefined;
-  opt1: boolean;
-  opt2: boolean;
-};
 
 type Step1Props = {
-  register: UseFormRegister<FormData>,
-  watch: UseFormWatch<FormData>,
-  errors: FieldErrors<FormData>
+  register: UseFormRegister<FormValues>;
+  watch: UseFormWatch<FormValues>;
+  errors: FieldErrors<FormValues>;
 };
 
 const inputClass = "w-full bg-white pl-11 pr-4 py-2.5 text-black text-base font-normal h-sm:px-6 h-sm:py-2.5 h-sm:pl-14 h-sm:pr-6 2xl:px-8 2xl:py-3 2xl:pl-16 2xl:pr-8 3xl:px-8 3xl:py-3 3xl:pl-16 3xl:pr-8 outline-[#808080]";

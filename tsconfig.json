@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/(auth)/login/labels.jsx", "app/(auth)/login/steps/step2.tsx"  ],
+, "app/(auth)/login/labels.tsx", "app/(auth)/login/steps/step2.tsx"  ],
   "exclude": ["node_modules"]
 }

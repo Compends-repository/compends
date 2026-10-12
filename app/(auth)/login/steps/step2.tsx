@@ -7,19 +7,14 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import type { Control, FieldErrors, UseFormWatch } from "react-hook-form";
 
-type FormData = {
-  userName: string;
-  email: string;
-  password: string;
-  birthDate: Date | undefined;
-  opt1: boolean;
-  opt2: boolean;
-};
+import type { FormValues } from "../labels";
+
+
 
 type Step2Props = {
-  control: Control<FormData>;
-  watch: UseFormWatch<FormData>;
-  errors: FieldErrors<FormData>;
+  control: Control<FormValues>;
+  watch: UseFormWatch<FormValues>;
+  errors: FieldErrors<FormValues>;
 };
 
 function calcularIdade(nascimento: Date) {
@@ -66,12 +61,12 @@ export default function Step2({ control, watch, errors }: Step2Props) {
       />
 
       <p className="text-white ml-[67%] 2xl:ml-[71%] 2xl:text-[14px] mt-[-55%]">
-        {birthDate?.toLocaleDateString("en-US")}
+        {birthDate ? birthDate?.toLocaleDateString() : "--/--/--"}
       </p>
       <p className="text-white ml-[61%] 2xl:ml-[66%] 2xl:text-[14px] mt-[-8%] font-saira flex flex-row">
         <strong>Você tem <span className="underline">{idade} anos</span></strong>
       </p>
-      <FieldDescription className="mt-[19%] h-sm:mt-[32%] text-[#B9B9BD] ml-[2%]">
+      <FieldDescription className="h-sm:mt-[32%] mt-[20%] text-[#B9B9BD] ml-[2%]">
         Enter your real age.
       </FieldDescription>
 
@@ -84,6 +79,7 @@ export default function Step2({ control, watch, errors }: Step2Props) {
           <label className="2xl:mt-[1%] 3xl:mt-[8%] flex items-start gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
             <Checkbox
               checked={field.value}
+              required
               onCheckedChange={field.onChange}
               className="w-4 h-4 focus:ring-0 focus:outline-none"
             />
@@ -100,6 +96,7 @@ export default function Step2({ control, watch, errors }: Step2Props) {
           <label className="flex items-center gap-2 select-none 2xl:text-[14px] 3xl:text-[16px] font-medium text-white cursor-pointer font-mitr">
             <Checkbox
               checked={field.value}
+              required
               onCheckedChange={field.onChange}
               className="w-4 h-4 focus:ring-0 focus:outline-none"
             />
