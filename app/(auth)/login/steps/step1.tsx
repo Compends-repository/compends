@@ -109,12 +109,7 @@ export default function Step1({register, errors, watch}: Step1Props) {
             onBlur={() => setIsFocused1(false)}
             whileHover={{ scale: 1.02, borderRadius: "6px" }}
             whileFocus={{ borderRadius: "6px", scale: 1.02 }}
-            transition={{
-              type: "spring",
-              stiffness: 360,
-              damping: 22,
-              duration: 0.08,
-            }}
+            transition={spring}
             placeholder="e.g: Luninjag"
           />
         </motion.div>
