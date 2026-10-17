@@ -22,7 +22,7 @@ export default function LoginPage() {
 
           <img
             className="w-full h-auto -translate-y-[20%] -translate-x-[22%]"
-            src="/logo1.svg"
+            src="/logo/logo1.svg"
             alt="Compends logo"
           />
         </div>

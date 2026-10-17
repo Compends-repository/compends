@@ -1,9 +1,12 @@
 import "./global.css";
-import { Geist } from "next/font/google";
+import { Changa, Geist, JetBrains_Mono, Roboto } from "next/font/google";
 import { Josefin_Sans, Saira, Kanit, Mitr, Sigmar_One } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-export { metadata } from "./metaData";   // <- adicione isso
+export { metadata } from "./metaData"; 
+import localFont from "next/font/local";
+
+import SmoothScroll from "./ReusableFunctions/smoothScroll";
 
 
 
@@ -32,6 +35,33 @@ const sigmar = Sigmar_One({
   variable: "--font-sigmar-var",
 });
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '700'],
+  variable: '--font-roboto'
+})
+
+const jetBrains = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['100', '800'],
+  variable: '--font-jetBrains'
+})
+
+const changa = Changa({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-Changa'
+})
+
+const author = localFont({
+  src: [
+    { path: "../public/Fonts/WEB/fonts/Author-Variable.woff2", style: "normal" },
+    { path: "../public/Fonts/WEB/fonts/Author-VariableItalic.woff2", style: "italic" },
+  ],
+  weight: "200 700",
+  variable: "--font-author-src", // era "--font-author"
+  display: "swap",
+});
 
 
 
@@ -40,16 +70,19 @@ export default function EnterLayout({ children }: { children: React.ReactNode })
     <html
       lang="pt-BR"
       className={cn(
-        "font-sans",
+        "font-sans no-scrollbar scroll-smooth",
         geist.variable,
         josefin.variable,
         saira.variable,
         kanit.variable,
         mitr.variable,
-        sigmar.variable
+        sigmar.variable,
+        author.variable
       )}
     >
-      <body>{children}</body>
+      <body>{children}
+        <SmoothScroll />
+      </body>
     </html>
   );
 }
