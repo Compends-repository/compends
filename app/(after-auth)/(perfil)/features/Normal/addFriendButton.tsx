@@ -35,7 +35,7 @@ export default function Add_friend_button() {
   return (
     <>
       <motion.button
-        className="bg-white cursor-pointer h-sm:mt-[12.3%] 1xl:mt-[8%] 2xl:mt-[9.7%] h-lg:mt-[7.7%] h-lg:ml-[-17.4%] 3xl:mt-[7.8%] ml-[-21.8%] w-34 py-1.5 3xl:ml-[-17.4%] text-[17px] font-semibold border-[#bababaab] border-[1] mt-[8%]"
+        className="bg-white cursor-pointer h-sm:mt-[12.3%] 1xl:mt-[8%] 2xl:mt-[9.7%] h-lg:mt-[7.7%] h-lg:ml-[-17.4%] 3xl:mt-[7.8%] ml-[-21.8%] w-34 py-1.5 3xl:ml-[-17.4%] text-[17px] font-semibold border-[#bababaab] border-[1] mt-[8%] z-10"
         initial={{ borderRadius: 15 }}
         whileHover={{
           scale: 1.06,

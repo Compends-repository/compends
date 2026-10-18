@@ -70,7 +70,7 @@ export default function EnterLayout({ children }: { children: React.ReactNode })
     <html
       lang="pt-BR"
       className={cn(
-        "font-sans no-scrollbar scroll-smooth",
+        "font-sans no-scrollbar scroll-smooth data-scroll-behavior=smooth",
         geist.variable,
         josefin.variable,
         saira.variable,

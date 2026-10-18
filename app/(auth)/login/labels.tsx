@@ -6,6 +6,9 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 
+import { useRouter } from 'next/navigation'
+
+
 export type FormValues = {
   userName: string;
   email: string;
@@ -15,7 +18,9 @@ export type FormValues = {
   opt2: boolean;
 };
 
+
 export default function FormLabels() {
+  const router = useRouter()
   const [step, setStep] = React.useState(1);
 
   const {
@@ -43,8 +48,12 @@ export default function FormLabels() {
     duration: 0.04,
   } as const;
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log("Enviar", data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const res = await fetch('../../user_perfil-page')
+
+    if (res.ok) {
+      router.push('/user_perfil-page')
+    }
   };
 
   const btnStyle =

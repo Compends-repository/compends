@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://seudominio.com.br"),
+  metadataBase: new URL("https://compends.com"),
   title: {
-    default: "Compends - Rede social de jogos",
+    default: "Compends",
     template: "%s | Compends",
   },
   description:
