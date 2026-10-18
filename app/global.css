@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -22,11 +22,13 @@
   --font-saira: "Saira", sans-serif;
   --font-roboto: "Roboto Mono", monospace;
   --font-jetBrains: "JetBrains Mono", monospace;
-  --font-Changa: 'Changa One', sans-serif;
+  --font-Changa: "Changa One", sans-serif;
 }
 
 @theme inline {
   --font-author: var(--font-author-src), sans-serif;
+  --font-Rajdhani: var(--font-Rajdhani-src), sans-serif;
+  --font-Asap: var(--font-Asap-src), sans-serif;
 }
 
 @custom-variant h-sm (@media (max-height: 800px));

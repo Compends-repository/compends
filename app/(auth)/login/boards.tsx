@@ -50,9 +50,6 @@ export default function GamePresentation() {
         />
       </motion.div>
 
-
-
-
       <div className="2xl:shrink-0 z-20 -mt-[15%] 2xl:-mt-[19%] 3xl:-mt-[17%] flex w-[70%] items-end justify-center">
         <motion.div
           variants={cardVariants}

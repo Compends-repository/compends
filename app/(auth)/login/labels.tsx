@@ -1,13 +1,9 @@
-import React from "react";
 import { AnimatePresence, motion } from "motion/react";
-
-import { useForm, type SubmitHandler } from "react-hook-form";
-
+import { useRouter } from "next/navigation";
+import React from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
-
-import { useRouter } from 'next/navigation'
-
 
 export type FormValues = {
   userName: string;
@@ -18,9 +14,8 @@ export type FormValues = {
   opt2: boolean;
 };
 
-
 export default function FormLabels() {
-  const router = useRouter()
+  const router = useRouter();
   const [step, setStep] = React.useState(1);
 
   const {
@@ -49,10 +44,10 @@ export default function FormLabels() {
   } as const;
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const res = await fetch('../../user_perfil-page')
+    const res = await fetch("../../user_perfil-page");
 
     if (res.ok) {
-      router.push('/user_perfil-page')
+      router.push("/user_perfil-page");
     }
   };
 
@@ -73,13 +68,9 @@ export default function FormLabels() {
         className="flex min-h-[50vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {step === 1 && (
-          <Step1 register={register} watch={watch} errors={errors} />
-        )}
+        {step === 1 && <Step1 register={register} watch={watch} errors={errors} />}
 
-        {step === 2 && (
-          <Step2 control={control} watch={watch} errors={errors} />
-        )}
+        {step === 2 && <Step2 control={control} watch={watch} errors={errors} />}
 
         <div className="flex left-20 right-20 justify-end gap-3 z-50 fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 h-sm:pb-4 ml-auto">
           <AnimatePresence>
@@ -93,7 +84,7 @@ export default function FormLabels() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 whileHover={{ scale: 1.05, borderColor: "white" }}
-                whileTap={{ scale: 0.90 }}
+                whileTap={{ scale: 0.9 }}
                 transition={spring}
               >
                 {"<"}
@@ -109,7 +100,7 @@ export default function FormLabels() {
               onClick={handleNext}
               className={btnStyle}
               whileHover={{ scale: 1.05, borderColor: "white" }}
-              whileTap={{ scale: 0.90 }}
+              whileTap={{ scale: 0.9 }}
               transition={spring}
             >
               {">"}
@@ -120,7 +111,7 @@ export default function FormLabels() {
               type="submit"
               className={btnStyle}
               whileHover={{ scale: 1.05, borderColor: "white" }}
-              whileTap={{ scale: 0.90 }}
+              whileTap={{ scale: 0.9 }}
               transition={spring}
             >
               {">"}

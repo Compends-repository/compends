@@ -1,15 +1,12 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import React from "react";
+import type { Control, FieldErrors, UseFormWatch } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
-
-import { Controller } from "react-hook-form";
-import type { Control, FieldErrors, UseFormWatch } from "react-hook-form";
 
 import type { FormValues } from "../labels";
-
-
 
 type Step2Props = {
   control: Control<FormValues>;
@@ -22,8 +19,7 @@ function calcularIdade(nascimento: Date) {
   let idade = hoje.getFullYear() - nascimento.getFullYear();
   const jaFezAniversario =
     hoje.getMonth() > nascimento.getMonth() ||
-    (hoje.getMonth() === nascimento.getMonth() &&
-      hoje.getDate() >= nascimento.getDate());
+    (hoje.getMonth() === nascimento.getMonth() && hoje.getDate() >= nascimento.getDate());
   if (!jaFezAniversario) idade--;
   return idade;
 }
@@ -33,11 +29,7 @@ export default function Step2({ control, watch, errors }: Step2Props) {
   const idade = birthDate ? calcularIdade(birthDate) : null;
 
   const hoje = new Date();
-  const maxData = new Date(
-    hoje.getFullYear() - 12,
-    hoje.getMonth(),
-    hoje.getDate(),
-  );
+  const maxData = new Date(hoje.getFullYear() - 12, hoje.getMonth(), hoje.getDate());
 
   return (
     <>
@@ -46,8 +38,7 @@ export default function Step2({ control, watch, errors }: Step2Props) {
         control={control}
         rules={{
           required: "Informe sua data de nascimento",
-          validate: (d) =>
-            !d || d <= maxData || "Você precisa ter pelo menos 12 anos",
+          validate: (d) => !d || d <= maxData || "Você precisa ter pelo menos 12 anos",
         }}
         render={({ field }) => (
           <Calendar
@@ -64,7 +55,9 @@ export default function Step2({ control, watch, errors }: Step2Props) {
         {birthDate ? birthDate?.toLocaleDateString() : "--/--/--"}
       </p>
       <p className="text-white ml-[61%] 2xl:ml-[66%] 2xl:text-[14px] mt-[-8%] font-saira flex flex-row">
-        <strong>Você tem <span className="underline">{idade} anos</span></strong>
+        <strong>
+          Você tem <span className="underline">{idade} anos</span>
+        </strong>
       </p>
       <FieldDescription className="h-sm:mt-[32%] mt-[20%] text-[#B9B9BD] ml-[2%]">
         Enter your real age.
@@ -83,8 +76,8 @@ export default function Step2({ control, watch, errors }: Step2Props) {
               onCheckedChange={field.onChange}
               className="w-4 h-4 focus:ring-0 focus:outline-none"
             />
-            Declaro que as informações fornecidas, incluindo minha data de
-            nascimento, são verdadeiras.
+            Declaro que as informações fornecidas, incluindo minha data de nascimento, são
+            verdadeiras.
           </label>
         )}
       />

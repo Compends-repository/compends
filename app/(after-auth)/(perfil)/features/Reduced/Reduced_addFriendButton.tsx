@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import CancelSendAddFriend from "../Dialogs/cancelSendAdd.tsx";
-
+import { useEffect, useState } from "react";
 import { FieldDescription } from "@/components/ui/field";
-
+import CancelSendAddFriend from "../Dialogs/cancelSendAdd.tsx";
 
 export default function Add_friend_button() {
   const [wasClicked, setWasClicked] = useState(false);

@@ -56,12 +56,12 @@ async function getCloudflareContextFromWrangler(options) {
     // because we invoke wrangler with `CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV`=`"false"`.
     // Initializing `envFiles` with an empty list is the equivalent for this API call.
     envFiles: [],
-    environment
+    environment,
   });
   return {
     env,
     cf,
-    ctx
+    ctx,
   };
 }
 var initOpenNextCloudflareForDevErrorMsg = `
@@ -97,7 +97,7 @@ var resolver = {
     const url = new URL(event.rawPath, "https://assets.local");
     const response = await ASSETS.fetch(url, {
       headers,
-      method
+      method,
     });
     if (response.status === 404) {
       await response.body?.cancel();
@@ -109,9 +109,9 @@ var resolver = {
       headers: Object.fromEntries(response.headers.entries()),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       body: getResponseBody(method, response),
-      isBase64Encoded: false
+      isBase64Encoded: false,
     };
-  }
+  },
 };
 function getResponseBody(method, response) {
   if (method === "HEAD") {
@@ -132,7 +132,9 @@ function isUserWorkerFirst(runWorkerFirst, pathname) {
     } else if (hasPositiveMatch) {
       continue;
     }
-    const match = new RegExp(`^${rule.replace(/([[\]().*+?^$|{}\\])/g, "\\$1").replace("\\*", ".*")}$`).test(pathname);
+    const match = new RegExp(
+      `^${rule.replace(/([[\]().*+?^$|{}\\])/g, "\\$1").replace("\\*", ".*")}$`,
+    ).test(pathname);
     if (match) {
       if (isPositiveRule) {
         hasPositiveMatch = true;
@@ -147,7 +149,14 @@ var asset_resolver_default = resolver;
 
 // node_modules/@opennextjs/cloudflare/dist/api/config.js
 function defineCloudflareConfig(config = {}) {
-  const { incrementalCache, tagCache, queue, cachePurge, enableCacheInterception = false, routePreloadingBehavior = "none" } = config;
+  const {
+    incrementalCache,
+    tagCache,
+    queue,
+    cachePurge,
+    enableCacheInterception = false,
+    routePreloadingBehavior = "none",
+  } = config;
   return {
     default: {
       override: {
@@ -157,17 +166,17 @@ function defineCloudflareConfig(config = {}) {
         incrementalCache: resolveIncrementalCache(incrementalCache),
         tagCache: resolveTagCache(tagCache),
         queue: resolveQueue(queue),
-        cdnInvalidation: resolveCdnInvalidation(cachePurge)
+        cdnInvalidation: resolveCdnInvalidation(cachePurge),
       },
-      routePreloadingBehavior
+      routePreloadingBehavior,
     },
     // node:crypto is used to compute cache keys
     edgeExternals: ["node:crypto"],
     cloudflare: {
-      useWorkerdCondition: true
+      useWorkerdCondition: true,
     },
     dangerous: {
-      enableCacheInterception
+      enableCacheInterception,
     },
     middleware: {
       external: true,
@@ -177,10 +186,10 @@ function defineCloudflareConfig(config = {}) {
         proxyExternalRequest: "fetch",
         incrementalCache: resolveIncrementalCache(incrementalCache),
         tagCache: resolveTagCache(tagCache),
-        queue: resolveQueue(queue)
+        queue: resolveQueue(queue),
       },
-      assetResolver: () => asset_resolver_default
-    }
+      assetResolver: () => asset_resolver_default,
+    },
   };
 }
 function resolveIncrementalCache(value = "dummy") {
@@ -210,6 +219,5 @@ function resolveCdnInvalidation(value = "dummy") {
 
 // open-next.config.ts
 var open_next_config_default = defineCloudflareConfig();
-export {
-  open_next_config_default as default
-};
+
+export { open_next_config_default as default };

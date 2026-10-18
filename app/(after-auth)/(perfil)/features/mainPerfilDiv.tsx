@@ -1,15 +1,13 @@
 "use client";
-import Main_perfil_image from "./Normal/profileInformations.tsx";
-import Add_friend_button from "./Normal/addFriendButton.tsx";
-import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
-import { AnimatePresence, motion } from "motion/react";
 
 import { IconArrowDownFromArc } from "@tabler/icons-react";
-
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
 import Footer from "./footer.tsx";
-
+import Add_friend_button from "./Normal/addFriendButton.tsx";
+import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
+import Main_perfil_image from "./Normal/profileInformations.tsx";
+import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
 
 export default function Main_perfil_div() {
   const [isReduced, setIsReduced] = useState(false);
@@ -26,9 +24,9 @@ export default function Main_perfil_div() {
       ></div>
 
       {isReduced ? (
-        <ReducedPerfilDivVersion onToggle={onClickChangeDiminuted}/>
+        <ReducedPerfilDivVersion onToggle={onClickChangeDiminuted} />
       ) : (
-        <NormalPerfilDivVersion onToggle={onClickChangeDiminuted}/>
+        <NormalPerfilDivVersion onToggle={onClickChangeDiminuted} />
       )}
 
       <div className="w-100 h-300 bg-transparent"></div>
@@ -38,8 +36,7 @@ export default function Main_perfil_div() {
   );
 }
 
-
-function ToggleButton({ onClick }: {onClick: () => void}) {
+function ToggleButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -47,5 +44,5 @@ function ToggleButton({ onClick }: {onClick: () => void}) {
     >
       <IconArrowDownFromArc className="w-[35] h-[35]" />
     </button>
-  )
+  );
 }

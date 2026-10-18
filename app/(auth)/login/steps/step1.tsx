@@ -1,24 +1,10 @@
+import { IconBrandMailgun, IconEye, IconEyeX, IconLock, IconMail } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import React from "react";
+import type { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
 import { FieldDescription } from "@/components/ui/field";
 
-import {
-  IconLock,
-  IconMail,
-  IconBrandMailgun,
-  IconEye,
-  IconEyeX,
-} from "@tabler/icons-react";
-
-import type {
-  UseFormRegister,
-  UseFormWatch,
-  FieldErrors,
-} from "react-hook-form";
-
 import type { FormValues } from "../labels";
-
-
 
 type Step1Props = {
   register: UseFormRegister<FormValues>;
@@ -26,7 +12,8 @@ type Step1Props = {
   errors: FieldErrors<FormValues>;
 };
 
-const inputClass = "w-full bg-white pl-11 pr-4 py-2.5 text-black text-base font-normal h-sm:px-6 h-sm:py-2.5 h-sm:pl-14 h-sm:pr-6 2xl:px-8 2xl:py-3 2xl:pl-16 2xl:pr-8 3xl:px-8 3xl:py-3 3xl:pl-16 3xl:pr-8 outline-[#808080]";
+const inputClass =
+  "w-full bg-white pl-11 pr-4 py-2.5 text-black text-base font-normal h-sm:px-6 h-sm:py-2.5 h-sm:pl-14 h-sm:pr-6 2xl:px-8 2xl:py-3 2xl:pl-16 2xl:pr-8 3xl:px-8 3xl:py-3 3xl:pl-16 3xl:pr-8 outline-[#808080]";
 
 const iconVariants = {
   rest: { scale: 1, color: "#808080" },
@@ -36,10 +23,7 @@ const iconVariants = {
 
 const spring = { type: "spring", stiffness: 360, damping: 22, duration: 0.08 } as const;
 
-
-
-
-export default function Step1({register, errors, watch}: Step1Props) {
+export default function Step1({ register, errors, watch }: Step1Props) {
   const [isLocked, setIsLocked] = React.useState(true);
 
   const [isFocused1, setIsFocused1] = React.useState(false);
@@ -50,22 +34,18 @@ export default function Step1({register, errors, watch}: Step1Props) {
 
   const userName = watch("userName");
 
-  const { onBlur: userNameBlur, ...userNameReg} = register("userName", {
-    required: "Informe seu nome de usuário"
-  })
+  const { onBlur: userNameBlur, ...userNameReg } = register("userName", {
+    required: "Informe seu nome de usuário",
+  });
 
   const { onBlur: emailBlur, ...emailReg } = register("email", {
-    required: "informe seu e-mail"
-  })
+    required: "informe seu e-mail",
+  });
 
-  const { onBlur: passwordBlur, ...passwordReg} = register("password", {
+  const { onBlur: passwordBlur, ...passwordReg } = register("password", {
     required: "Informe uma senha",
-    minLength: {value: 6, message: "Mínimo de 6 caracteres"}
-  })
-
-
-
-
+    minLength: { value: 6, message: "Mínimo de 6 caracteres" },
+  });
 
   return (
     <>
@@ -101,8 +81,8 @@ export default function Step1({register, errors, watch}: Step1Props) {
             required
             onBlurCapture={(e) => {
               userNameBlur(e);
-              setIsFocused1(false)
-            }}  
+              setIsFocused1(false);
+            }}
             className={inputClass}
             initial={{ borderRadius: "15px" }}
             onFocus={() => setIsFocused1(true)}
@@ -117,8 +97,6 @@ export default function Step1({register, errors, watch}: Step1Props) {
           Just choose the best name you have in mind
         </FieldDescription>
       </label>
-      
-
 
       <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
         Your email:
@@ -142,8 +120,8 @@ export default function Step1({register, errors, watch}: Step1Props) {
             {...emailReg}
             required
             onBlur={(e) => {
-              emailBlur(e)
-              setIsFocused2(false)
+              emailBlur(e);
+              setIsFocused2(false);
             }}
             className={inputClass}
             initial={{ borderRadius: "15px" }}
@@ -158,8 +136,6 @@ export default function Step1({register, errors, watch}: Step1Props) {
           Don't put fake e-mails, we will verify that
         </FieldDescription>
       </label>
-
-
 
       <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
         Create a password:
@@ -178,24 +154,12 @@ export default function Step1({register, errors, watch}: Step1Props) {
           >
             {Hover ? (
               isLocked ? (
-                <IconEye
-                  stroke={1.75}
-                  size={23}
-                  onClick={() => setIsLocked(!isLocked)}
-                />
+                <IconEye stroke={1.75} size={23} onClick={() => setIsLocked(!isLocked)} />
               ) : (
-                <IconEyeX
-                  stroke={1.75}
-                  size={23}
-                  onClick={() => setIsLocked(!isLocked)}
-                />
+                <IconEyeX stroke={1.75} size={23} onClick={() => setIsLocked(!isLocked)} />
               )
             ) : (
-              <IconLock
-                stroke={1.5}
-                size={23}
-                onClick={() => setIsLocked(!isLocked)}
-              />
+              <IconLock stroke={1.5} size={23} onClick={() => setIsLocked(!isLocked)} />
             )}
           </motion.div>
 
@@ -205,8 +169,8 @@ export default function Step1({register, errors, watch}: Step1Props) {
             {...passwordReg}
             required
             onBlur={(e) => {
-              passwordBlur(e)
-              setIsFocused3(false)
+              passwordBlur(e);
+              setIsFocused3(false);
             }}
             className={inputClass}
             initial={{ borderRadius: "15px" }}
