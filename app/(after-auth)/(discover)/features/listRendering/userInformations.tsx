@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import Text_info_user_list from "./text_informations";
 
-export type User = {
+type User = {
   name: string;
   Pimg: string;
   bio: string;

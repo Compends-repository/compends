@@ -7,7 +7,7 @@ export default function Footer() {
         <span className="text-[21px] underline">compends.com</span>
       </h1>
 
-      <ul className="text-[13px] font-semibold mt-[1%] w-[900] ml-[2.5%] space-y-2">
+      <ul className="text-[14px] font-semibold font-author mt-[1%] w-[900] ml-[2.5%] space-y-2">
         <li>My mom</li>
 
         <li>My father and grandpa</li>
