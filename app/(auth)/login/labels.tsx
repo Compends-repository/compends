@@ -1,7 +1,10 @@
-import { AnimatePresence, motion } from "motion/react";
-import { useRouter } from "next/navigation";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "motion/react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+
+import { createClient } from "@/lib/client";
+
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 
@@ -38,17 +41,26 @@ export default function FormLabels() {
 
   const spring = {
     type: "spring",
-    stiffness: 360,
-    damping: 22,
+    
     duration: 0.04,
   } as const;
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const res = await fetch("../../user_perfil-page");
+  const onSubmit: SubmitHandler<FormValues> = async (formData) => {
+    const supabase = createClient();
 
-    if (res.ok) {
-      router.push("/user_perfil-page");
+    const { data, error } = await supabase.from("compends-user-data").insert({
+      userName: formData.userName,
+      email: formData.email,
+      password: formData.password,
+      age: formData.birthDate
+    });
+
+    if (error) {
+      console.error(error.message);
+      return;
     }
+
+    router.push("/user_perfil-page");
   };
 
   const btnStyle =
@@ -56,7 +68,10 @@ export default function FormLabels() {
 
   async function handleNext() {
     const ok = await trigger(["userName", "email", "password"]);
-    if (ok) setStep(2);
+
+    if (ok) {
+      setStep(2);
+    }
   }
 
   function handleBack() {
@@ -68,9 +83,13 @@ export default function FormLabels() {
         className="flex min-h-[50vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {step === 1 && <Step1 register={register} watch={watch} errors={errors} />}
+        {step === 1 && (
+          <Step1 register={register} errors={errors} watch={watch} />
+        )}
 
-        {step === 2 && <Step2 control={control} watch={watch} errors={errors} />}
+        {step === 2 && (
+          <Step2 control={control} errors={errors} watch={watch} />
+        )}
 
         <div className="flex left-20 right-20 justify-end gap-3 z-50 fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 h-sm:pb-4 ml-auto">
           <AnimatePresence>
@@ -119,7 +138,7 @@ export default function FormLabels() {
           )}
         </div>
 
-        <p className="fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 left-20 text-[var(--chart-2)] font-bold font-saira pb-3 h-sm:pb-6 text-[15px] ">
+        <p className="fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 left-20 text-chart-2 font-bold font-saira pb-3 h-sm:pb-6 text-[15px] ">
           Etapa: {step}
         </p>
       </form>

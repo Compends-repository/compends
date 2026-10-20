@@ -17,7 +17,7 @@ export default function LoginPage() {
       <div className="flex h-dvh p-5">
         <div className="absolute shrink-0 self-start overflow-hidden h-sm:w-[540] 2xl:w-[630] 3xl:w-[720] aspect-3/1 mr-auto">
           <img
-            className="w-full h-auto -translate-y-[20%] -translate-x-[22%]"
+            className="w-full h-auto translate-y-[-20%] translate-x-[-22%]"
             src="/logo/logo1.svg"
             alt="Compends logo"
           />
