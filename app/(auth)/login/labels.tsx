@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -19,7 +19,9 @@ export type FormValues = {
 
 export default function FormLabels() {
   const router = useRouter();
-  const [step, setStep] = React.useState(1);
+  const [step, setStep] = useState(1);
+
+  const [error, setError] = useState<string | null>(null)
 
   const {
     register,
@@ -46,6 +48,11 @@ export default function FormLabels() {
   } as const;
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
+    if (!formData.birthDate) {
+      setError("Informe sua data de nascimento.");
+      return;
+    }
+
     await signUp(
       formData.userName,
       formData.email,
