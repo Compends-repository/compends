@@ -27,6 +27,6 @@ export const auth = betterAuth({
         opt1: { type: 'boolean', required: true, defaultValue: false},
         opt2: { type: 'boolean', required: true, defaultValue: false}
     }
-  }
+  },
   plugins: [nextCookies()],
 });

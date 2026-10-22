@@ -46,14 +46,14 @@ export default function FormLabels() {
   } as const;
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
-    await signUp({
-      name: formData.userName,
-      email: formData.email,
-      password: formData.password,
-      birthDate: formData.birthDate,
-      opt1: formData.opt1,
-      opt2: formData.opt2,
-    });
+    await signUp(
+      formData.userName,
+      formData.email,
+      formData.password,
+      formData.birthDate,
+      formData.opt1,
+      formData.opt2,
+    );
 
     router.push("/user_perfil-page");
   };
