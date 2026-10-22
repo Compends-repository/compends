@@ -1,12 +1,18 @@
-"use client";
 import { AnimatePresence, color, motion, scale } from "motion/react";
 import { style } from "motion/react-client";
 import Image from "next/image";
-import { useState } from "react";
 import GamePresentation from "./boards";
 import FormLabels from "./labels";
 
-export default function LoginPage() {
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+export default async function LoginPage() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (session) redirect("/user_perfil-page");
+
+
   return (
     <main className="relative min-h-screen overflow-hidden no-scrollbar">
       <div
