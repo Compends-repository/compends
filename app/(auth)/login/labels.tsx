@@ -3,8 +3,6 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
-import { createClient } from "@/lib/client";
-
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 
@@ -46,19 +44,19 @@ export default function FormLabels() {
   } as const;
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
-    const supabase = createClient();
+    // const supabase = createClient();
 
-    const { data, error } = await supabase.from("compends-user-data").insert({
-      userName: formData.userName,
-      email: formData.email,
-      password: formData.password,
-      age: formData.birthDate
-    });
+    // const { data, error } = await supabase.from("compends-user-data").insert({
+    //   userName: formData.userName,
+    //   email: formData.email,
+    //   password: formData.password,
+    //   age: formData.birthDate
+    // });
 
-    if (error) {
-      console.error(error.message);
-      return;
-    }
+    // if (error) {
+    //   console.error(error.message);
+    //   return;
+    // }
 
     router.push("/user_perfil-page");
   };
