@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
+import { signUp } from "@/lib/actions/auth-actions";
+
 import Step1 from "./steps/step1";
 import Step2 from "./steps/step2";
 
@@ -39,24 +41,19 @@ export default function FormLabels() {
 
   const spring = {
     type: "spring",
-    
+
     duration: 0.04,
   } as const;
 
   const onSubmit: SubmitHandler<FormValues> = async (formData) => {
-    // const supabase = createClient();
-
-    // const { data, error } = await supabase.from("compends-user-data").insert({
-    //   userName: formData.userName,
-    //   email: formData.email,
-    //   password: formData.password,
-    //   age: formData.birthDate
-    // });
-
-    // if (error) {
-    //   console.error(error.message);
-    //   return;
-    // }
+    await signUp({
+      name: formData.userName,
+      email: formData.email,
+      password: formData.password,
+      birthDate: formData.birthDate,
+      opt1: formData.opt1,
+      opt2: formData.opt2,
+    });
 
     router.push("/user_perfil-page");
   };
