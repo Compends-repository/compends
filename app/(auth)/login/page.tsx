@@ -1,3 +1,4 @@
+"use server"
 import { AnimatePresence, color, motion, scale } from "motion/react";
 import { style } from "motion/react-client";
 import Image from "next/image";
