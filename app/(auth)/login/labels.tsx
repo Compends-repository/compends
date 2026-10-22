@@ -21,7 +21,7 @@ export default function FormLabels() {
   const router = useRouter();
   const [step, setStep] = useState(1);
 
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -53,7 +53,7 @@ export default function FormLabels() {
       return;
     }
 
-    await signUp(
+    const result = await signUp(
       formData.userName,
       formData.email,
       formData.password,
@@ -61,6 +61,10 @@ export default function FormLabels() {
       formData.opt1,
       formData.opt2,
     );
+
+    if (!result.user) {
+      setError(`Failed to create account`);
+    }
 
     router.push("/user_perfil-page");
   };
