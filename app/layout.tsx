@@ -12,7 +12,7 @@ import {
 } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-export { metadata } from "./metaData";
+export { metadata } from "./metaData/GlobalMetaData";
 
 import localFont from "next/font/local";
 
