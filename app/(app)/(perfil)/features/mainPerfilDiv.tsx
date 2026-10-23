@@ -9,7 +9,7 @@ import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
 import Main_perfil_image from "./Normal/profileInformations.tsx";
 import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
 
-export default function Main_perfil_div() {
+export default function Main_perfil_div({ session }: any) {
   const [isReduced, setIsReduced] = useState(false);
 
   const onClickChangeDiminuted = () => {
@@ -24,9 +24,9 @@ export default function Main_perfil_div() {
       ></div>
 
       {isReduced ? (
-        <ReducedPerfilDivVersion onToggle={onClickChangeDiminuted} />
+        <ReducedPerfilDivVersion onToggle={onClickChangeDiminuted} session={session}/>
       ) : (
-        <NormalPerfilDivVersion onToggle={onClickChangeDiminuted} />
+        <NormalPerfilDivVersion onToggle={onClickChangeDiminuted} session={session}/>
       )}
 
       <div className="w-100 h-300 bg-transparent"></div>
