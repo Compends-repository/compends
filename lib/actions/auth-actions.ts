@@ -36,8 +36,7 @@ export const signIn = async (email: string, password: string) => {
       callbackURL: "/user_perfil-page",
     },
   });
-
-  redirect("/user_perfil-page");
+  
   return result;
 };
 

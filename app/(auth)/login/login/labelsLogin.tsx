@@ -12,16 +12,16 @@ import { motion } from "motion/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FieldDescription } from "@/components/ui/field";
+import { useRouter } from "next/navigation";
 
 import { signIn } from "@/lib/actions/auth-actions";
+import { redirect } from "next/navigation";
 
 type LoginValues = {
   userName: string;
   email: string;
   password: string;
 };
-
-
 
 const inputClass =
   "w-full bg-white pl-11 pr-4 py-2.5 text-black text-base font-normal h-sm:px-6 h-sm:py-2.5 h-sm:pl-14 h-sm:pr-6 2xl:px-8 2xl:py-3 2xl:pl-16 2xl:pr-8 3xl:px-8 3xl:py-3 3xl:pl-16 3xl:pr-8 outline-[#808080]";
@@ -65,13 +65,20 @@ export default function LoginLabels() {
   const [isFocused3, setIsFocused3] = React.useState(false);
   const [hover, setHover] = React.useState(false);
 
+  const router = useRouter();
+  const [authError, setAuthError] = React.useState("");
+
   const onSubmit = async (data: LoginValues) => {
-    await signIn(data.email, data.password)
-    return
+    setAuthError('');
+
+    try {
+      await signIn(data.email, data.password)
+    } catch (err: any) {
+      setAuthError(err)
+    }
   };
 
   const userName = watch("userName");
-
 
   return (
     <div className="flex justify-center">
