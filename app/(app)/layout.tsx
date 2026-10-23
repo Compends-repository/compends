@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import DropdownMenuPerfil from "./(discover)/dropdownMenu";
+import DropdownMenuPerfil from "./dropdownMenu";
 
 export default function PrincipalLayout({ children }: { children: React.ReactNode }) {
   const [clicked, setClicked] = useState(false);

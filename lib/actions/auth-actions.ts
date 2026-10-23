@@ -20,7 +20,7 @@ export const signUp = async (name: string, email: string, password: string, birt
 };
 
 
-const signIn = async (email: string, password: string) => {
+export const signIn = async (email: string, password: string) => {
     const result = await auth.api.signInEmail({
         body: {
             email, 
@@ -34,7 +34,7 @@ const signIn = async (email: string, password: string) => {
 }
 
 
-const singOut = async () => {
+export const signOut = async () => {
     const result = await auth.api.signOut({
         headers: await headers()
     })
