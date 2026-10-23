@@ -73,10 +73,12 @@ export default function LoginLabels() {
 
     try {
       await signIn(data.email, data.password);
-      redirect('/user_perfil-page')
     } catch (err: any) {
       setAuthError(err);
     }
+
+    router.push('/user_perfil-page')
+    router.refresh()
   };
 
   const userName = watch("userName");
