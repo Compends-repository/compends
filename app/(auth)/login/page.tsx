@@ -1,6 +1,4 @@
-"use server"
-import { AnimatePresence, color, motion, scale } from "motion/react";
-import { style } from "motion/react-client";
+"use client"
 import Image from "next/image";
 import GamePresentation from "./boards";
 import FormLabels from "./labels";
