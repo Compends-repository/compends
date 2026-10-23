@@ -1,4 +1,4 @@
-"use client"
+"use server"
 import Image from "next/image";
 import GamePresentation from "./boards";
 import FormLabels from "./labels";
@@ -6,6 +6,8 @@ import FormLabels from "./labels";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+
+export default async function LoginPage() {
 
 export default async function LoginPage() {
   const session = await auth.api.getSession({ headers: await headers() });
