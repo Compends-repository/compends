@@ -9,7 +9,12 @@ import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
 import Main_perfil_image from "./Normal/profileInformations.tsx";
 import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
 
-export default function Main_perfil_div({ session }: any) {
+import type { auth } from "@/lib/auth";
+
+type Session = typeof auth.$Infer.Session;
+
+
+export default function Main_perfil_div({ session }: {session: Session | null}) {
   const [isReduced, setIsReduced] = useState(false);
 
   const onClickChangeDiminuted = () => {

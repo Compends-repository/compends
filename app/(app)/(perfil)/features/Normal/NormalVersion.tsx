@@ -3,7 +3,12 @@ import { motion } from "motion/react";
 import Add_friend_button from "./addFriendButton";
 import Main_perfil_image from "./profileInformations";
 
-type Props = { onToggle: () => void, session: any };
+import type { auth } from "@/lib/auth";
+
+type Session = typeof auth.$Infer.Session;
+
+type Props = { onToggle: () => void; session: Session | null };
+
 
 export default function NormalPerfilDivVersion({ onToggle, session }: Props) {
   return (
