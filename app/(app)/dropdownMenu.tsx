@@ -2,19 +2,16 @@ import { auth } from "@/lib/auth";
 import { motion } from "motion/react";
 import { headers } from "next/headers";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { signOut } from '@/lib/actions/auth-actions'
-
 
 export default async function DropdownMenuPerfil() {
 
-  const session = await auth.api.getSession({
-    headers: await headers()
-})
 
   const asyncLogOutHandler = async () => {
-    await signOut()
-  }
+    await authClient.signOut();
+    router.push("/login");
+  };
 
   const router = useRouter();
   function onHandleClick() {
