@@ -7,8 +7,9 @@ export default function Main_perfil_image(props: any) {
         <img src={props.image} className="w-full h-full object-cover object-center" />
       </div>
       <Text_camps
-        userName="Luninjag"
-        userBio="Fundador da Compends, criada com o objetivo de unir pessoas e mundos..."
+        session={props.session}
+        userName={props.session?.user.name}
+        userBio={props.session?.user.email}
       />
     </>
   );
