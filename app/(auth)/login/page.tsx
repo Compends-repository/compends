@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import Image from "next/image";
 import GamePresentation from "./boards";
 import FormLabels from "./labels";
@@ -7,10 +7,11 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import AuthPanelDecide from "./authPanel";
+
 export default async function LoginPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   if (session) redirect("/user_perfil-page");
-
 
   return (
     <main className="relative min-h-screen overflow-hidden no-scrollbar">
@@ -31,17 +32,7 @@ export default async function LoginPage() {
         <GamePresentation />
 
         <div className="ml-auto h-full w-full h-sm:w-[520] 2xl:w-[560] 3xl:w-[630] overflow-y-auto bg-[#0000003e] border border-[#ffffff42] rounded-[40px] shadow-[0px_0px_7px_3px_rgba(0,0,0,0.203)] backdrop-blur-sm no-scrollbar">
-          <h1 className="h-sm:text-3xl text-4xl pt-10 text-center text-white font-bold font-sigmar text-shadow-[2px_2px_4px_rgba(0,0,0,0.2)] 3xl:text-[40px] 3xl:pt-18">
-            Welcome to Compends
-            {/* [text-shadow:-2px_-2px_0_#1a1a2e,2px_-2px_0_#1a1a2e,-2px_2px_0_#1a1a2e,2px_2px_0_#1a1a2e,0_-2px_0_#1a1a2e,0_2px_0_#1a1a2e,-2px_0_0_#1a1a2e,2px_0_0_#1a1a2e] */}
-          </h1>
-          <h2 className="h-sm:text-xl text-2xl pt-1.5 text-center text-white font-semibold font-mitr">
-            Start your journey
-          </h2>
-
-          <div className="mt-22 h-sm:mt-14.2">
-            <FormLabels />
-          </div>
+          <AuthPanelDecide />
         </div>
       </div>
     </main>

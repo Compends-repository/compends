@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   IconBrandMailgun,
@@ -18,6 +18,7 @@ import type {
 import { FieldDescription } from "@/components/ui/field";
 
 import type { FormValues } from "../labels";
+import { error } from "console";
 
 const inputClass =
   "w-full bg-white pl-11 pr-4 py-2.5 text-black text-base font-normal h-sm:px-6 h-sm:py-2.5 h-sm:pl-14 h-sm:pr-6 2xl:px-8 2xl:py-3 2xl:pl-16 2xl:pr-8 3xl:px-8 3xl:py-3 3xl:pl-16 3xl:pr-8 outline-[#808080]";
@@ -75,7 +76,7 @@ export default function Step1({ register, errors, watch }: any) {
 
           <motion.input
             {...register("userName", {
-              required: "First name is required",
+              required: "userName is required",
               minLength: { value: 5, message: "Min length is 5 digits" },
             })}
             type="text"
@@ -93,10 +94,16 @@ export default function Step1({ register, errors, watch }: any) {
             placeholder="e.g: Luninjag"
           />
         </motion.div>
-        <p>{errors.userName?.message}</p>
-        <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-          Just choose the best name you have in mind
-        </FieldDescription>
+        {errors.userName ? (
+          <p className="text-black bg-[#FF694A] rounded-[4] items-center justify-center">
+            {" "}
+            &gt;! {errors.userName?.message}
+          </p>
+        ) : (
+          <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
+            Just choose the best name you have in mind
+          </FieldDescription>
+        )}
       </label>
 
       <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
@@ -135,10 +142,16 @@ export default function Step1({ register, errors, watch }: any) {
             placeholder="e.g: compends@gmail.com"
           />
         </motion.div>
-        <p>{errors.email?.message}</p>
-        <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-          Don't put fake e-mails, we will verify that
-        </FieldDescription>
+        {errors.email ? (
+          <p className="text-black bg-[#FF694A] rounded-[4] items-center justify-center">
+            {" "}
+            &gt;! {errors.email?.message}
+          </p>
+        ) : (
+          <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
+            Don't put fake e-mails, we will verify that
+          </FieldDescription>
+        )}
       </label>
 
       <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
@@ -181,7 +194,7 @@ export default function Step1({ register, errors, watch }: any) {
 
           <motion.input
             {...register("password", {
-              required: "Passowrd is required",
+              required: "Password is required",
             })}
             type={isLocked ? "password" : "text"}
             id="password-field"
@@ -198,9 +211,16 @@ export default function Step1({ register, errors, watch }: any) {
             placeholder="Your password here..."
           />
         </motion.div>
-        <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-          Your password is stored securely, so don't worry
-        </FieldDescription>
+        {errors.password ? (
+          <p className="text-black bg-[#FF694A] rounded-[4] items-center justify-center">
+            {" "}
+            &gt;!{errors.password?.message}
+          </p>
+        ) : (
+          <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
+            Your password is stored securely, so don't worry
+          </FieldDescription>
+        )}
       </label>
     </>
   );

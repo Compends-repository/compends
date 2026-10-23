@@ -72,7 +72,7 @@ export default function FormLabels() {
   };
 
   const btnStyle =
-    "text-white flex items-center justify-center w-12 h-12 bg-[#6c3deece] rounded-[14px] cursor-pointer text-[20px] h-sm:w-10 h-sm:h-10 h-sm:rounded-[12px] h-sm:text-[18px] border-[2px] border-transparent";
+    "text-white flex items-center justify-center w-12 h-12 bg-[#6c3deece] rounded-[14px] cursor-pointer text-[20px] h-sm:w-10 h-sm:h-10 h-sm:rounded-[12px] h-sm:text-[18px] border-[2px] border-transparent font-mitr";
 
   async function handleNext() {
     const ok = await trigger(["userName", "email", "password"]);
