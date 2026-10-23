@@ -1,6 +1,5 @@
 import { auth } from "@/lib/auth";
 import { motion } from "motion/react";
-import { headers } from "next/headers";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
