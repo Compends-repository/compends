@@ -31,7 +31,6 @@ export const signIn = async (email: string, password: string) => {
     body: {
       email,
       password,
-      rememberMe: true,
       callbackURL: "/user_perfil-page",
     },
   });
