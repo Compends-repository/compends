@@ -10,7 +10,7 @@ export default function DropdownMenuPerfil() {
   const asyncLogOutHandler = async () => {
     const { error } = await authClient.signOut();
 
-    if ( error ) {
+    if (error) {
       console.log('signOut falhou: ', error)
     }
     router.push("/login");

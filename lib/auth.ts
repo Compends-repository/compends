@@ -29,5 +29,9 @@ export const auth = betterAuth({
         opt2: { type: 'boolean', required: true, defaultValue: false}
     }
   },
+  trustedOrigins: [
+    "http://localgost:3000",
+    "https://compends.com"
+  ],
   plugins: [nextCookies()],
 });
