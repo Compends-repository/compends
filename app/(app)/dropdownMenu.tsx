@@ -1,21 +1,17 @@
-import { auth } from "@/lib/auth";
+"use client";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
-export default async function DropdownMenuPerfil() {
-
+export default function DropdownMenuPerfil() {
+  const router = useRouter();
 
   const asyncLogOutHandler = async () => {
     await authClient.signOut();
     router.push("/login");
   };
 
-  const router = useRouter();
-  function onHandleClick() {
-    router.push("/login");
-  }
   return (
     <div className="fixed z-50 top-[110.7%] right-[0%] min-h-[155] w-[203] flex p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d] border-b">
       <nav>
