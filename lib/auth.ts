@@ -30,7 +30,7 @@ export const auth = betterAuth({
     }
   },
   trustedOrigins: [
-    "http://localgost:3000",
+    "http://localhost:3000",
     "https://compends.com"
   ],
   plugins: [nextCookies()],
