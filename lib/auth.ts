@@ -31,7 +31,9 @@ export const auth = betterAuth({
   },
   trustedOrigins: [
     "http://localhost:3000",
-    "https://compends.com"
+    "https://compends.com",
+    "https://www.compends.com",
+    "www.compends.com"
   ],
   plugins: [nextCookies()],
 });
