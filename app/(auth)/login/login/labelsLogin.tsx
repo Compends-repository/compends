@@ -68,7 +68,7 @@ export default function LoginLabels() {
   const router = useRouter();
   const [authError, setAuthError] = React.useState("");
 
-  const onSubmit = async (data: LoginValues) => {
+  const onLoginSubmit = async (data: LoginValues) => {
     setAuthError("");
 
     try {
@@ -77,8 +77,8 @@ export default function LoginLabels() {
       setAuthError(err);
     }
 
-    router.push('/user_perfil-page')
-    router.refresh()
+    router.push("/user_perfil-page");
+    router.refresh();
   };
 
   const userName = watch("userName");
@@ -86,7 +86,7 @@ export default function LoginLabels() {
   return (
     <div className="flex justify-center">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onLoginSubmit)}
         className="flex min-h-[50vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
       >
         <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
@@ -264,7 +264,7 @@ export default function LoginLabels() {
         <div className="flex left-20 right-20 justify-end gap-3 z-50 fixed 1xl:bottom-9 h-sm:bottom-1 2xl:bottom-9 h-sm:pb-4 ml-auto">
           <motion.button
             key="next"
-            type="button"
+            type="submit"
             animate={{ scale: 1 }}
             className="text-white flex items-center justify-center w-32 h-12 bg-[#6c3deece] rounded-[14px] cursor-pointer text-[20px] h-sm:w-10 h-sm:h-10 h-sm:rounded-[12px] h-sm:text-[18px] border-[2] border-transparent font-mitr"
             whileHover={{ scale: 1.05, borderColor: "white" }}
@@ -273,6 +273,7 @@ export default function LoginLabels() {
           >
             Log In <span className="pl-2">{" ➜"}</span>
           </motion.button>
+          {authError && <FieldError message={authError} />}
         </div>
       </form>
     </div>
