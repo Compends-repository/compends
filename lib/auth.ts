@@ -27,7 +27,7 @@ export const auth = betterAuth({
         birthDate: { type: 'date', required: true},
         opt1: { type: 'boolean', required: true, defaultValue: false},
         opt2: { type: 'boolean', required: true, defaultValue: false},
-        bio: {type: 'string', required: false, defaultValue: null}
+        // bio: {type: 'string', required: false, defaultValue: null}
     }
   },
   trustedOrigins: [
