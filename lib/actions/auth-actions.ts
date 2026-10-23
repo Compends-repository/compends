@@ -38,4 +38,6 @@ export const signOut = async () => {
     const result = await auth.api.signOut({
         headers: await headers()
     })
+
+    return result
 }
