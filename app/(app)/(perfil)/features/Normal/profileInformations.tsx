@@ -8,9 +8,8 @@ export default function Main_perfil_image(props: any) {
         <img src={props.image} className="w-full h-full object-cover object-center" />
       </div>
       <Text_camps
-        session={props.session}
-        userName={props.session?.user.name}
-        userBio={props.session?.user.email}
+        userName={props.session}
+        userBio={props.session}
       />
     </>
   );
