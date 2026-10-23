@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { auth } from "../auth";
+import { redirect } from "next/navigation";
 
 export const signUp = async (
   name: string,
@@ -31,10 +32,12 @@ export const signIn = async (email: string, password: string) => {
     body: {
       email,
       password,
+      rememberMe: true,
       callbackURL: "/user_perfil-page",
     },
   });
 
+  redirect("/user_perfil-page");
   return result;
 };
 
