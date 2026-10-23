@@ -69,12 +69,13 @@ export default function LoginLabels() {
   const [authError, setAuthError] = React.useState("");
 
   const onSubmit = async (data: LoginValues) => {
-    setAuthError('');
+    setAuthError("");
 
     try {
-      await signIn(data.email, data.password)
+      await signIn(data.email, data.password);
+      redirect('/user_perfil-page')
     } catch (err: any) {
-      setAuthError(err)
+      setAuthError(err);
     }
   };
 
