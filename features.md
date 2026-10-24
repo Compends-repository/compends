@@ -1,8 +1,8 @@
 <!-- Update 2.0.alfa -->
-- [] Entender e aplicar o better auth
-- [] Entender e aplicar o supabase
-- [] Login com better auth e conexão ao supabase
-- [] Perfil dinâmico com os dados vindos do supabase
+- [x] Entender e aplicar o better auth
+- [x] Entender e aplicar o supabase
+- [x] Login com better auth e conexão ao supabase
+- [x] Perfil dinâmico com os dados vindos do supabase
 - [] Lista Discover dinâmica
 - [] Terminar o Special thanks
 - [] Convencer 5 devs a postarem um jogo na minha plataforma
@@ -12,6 +12,7 @@
 
 <!-- Update 2.0.0 -->
 - [] Posts básicos na área social
+- [] Bio customizada
 - [] Pagamento
 - [] Add friend funcionando
 - [] Denúnciar perfil
