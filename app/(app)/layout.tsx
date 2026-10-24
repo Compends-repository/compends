@@ -8,7 +8,18 @@ import { useState } from "react";
 
 import DropdownMenuPerfil from "./dropdownMenu";
 
-export default function PrincipalLayout({ children }: { children: React.ReactNode }) {
+
+type PrincipalLayoutProps = {
+  children: React.ReactNode;
+  session: {
+    name: string,
+    image?: string | null;
+    email?: string | null;
+    id: string;
+  }
+}
+
+export default function PrincipalLayout({ children, session }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   return (
     <>
@@ -29,7 +40,7 @@ export default function PrincipalLayout({ children }: { children: React.ReactNod
               className="w-10 h-10 shrink-0 ml-[-5%] bg-white rounded-[13px] bg-center bg-cover bg-no-repeat"
               style={{ backgroundImage: "url('/CapsuleDraft.webp')" }}
             />
-            <h2 className="font-Asap text-[17px] font-black">@Luninjag</h2>
+            <h2 className="font-Asap text-[17px] font-black">{session.name}</h2>
           </Link>
 
           {clicked ? (
