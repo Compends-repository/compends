@@ -11,6 +11,10 @@ const { data, error } = await supabase
   .select()
   .single()
 
+if (error) {
+  console.log("Erro DB: ", error)
+}
+
 export default function Discover_new_preople() {  // { Bimg }: userInformations
   return (
     <div className="relative isolate">
