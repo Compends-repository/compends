@@ -32,6 +32,7 @@ export const auth = betterAuth({
   },
   trustedOrigins: [
     "http://localhost:3000",
+    "http://192.168.56.1:3000/",
     "https://compends.com",
     "https://www.compends.com",
     "www.compends.com"

@@ -66,15 +66,15 @@ export default function LoginLabels() {
   const [hover, setHover] = React.useState(false);
 
   const router = useRouter();
-  const [authError, setAuthError] = React.useState("");
+  const [authError, setAuthError] = React.useState<string | null>(null);
 
   const onLoginSubmit = async (data: LoginValues) => {
     setAuthError("");
 
     try {
       await signIn(data.email, data.password);
-    } catch (err: any) {
-      setAuthError(err);
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : 'Erro ao fazer o login');
     }
 
     router.push("/user_perfil-page");
@@ -276,7 +276,7 @@ export default function LoginLabels() {
           >
             Log In <span className="pl-2">{" ➜"}</span>
           </motion.button>
-          {authError && <FieldError message={authError} />}
+          {authError && (<FieldError message={typeof authError === 'string' ? authError : (authError as Error).message} />)}
         </div>
       </form>
     </div>

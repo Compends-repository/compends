@@ -41,15 +41,15 @@ export default function User_Informations_List({ GETusers }: infoTypes) {
           />
 
           <motion.img
-            className="w-[200] mt-[4%] h-[200] object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[3px_6px_15px_0px_rgba(0,0,0,0.24)] pointer-events-none"
+            className="w-[145] mt-[4%] h-[150] object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[2px_2px_10px_0px_rgba(0,0,0,0.09)] pointer-events-none"
             src={user.Pimg}
-            alt={user.bio} // name
+            alt={user.name}
             variants={{ tap: { scale: 0.85 } }}
             transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
           />
           <Text_info_user_list name={user.name} bio={user.bio} />
           <Separator
-            className="w-[40%]! 2xl:mt-[13%] 3xl:mt-[11%] mt-[12%] mb-[4%] bg-chart-1 h-[1.8]!"
+            className="w-[40%]! 2xl:mt-[11%] 3xl:mt-[9%] mt-[12%] mb-[4%] bg-chart-1 h-[1.8]!"
             style={{ opacity: hoveredId === user.id ? 0.5 : 1 }}
           />
         </motion.li>
