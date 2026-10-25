@@ -43,7 +43,7 @@ export default function User_Informations_List({ GETusers }: infoTypes) {
           <motion.img
             className="w-[200] mt-[4%] h-[200] object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[3px_6px_15px_0px_rgba(0,0,0,0.24)] pointer-events-none"
             src={user.Pimg}
-            alt={user.name}
+            alt={user.bio} // name
             variants={{ tap: { scale: 0.85 } }}
             transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
           />
