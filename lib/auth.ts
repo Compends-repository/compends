@@ -28,11 +28,12 @@ export const auth = betterAuth({
         opt1: { type: 'boolean', required: true, defaultValue: false},
         opt2: { type: 'boolean', required: true, defaultValue: false},
         bio: {type: 'string', required: false, defaultValue: null},
+        avatar: { type: "string", required: false },
     }
   },
   trustedOrigins: [
     "http://localhost:3000",
-    "http://192.168.56.1:3000/",
+    "http://192.168.56.1:3000",
     "https://compends.com",
     "https://www.compends.com",
     "www.compends.com"

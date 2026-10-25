@@ -3,7 +3,7 @@
 - [x] Entender e aplicar o supabase
 - [x] Login com better auth e conexão ao supabase
 - [x] Perfil dinâmico com os dados vindos do supabase
-- [] Lista Discover dinâmica
+- [x] Lista Discover dinâmica
 - [] Terminar o Special thanks
 - [] Convencer 5 devs a postarem um jogo na minha plataforma
 <!-- (Lançar dia 14/11) -->
@@ -11,6 +11,7 @@
 
 
 <!-- Update 2.0.0 -->
+- [] Aba loja
 - [] Posts básicos na área social
 - [] Bio customizada
 - [] Pagamento

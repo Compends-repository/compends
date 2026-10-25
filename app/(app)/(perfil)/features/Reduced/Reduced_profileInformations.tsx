@@ -9,7 +9,7 @@ export default function Main_perfil_image(props: any) {
       <Text_camps
         session={props.session}
         userName={props.session?.user.name}
-        userBio={props.session?.user.email}
+        userBio={props.session?.user.bio ?? props.session?.user.email}
       />
     </>
   );

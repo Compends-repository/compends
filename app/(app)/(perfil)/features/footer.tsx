@@ -8,18 +8,24 @@ export default function Footer() {
       </h1>
 
       <ul className="text-[14px] font-semibold font-author mt-[1%] w-[900] ml-[2.5%] space-y-2">
-        <li>My mom</li>
+        <li>
+          To my mother, who supported me by providing a home, food, an
+          incredible family, and a good environment in which to live and study.
+          she is the reason Compends exists. She will always be in our hearts.
+        </li>
 
         <li>My father and grandpa</li>
 
         <li>
-          To my friend <span className="underline">Eduardo Jorge</span>, who has been by my side for
-          5 years. He helped me grow, both personally and with Compends. I hope he's good nowadays.
+          To my friend <span className="underline">Eduardo Jorge</span>, who has
+          been by my side for 5 years. He helped me grow, both personally and
+          with Compends. I hope he's good nowadays.
         </li>
 
         <li>
-          To <span className="underline">Victor Romero</span>, who helped us a lot with his opinions
-          and ideas. He will always be a part of Compends' story and foundation.
+          To <span className="underline">Victor Romero</span>, who helped us a
+          lot with his opinions and ideas. He will always be a part of Compends'
+          story and foundation.
         </li>
 
         <li>My english teacher Victor</li>
