@@ -9,7 +9,6 @@ type userInformations = {
 const { data, error } = await supabase
   .from("user")
   .select()
-  .single()
 
 if (error) {
   console.log("Erro DB: ", error)
