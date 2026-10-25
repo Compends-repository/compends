@@ -90,13 +90,16 @@ export default function LoginLabels() {
         className="flex min-h-[50vh] w-full max-w-sm flex-col gap-11 h-sm:gap-7"
       >
         <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
-          {userName ? (
-            <>
-              We Are happy to see you here <strong>@{userName}</strong>
-            </>
-          ) : (
-            "Choose a username:"
-          )}
+          <span>
+            {userName ? (
+              <>
+                Welcome back <strong>@{userName}!</strong>
+              </>
+            ) : (
+              "What's your username?"
+            )}
+          </span>
+
           <motion.div
             className="relative"
             initial="rest"
@@ -132,7 +135,7 @@ export default function LoginLabels() {
             <FieldError message={errors.userName.message} />
           ) : (
             <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-              Just choose the best name you have in mind
+              Same username as always, no @ needed
             </FieldDescription>
           )}
         </label>
@@ -146,7 +149,7 @@ export default function LoginLabels() {
         */}
 
         <label className="flex flex-col gap-2 text-white font-semibold font-josefin text-[15px] h-sm:text-[14.6px]">
-          Your email:
+          Your email on Compends:
           <motion.div
             className="relative"
             initial="rest"
@@ -182,7 +185,7 @@ export default function LoginLabels() {
             <FieldError message={errors.email.message} />
           ) : (
             <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-              Enter the e-mail you registered with
+              The email you linked to follow your journey here
             </FieldDescription>
           )}
         </label>
@@ -248,7 +251,7 @@ export default function LoginLabels() {
             <FieldError message={errors.password.message} />
           ) : (
             <FieldDescription className="text-[#B9B9BD] ml-[2%] h-sm:text-[13px]">
-              Your password is stored securely, so don't worry
+              Keep it private, we keep it encrypted
             </FieldDescription>
           )}
         </label>
@@ -266,7 +269,7 @@ export default function LoginLabels() {
             key="next"
             type="submit"
             animate={{ scale: 1 }}
-            className="text-white flex items-center justify-center w-32 h-12 bg-[#6c3deece] rounded-[14px] cursor-pointer text-[20px] h-sm:w-10 h-sm:h-10 h-sm:rounded-[12px] h-sm:text-[18px] border-[2] border-transparent font-mitr"
+            className="text-white flex items-center justify-center w-32 h-12 bg-[#6c3deece] rounded-[14px] cursor-pointer text-[20px] h-sm:w-30 h-sm:h-10 2xl:w-30 2xl:h-11 h-sm:rounded-[12px] h-sm:text-[18px] border-[2] border-transparent font-mitr"
             whileHover={{ scale: 1.05, borderColor: "white" }}
             whileTap={{ scale: 0.9 }}
             transition={spring}

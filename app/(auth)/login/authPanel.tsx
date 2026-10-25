@@ -24,7 +24,7 @@ export default function AuthPanelDecide() {
 
       <button
         onClick={() => setMode(mode === "signUp" ? "login" : "signUp")}
-        className="mt-auto py-6 block w-full text-center text-[14.5px] bg-transparent text-white font-Asap cursor-pointer hover:underline"
+        className="mt-auto 3xl:py-6 h-sm:pr-37 h-sm:py-2 h-lg:pr-64 2xl:py-5 pr-47 3xl:pr-64 block w-full text-center text-[14.5px] bg-transparent text-white font-Asap cursor-pointer hover:underline"
       >
         {mode === "signUp"
           ? "Already have an account? Log in"
