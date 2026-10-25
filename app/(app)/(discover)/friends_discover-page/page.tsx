@@ -2,9 +2,6 @@ import User_Informations_List from "../features/listRendering/userInformations";
 import { supabase } from "@/lib/supabase";
 
 
-type userInformations = {
-  Bimg: string;
-};
 
 const { data, error } = await supabase
   .from("user")
@@ -23,7 +20,7 @@ export default function Discover_new_preople() {  // { Bimg }: userInformations
       ></div>
 
       <div>
-        <User_Informations_List GETusers={data} />
+        <User_Informations_List GETusers={data ?? []} />
       </div>
     </div>
   );
