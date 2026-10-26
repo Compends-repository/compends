@@ -13,6 +13,8 @@
   "dependencies": {
     "@base-ui/react": "^1.8.0",
     "@better-auth/drizzle-adapter": "^1.7.12",
+    "@hugeicons/core-free-icons": "^4.3.5",
+    "@hugeicons/react": "^1.1.10",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
     "@supabase/ssr": "^0.12.7",

@@ -14,9 +14,9 @@ export default function Footer() {
           she is the reason Compends exists. She will always be the most important person to Compends, and to me.
         </li>
 
-       <li>My father, Henrique... a man who passed away when I was 12 years old; a father who could no longer see his children at the end of the day... He was—and remains—very important in my life, for after his death, I began to take care of myself, earn good grades, and strive for self-improvement each and every day.</li>
+       <li><span className="underline">My father, Henrique</span>... a man who passed away when I was 12 years old; a father who could no longer see his children at the end of the day... He was—and remains—very important in my life, for after his death, I began to take care of myself, earn good grades, and strive for self-improvement each and every day.</li>
 
-        <li>To my grandfather, Silvestro — he was one of the most important people in my life. The day he passed away was very sad... but months later, I began building my company. That is why I am here: I want to honor everyone mentioned in this description and make them proud of me.</li>
+        <li>To <span className="underline">my grandfather, Silvestro</span> — he was one of the most important people in my life. The day he passed away was very sad... but months later, I began building my company. That is why I am here: I want to honor everyone mentioned in this description and make them proud of me.</li>
 
         <li>
           To my friend <span className="underline">Eduardo Jorge</span>, who has been
