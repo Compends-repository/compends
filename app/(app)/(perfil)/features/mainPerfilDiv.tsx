@@ -13,8 +13,11 @@ import type { auth } from "@/lib/auth";
 
 type Session = typeof auth.$Infer.Session;
 
-
-export default function Main_perfil_div({ session }: {session: Session | null}) {
+export default function Main_perfil_div({
+  session,
+}: {
+  session: Session | null;
+}) {
   const [isReduced, setIsReduced] = useState(false);
 
   const onClickChangeDiminuted = () => {
@@ -23,18 +26,31 @@ export default function Main_perfil_div({ session }: {session: Session | null}) 
 
   return (
     <div className="relative isolate">
+      {/* Background: fecha sozinho, sem filhos */}
       <div
         className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat brightness-78"
         style={{ backgroundImage: "url('/perfilBackExample.png')" }}
-      ></div>
+      />
 
-      {isReduced ? (
-        <ReducedPerfilDivVersion onToggle={onClickChangeDiminuted} session={session}/>
-      ) : (
-        <NormalPerfilDivVersion onToggle={onClickChangeDiminuted} session={session}/>
-      )}
+      {/* Wrapper: o header só gruda aqui dentro */}
+      <div>
+        {isReduced ? (
+          <ReducedPerfilDivVersion
+            onToggle={onClickChangeDiminuted}
+            session={session}
+          />
+        ) : (
+          <NormalPerfilDivVersion
+            onToggle={onClickChangeDiminuted}
+            session={session}
+          />
+        )}
 
-      <div className="w-100 h-300 bg-transparent"></div>
+        <div className="h-300 pointer-events-none" />
+      </div>
+
+      {/* Distância entre a base do header e o footer */}
+      <div className="h-[200] pointer-events-none" aria-hidden />
 
       <Footer />
     </div>

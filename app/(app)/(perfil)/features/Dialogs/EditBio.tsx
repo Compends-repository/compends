@@ -88,17 +88,17 @@ export default function EditBio_OnPerfil({ session }: Props) {
       <DialogContent className="sm:max-w-sm">
         <form onSubmit={handleSave} className="grid gap-4">
           <DialogHeader>
-            <DialogTitle>Edit Bio</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className='[text-shadow:-1px_-1px_0_#1a1a2e,1px_-1px_0_#1a1a2e,-1px_1px_0_#1a1a2e,1px_1px_0_#1a1a2e,0_-1px_0_#1a1a2e,0_1px_0_#1a1a2e,-1px_0_0_#1a1a2e,1px_0_0_#1a1a2e] text-white font-jetBrains font-bold'>Edit Bio</DialogTitle>
+            <DialogDescription className='text-[#e8e8e8] font-josefin'>
               Make changes to your bio here. Click save when you&apos;re done.
             </DialogDescription>
           </DialogHeader>
 
           <FieldGroup>
             <Field>
-              <Label htmlFor="bio-1">Bio</Label>
+              <Label htmlFor="bio-1" className='text-[#e8e8e8] font-roboto font-semibold'>Bio</Label>
               <Textarea
-                className="max-h-[240]"
+                className="max-h-[240] text-[#e5e3e3] font-author text-[35px]"  // text-[#272727]
                 id="bio-1"
                 name="bio"
                 value={bio}
