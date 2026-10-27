@@ -10,14 +10,16 @@ import Main_perfil_image from "./Normal/profileInformations.tsx";
 import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
 
 import type { auth } from "@/lib/auth";
+import type { PublicUser } from "@/lib/types";
 
 type Session = typeof auth.$Infer.Session;
 
-export default function Main_perfil_div({
-  session,
-}: {
+type Props = {
   session: Session | null;
-}) {
+  user: PublicUser
+}
+
+export default function Main_perfil_div({ session, user }: Props) {
   const [isReduced, setIsReduced] = useState(false);
 
   const onClickChangeDiminuted = () => {
@@ -43,6 +45,7 @@ export default function Main_perfil_div({
           <NormalPerfilDivVersion
             onToggle={onClickChangeDiminuted}
             session={session}
+            user={user}
           />
         )}
 

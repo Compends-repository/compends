@@ -68,7 +68,7 @@ export default function FormLabels() {
       setError(`Failed to create account`);
     }
 
-    router.push("/user_perfil-page");
+    router.push(`/${result.user.id}`);
   };
 
   const btnStyle =

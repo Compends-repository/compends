@@ -1,13 +1,11 @@
-import Main_perfil_div from "../features/mainPerfilDiv.tsx";
-
-import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import Main_perfil_div from "../[usersPerfil]/mainPerfilDiv";
 
-type Session = typeof auth.$Infer.Session;
-
-
-export default async function perfilPage() {
+export default async function PerfilPage() {
   const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) redirect("/login");
 
-  return <Main_perfil_div session={session} />;
+  redirect(`/${session.user.id}`)
 }

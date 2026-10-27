@@ -1,20 +1,27 @@
+'use client'
+
 import { IconArrowAutofitUp } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Add_friend_button from "./addFriendButton";
 import Main_perfil_image from "./profileInformations";
+import type { PublicUser } from "@/lib/types";
 
 
 import type { auth } from "@/lib/auth";
 
 type Session = typeof auth.$Infer.Session;
 
-type Props = { onToggle: () => void; session: Session | null };
+type Props = { 
+  onToggle: () => void; 
+  session: Session | null;
+  user: PublicUser,
+};
 
-export default function NormalPerfilDivVersion({ onToggle, session }: Props) {
+export default function NormalPerfilDivVersion({ onToggle, session, user }: Props) {
   return (
     <div className="w-full h-[calc((100vh-90px)*0.506+90px)] flex items-center sticky top-0 z-20 backdrop-blur-[3px] backdrop-brightness-95 bg-black/10 border-b-2 rounded-b-[45px] border-[#ececec63] no-scrollbar shadow-[3px_6px_15px_0px_rgba(0,0,0,0.38)] contrast-125">
       <div className="flex items-center gap-6">
-        <Main_perfil_image session={session} />
+        <Main_perfil_image session={session} user={user}/>
         <Add_friend_button />
       </div>
       <motion.button

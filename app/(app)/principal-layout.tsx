@@ -20,12 +20,13 @@ type PrincipalLayoutProps = {
   };
 };
 
-const rotasPerfil = ["/user_perfil-page"];
-
 export default function PrincipalLayout({
   children,
   session,
 }: PrincipalLayoutProps) {
+
+   const rotasPerfil = [`/${session.id}`];
+   
   const pathname = usePathname();
   const isPerfil = rotasPerfil.some((r) => pathname.startsWith(r));
 

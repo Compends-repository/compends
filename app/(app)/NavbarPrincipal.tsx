@@ -29,7 +29,7 @@ export default function NavbarPrincipal({ session }: PrincipalLayoutProps) {
 
         <nav className="relative shrink-0 h-sm:h-[52] 2xl:h-[52] h-lg:h-[55] 3xl:h-[55] flex items-center p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d]">
           <Link
-            href="/user_perfil-page"
+            href={`/${session.id}`}
             className="flex items-center gap-3 cursor-pointer"
           >
             <div
