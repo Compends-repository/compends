@@ -1,17 +1,14 @@
 import User_Informations_List from "../features/listRendering/userInformations";
 import { supabase } from "@/lib/supabase";
 
+export default async function Discover_new_preople() {
+  // { Bimg }: userInformations
+  const { data, error } = await supabase.from("user").select();
 
+  if (error) {
+    console.log("Erro DB: ", error);
+  }
 
-const { data, error } = await supabase
-  .from("user")
-  .select()
-
-if (error) {
-  console.log("Erro DB: ", error)
-}
-
-export default function Discover_new_preople() {  // { Bimg }: userInformations
   return (
     <div className="relative isolate">
       <div

@@ -28,7 +28,7 @@ export default function User_Informations_List({ GETusers }: infoTypes) {
   return (
     <ul className="mt-[8%]">
       {(GETusers ?? []).map((user) => (
-        <Link href={`/${user.id}`} className="block">
+        <Link key={user.id} href={`/${user.id}`} className="block">
           <motion.li
             key={user.id}
             className="relative isolate pl-[6%] cursor-pointer"

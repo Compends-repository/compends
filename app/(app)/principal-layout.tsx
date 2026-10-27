@@ -10,6 +10,8 @@ import DropdownMenuPerfil from "./dropdownMenu";
 import NavbarPerfil from "./(perfil)/navbarPerfil";
 import NavbarPrincipal from "./NavbarPrincipal";
 
+import type { PublicUser } from "@/lib/types";
+
 type PrincipalLayoutProps = {
   children: React.ReactNode;
   session: {
@@ -18,11 +20,13 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
+  user: PublicUser,
 };
 
 export default function PrincipalLayout({
   children,
   session,
+  user
 }: PrincipalLayoutProps) {
 
    const rotasPerfil = [`/${session.id}`];
@@ -34,9 +38,9 @@ export default function PrincipalLayout({
   return (
     <>
       {!isPerfil ? (
-        <NavbarPrincipal session={session} />
+        <NavbarPrincipal session={session} user={user} />
       ) : (
-        <NavbarPerfil session={session} />
+        <NavbarPerfil session={session} user={user}/>
       )}
       {children}
     </>

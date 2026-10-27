@@ -10,6 +10,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Edit03Icon } from "@hugeicons/core-free-icons";
 import { EditOff03Icon } from "@hugeicons/core-free-icons";
 
+import type { PublicUser } from "@/lib/types";
+
 type PrincipalLayoutProps = {
   session: {
     name: string;
@@ -17,9 +19,10 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
+  user: PublicUser
 };
 
-export default function NavbarPerfil({ session }: PrincipalLayoutProps) {
+export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   const [editorStarted, setEditorStarted] = useState(false);
 
@@ -58,9 +61,9 @@ export default function NavbarPerfil({ session }: PrincipalLayoutProps) {
             onClick={toggleEditor}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <div
+            <img
               className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-white 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
-              style={{ backgroundImage: "url('/CapsuleDraft.webp')" }}
+              src={user.avatar ?? user.image ?? "/default-avatar.png"}
             />
             {editorStarted ? (
               <HugeiconsIcon

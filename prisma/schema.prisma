@@ -16,7 +16,7 @@ model User {
   id            String    @id
   name          String
   email         String
-  bio           String?
+  bio           String?   @default("No description yet")
   emailVerified Boolean   @default(false)
   birthDate     DateTime?
   opt1          Boolean   @default(false)

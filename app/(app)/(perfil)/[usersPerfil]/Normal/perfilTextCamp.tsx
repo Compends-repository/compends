@@ -17,7 +17,6 @@ export default function Text_camps({ session, user }: Props) {
         @{user.name}
       </h1>
 
-      {/* altura fixa: reserva 3 linhas sempre */}
       <div className="relative mt-2 h-[4.5rem] w-fit max-w-[calc(100%-2.75rem)] ml-[2%]">
         <p className="text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3">
           {user.bio ?? user.email}

@@ -4,7 +4,7 @@
 - [x] Login com better auth e conexão ao supabase
 - [x] Perfil dinâmico com os dados vindos do supabase
 - [x] Lista Discover dinâmica
-- [] Terminar o Special thanks
+- [x] Terminar o Special thanks
 - [] Convencer 5 devs a postarem um jogo na minha plataforma
 <!-- (Lançar dia 14/11) -->
 

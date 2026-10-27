@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import DropdownMenuPerfil from "./dropdownMenu";
 
+import type { PublicUser } from "@/lib/types";
+
 type PrincipalLayoutProps = {
   session: {
     name: string;
@@ -10,9 +12,10 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
+  user: PublicUser
 };
 
-export default function NavbarPrincipal({ session }: PrincipalLayoutProps) {
+export default function NavbarPrincipal({ session, user }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   return (
     <>
@@ -32,9 +35,9 @@ export default function NavbarPrincipal({ session }: PrincipalLayoutProps) {
             href={`/${session.id}`}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <div
+            <img
               className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-white 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
-              style={{ backgroundImage: "url('/CapsuleDraft.webp')" }}
+              src={user.avatar ?? user.image ?? "/default-avatar.png"}
             />
             <h2 className="font-Asap text-[17px] font-black">{session.name}</h2>
           </Link>
