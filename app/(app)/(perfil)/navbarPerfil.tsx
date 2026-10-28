@@ -19,7 +19,7 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
-  user: PublicUser
+  user: PublicUser;
 };
 
 export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {

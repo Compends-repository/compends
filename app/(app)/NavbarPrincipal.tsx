@@ -12,10 +12,13 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
-  user: PublicUser
+  user: PublicUser;
 };
 
-export default function NavbarPrincipal({ session, user }: PrincipalLayoutProps) {
+export default function NavbarPrincipal({
+  session,
+  user,
+}: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   return (
     <>

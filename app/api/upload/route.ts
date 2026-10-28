@@ -1,9 +1,9 @@
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { randomUUID } from "crypto";
 import { headers } from "next/headers";
 import { r2 } from "@/lib/r2";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db"; // ajuste para o caminho do seu client
+import { db } from "@/lib/db";
 
 const EXT: Record<string, string> = {
   "image/png": "png",
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   }
 
   const key = `${field}s/${session.user.id}-${randomUUID()}.${ext}`;
-
+  
   await r2.send(
     new PutObjectCommand({
       Bucket: process.env.R2_BUCKET!,
@@ -48,8 +48,50 @@ export async function POST(req: Request) {
 
   await db.user.update({
     where: { id: session.user.id },
-    data: { [field as string]: url },
+    data: field === 'avatar' ? { avatar: url }: { background: url },
   });
 
   return Response.json({ url });
+}
+
+
+export async function DELETE(req: Request) {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) {
+    return Response.json({ error: "Não autenticado" }, { status: 401 });
+  }
+
+  const { field } = await req.json();
+  if (!FIELDS.includes(field)) {
+    return Response.json({ error: "Campo inválido" }, { status: 400 });
+  }
+
+  const current = await db.user.findUnique({
+    where: { id: session.user.id },
+    select: { avatar: true, background: true },
+  });
+  const oldUrl = current?.[field as "avatar" | "background"];
+
+  // 1. Limpa a coluna no banco
+  await db.user.update({
+    where: { id: session.user.id },
+    data: field === "avatar" ? { avatar: null } : { background: null },
+  });
+
+  // 2. Apaga o arquivo do R2 (se falhar, o banco já está limpo)
+  const prefix = `${process.env.R2_PUBLIC_URL}/`;
+  if (oldUrl && oldUrl.startsWith(prefix)) {
+    try {
+      await r2.send(
+        new DeleteObjectCommand({
+          Bucket: process.env.R2_BUCKET!,
+          Key: oldUrl.slice(prefix.length),
+        }),
+      );
+    } catch (e) {
+      console.error("[r2] falha ao apagar objeto:", e);
+    }
+  }
+
+  return Response.json({ ok: true });
 }

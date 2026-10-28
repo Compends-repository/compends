@@ -16,10 +16,11 @@ type Session = typeof auth.$Infer.Session;
 
 type Props = {
   session: Session | null;
-  user: PublicUser
-}
+  user: PublicUser;
+  isOwner: boolean;
+};
 
-export default function Main_perfil_div({ session, user }: Props) {
+export default function Main_perfil_div({ session, user, isOwner }: Props) {
   const [isReduced, setIsReduced] = useState(false);
 
   const onClickChangeDiminuted = () => {
@@ -46,6 +47,7 @@ export default function Main_perfil_div({ session, user }: Props) {
             onToggle={onClickChangeDiminuted}
             session={session}
             user={user}
+            isOwner={isOwner}
           />
         )}
 

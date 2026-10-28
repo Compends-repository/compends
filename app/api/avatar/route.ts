@@ -1,23 +1,30 @@
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
 
-const ALLOWED = ["image/png", "image/jpeg", "image/webp"];
-const MAX_SIZE = 4 * 1024 * 1024; // 4MB
-
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) {
-    return Response.json({ error: "Não autorizado" }, { status: 401 });
-  }
+  if (!session) return new Response(null, { status: 401 });
 
-  const form = await req.formData();
-  const file = form.get("file");
+  const field =
+    new URL(req.url).searchParams.get("field") === "background"
+      ? "background"
+      : "avatar";
 
-  if (!(file instanceof File) || !ALLOWED.includes(file.type) || file.size > MAX_SIZE) {
-    return Response.json({ error: "Arquivo inválido" }, { status: 400 });
-  }
+  const user = await db.user.findUnique({
+    where: { id: session.user.id },
+    select: { avatar: true, background: true },
+  });
+  const url = user?.[field];
+  if (!url) return new Response(null, { status: 404 });
 
-  // TODO: salvar o arquivo (R2, UploadThing...) e gravar a URL no avatar
+  const upstream = await fetch(url);
+  if (!upstream.ok) return new Response(null, { status: 502 });
 
-  return Response.json({ url: `pendente-${Date.now()}` });
+  return new Response(upstream.body, {
+    headers: {
+      "Content-Type": upstream.headers.get("Content-Type") ?? "image/jpeg",
+      "Cache-Control": "no-store",
+    },
+  });
 }

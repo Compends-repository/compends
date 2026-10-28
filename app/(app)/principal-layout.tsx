@@ -20,17 +20,16 @@ type PrincipalLayoutProps = {
     email?: string | null;
     id: string;
   };
-  user: PublicUser,
+  user: PublicUser;
 };
 
 export default function PrincipalLayout({
   children,
   session,
-  user
+  user,
 }: PrincipalLayoutProps) {
+  const rotasPerfil = [`/${session.id}`];
 
-   const rotasPerfil = [`/${session.id}`];
-   
   const pathname = usePathname();
   const isPerfil = rotasPerfil.some((r) => pathname.startsWith(r));
 
@@ -40,7 +39,7 @@ export default function PrincipalLayout({
       {!isPerfil ? (
         <NavbarPrincipal session={session} user={user} />
       ) : (
-        <NavbarPerfil session={session} user={user}/>
+        <NavbarPerfil session={session} user={user} />
       )}
       {children}
     </>
