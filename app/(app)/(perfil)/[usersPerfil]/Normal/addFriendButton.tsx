@@ -7,7 +7,13 @@ import { FieldDescription } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
 import CancelSendAddFriend from "../Dialogs/cancelSendAdd.tsx";
 
-export default function Add_friend_button() {
+
+type Props = {
+  isOwner: boolean;
+}
+
+export default function Add_friend_button({ isOwner}: Props ) {
+
   const [wasClicked, setWasClicked] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dots, setDots] = useState(1);
@@ -33,7 +39,7 @@ export default function Add_friend_button() {
 
   return (
     <>
-      <motion.button
+      {isOwner ? null : ( <motion.button
         className="absolute top-[calc(50%+8vw)] left-[34%] sm:top-[calc(50%+4.6vw)] sm:left-[37%] h-sm:top-[calc(50%+4vw)] h-sm:left-[23.2%] 1xl:top-[calc(50%+8vw)] 2xl:top-[calc(50%+4vw)] 2xl:left-[23.2%] h-lg:top-[calc(50%+3vw)] h-lg:left-[19.9%] 3xl:top-[calc(50%+3vw)] 3xl:left-[19.9%] w-34 py-1.5 bg-white cursor-pointer text-[17px] font-semibold border border-[#bababaab] z-10"
         initial={{ borderRadius: 15 }}
         whileHover={{
@@ -55,7 +61,7 @@ export default function Add_friend_button() {
                 ? "Invite sent..."
                 : ""
           : "Be Friends?"}
-      </motion.button>
+      </motion.button> )}
 
       <CancelSendAddFriend
         open={dialogOpen}
