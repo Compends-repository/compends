@@ -35,5 +35,5 @@ export default async function PerfilPage({
 
   if (!user) notFound();
 
-  return <Main_perfil_div session={session} user={user} isOwner={isOwner} />;
+  return <Main_perfil_div session={session} user={user} isOwner={isOwner}/>;
 }

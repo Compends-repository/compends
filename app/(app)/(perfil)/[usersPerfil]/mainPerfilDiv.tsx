@@ -12,6 +12,8 @@ import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
 import type { auth } from "@/lib/auth";
 import type { PublicUser } from "@/lib/types";
 
+import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
+
 type Session = typeof auth.$Infer.Session;
 
 type Props = {
@@ -22,6 +24,8 @@ type Props = {
 
 export default function Main_perfil_div({ session, user, isOwner }: Props) {
   const [isReduced, setIsReduced] = useState(false);
+
+  const { editorStarted } = useEditor()
 
   const onClickChangeDiminuted = () => {
     setIsReduced((prev) => !prev);
@@ -41,6 +45,7 @@ export default function Main_perfil_div({ session, user, isOwner }: Props) {
           <ReducedPerfilDivVersion
             onToggle={onClickChangeDiminuted}
             session={session}
+            user={user}
           />
         ) : (
           <NormalPerfilDivVersion
@@ -48,6 +53,7 @@ export default function Main_perfil_div({ session, user, isOwner }: Props) {
             session={session}
             user={user}
             isOwner={isOwner}
+            editorStarted={editorStarted}
           />
         )}
 

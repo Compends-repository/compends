@@ -12,10 +12,13 @@ export default async function AppLayout({
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) redirect("/login");
 
-  const { name, image, email, id } = session.user;
+  const userID = session.user.id
 
   const user = await db.user.findUnique({
-    where: { id },
+    where: {
+      id: userID
+
+    },
     select: {
       id: true,
       name: true,
@@ -29,7 +32,7 @@ export default async function AppLayout({
   if (!user) redirect("/login");
 
   return (
-    <PrincipalLayout session={{ name, image, email, id }} user={user}>
+    <PrincipalLayout session={session} user={user}>
       {children}
     </PrincipalLayout>
   );

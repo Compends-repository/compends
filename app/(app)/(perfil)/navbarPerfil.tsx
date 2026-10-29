@@ -6,25 +6,33 @@ import { useState } from "react";
 import DropdownMenuPerfil from "../dropdownMenu";
 import EditorMenu from "./editorMenu";
 
+import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
+
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Edit03Icon } from "@hugeicons/core-free-icons";
 import { EditOff03Icon } from "@hugeicons/core-free-icons";
 
 import type { PublicUser } from "@/lib/types";
+import { auth } from "@/lib/auth";
+
+type Session = typeof auth.$Infer.Session;
 
 type PrincipalLayoutProps = {
-  session: {
-    name: string;
-    image?: string | null;
-    email?: string | null;
-    id: string;
-  };
+  session: Session;
   user: PublicUser;
+  avatar: string;
+  isOwner: boolean;
 };
 
-export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {
+export default function NavbarPerfil({
+  session,
+  user,
+  avatar,
+  isOwner
+}: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
-  const [editorStarted, setEditorStarted] = useState(false);
+
+  const { editorStarted, setEditorStarted } = useEditor();
 
   const toggleEditor = () => {
     if (clicked) return;
@@ -35,7 +43,7 @@ export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {
     if (editorStarted) return;
 
     setClicked((prev) => !prev);
-  };
+  }
 
   return (
     <>
@@ -62,8 +70,8 @@ export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-white 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
-              src={user.avatar ?? user.image ?? "/default-avatar.png"}
+              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-transparent 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
+              src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
             />
             {editorStarted ? (
               <HugeiconsIcon
@@ -78,7 +86,9 @@ export default function NavbarPerfil({ session, user }: PrincipalLayoutProps) {
                 className="absolute w-[14] h-[14] mt-[15%] ml-[10%] z-70"
               />
             )}
-            <h2 className="font-Asap text-[17px] font-black">{session.name}</h2>
+            <h2 className="font-Asap text-[17px] font-black">
+              {session?.user.name}
+            </h2>
           </button>
 
           {editorStarted && <EditorMenu />}

@@ -5,19 +5,21 @@ import DropdownMenuPerfil from "./dropdownMenu";
 
 import type { PublicUser } from "@/lib/types";
 
+import { auth } from "@/lib/auth";
+
+type Session = typeof auth.$Infer.Session;
+
+
 type PrincipalLayoutProps = {
-  session: {
-    name: string;
-    image?: string | null;
-    email?: string | null;
-    id: string;
-  };
+  session: Session
   user: PublicUser;
+  avatar: string;
 };
 
 export default function NavbarPrincipal({
   session,
   user,
+  avatar
 }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   return (
@@ -35,14 +37,14 @@ export default function NavbarPrincipal({
 
         <nav className="relative shrink-0 h-sm:h-[52] 2xl:h-[52] h-lg:h-[55] 3xl:h-[55] flex items-center p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d]">
           <Link
-            href={`/${session.id}`}
+            href={`/${session?.user.id}`}
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-white 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
-              src={user.avatar ?? user.image ?? "/default-avatar.png"}
+              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-transparent 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
+              src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
             />
-            <h2 className="font-Asap text-[17px] font-black">{session.name}</h2>
+            <h2 className="font-Asap text-[17px] font-black">{session?.user.name}</h2>
           </Link>
 
           {clicked ? (

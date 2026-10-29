@@ -34,11 +34,12 @@ type Session = typeof auth.$Infer.Session;
 
 type Props = {
   session: Session | null;
+  editorStarted: boolean
 };
 
-export default function EditBio_OnPerfil({ session }: Props) {
+export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
     const router = useRouter()
-    const [ open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     const [bio, setBio] = useState(session?.user.bio ?? '')
     const [saving, setSaving] = useState(false)
 
@@ -65,14 +66,14 @@ export default function EditBio_OnPerfil({ session }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <Tooltip>
+      {editorStarted ? (<Tooltip>
         <TooltipTrigger
           render={
             <DialogTrigger
               render={
                 <Button
                   variant="ghost"
-                  className="absolute left-full ml-2 top-1/8 -translate-y-1/2 w-[35] h-[35] cursor-pointer"
+                  className="absolute left-full top-1/2 ml-2 -translate-y-1/2 w-[35px] h-[35px] cursor-pointer z-[100]"
                 >
                   <IconPencil className="w-[20]! h-[20]!" stroke={2} />
                 </Button>
@@ -83,7 +84,7 @@ export default function EditBio_OnPerfil({ session }: Props) {
         <TooltipContent>
           <p>Edit bio</p>
         </TooltipContent>
-      </Tooltip>
+      </Tooltip>) : null}
 
       <DialogContent className="sm:max-w-sm">
         <form onSubmit={handleSave} className="grid gap-4">

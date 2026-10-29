@@ -1,25 +1,23 @@
 "use client";
 
-import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
-import { motion } from "motion/react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import DropdownMenuPerfil from "./dropdownMenu";
 import NavbarPerfil from "./(perfil)/navbarPerfil";
 import NavbarPrincipal from "./NavbarPrincipal";
+import { EditorProvider } from "@/app/(app)/(perfil)/EditorContext.tsx"; // ajusta o caminho
+
+import { Avatar, Style } from "@dicebear/core";
+import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 
 import type { PublicUser } from "@/lib/types";
+import { auth } from "@/lib/auth";
+
+type Session = typeof auth.$Infer.Session;
 
 type PrincipalLayoutProps = {
   children: React.ReactNode;
-  session: {
-    name: string;
-    image?: string | null;
-    email?: string | null;
-    id: string;
-  };
+  session: Session;
   user: PublicUser;
 };
 
@@ -28,20 +26,33 @@ export default function PrincipalLayout({
   session,
   user,
 }: PrincipalLayoutProps) {
-  const rotasPerfil = [`/${session.id}`];
+  const userId = session?.user?.id;
+  const rotasPerfil = userId ? [`/${userId}`] : [];
+
+  const style = new Style(definition);
+  const avatar = new Avatar(style, {
+    seed: user.name ?? user.id ?? "usuario-padrao",
+    size: 200,
+  });
+  const fallbackAvatar = avatar.toDataUri();
 
   const pathname = usePathname();
   const isPerfil = rotasPerfil.some((r) => pathname.startsWith(r));
+  const isOwner = session?.user.id === user?.id;
 
-  const [clicked, setClicked] = useState(false);
   return (
-    <>
+    <EditorProvider>
       {!isPerfil ? (
-        <NavbarPrincipal session={session} user={user} />
+        <NavbarPrincipal session={session} user={user} avatar={fallbackAvatar} />
       ) : (
-        <NavbarPerfil session={session} user={user} />
+        <NavbarPerfil
+          session={session}
+          user={user}
+          avatar={fallbackAvatar}
+          isOwner={isOwner}
+        />
       )}
       {children}
-    </>
+    </EditorProvider>
   );
 }
