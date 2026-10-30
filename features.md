@@ -27,6 +27,7 @@
 
 <!-- Update 2.0.1 -->
 - [] Quadro com formas geométricas no perfil (Ver Excalidraw)
+- [] Votações na área social
 - [] Melhorar barra de navegação
 - [] Mudança de jogo no login (seleção de cards)
 - [] Lançamento do Jornal
