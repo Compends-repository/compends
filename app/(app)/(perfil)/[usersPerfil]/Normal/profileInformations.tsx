@@ -62,5 +62,3 @@ export default function Main_perfil_image({
     </>
   );
 }
-
-console.log()
