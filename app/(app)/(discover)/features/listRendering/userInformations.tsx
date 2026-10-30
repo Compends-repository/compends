@@ -11,17 +11,6 @@ import Link from "next/link";
 import { Avatar, Style } from "@dicebear/core";
 import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 
-type User = {
-  name: string;
-  Pimg: string;
-  bio: string;
-  id: number;
-  Bimg: string;
-};
-
-type infoTypes = {
-  GETusers: User[];
-};
 
 const style = new Style(definition);
 
@@ -29,12 +18,12 @@ function getFallbackAvatar(seed: string) {
   return new Avatar(style, { seed, size: 200 }).toDataUri();
 }
 
-export default function User_Informations_List({ GETusers }: infoTypes) {
+export default function User_Informations_List({ GETusers }: any) {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <ul className="mt-[8%]">
-      {(GETusers ?? []).map((user) => (
+      {(GETusers ?? []).map((user: any) => (
         <Link key={user.id} href={`/${user.id}`} className="block">
           <motion.li
             key={user.id}
@@ -59,7 +48,7 @@ export default function User_Informations_List({ GETusers }: infoTypes) {
 
             <motion.img
               className="w-36.25 mt-[4%] h-37.5 object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[2px_2px_10px_0px_rgba(0,0,0,0.09)] pointer-events-none"
-              src={user.Pimg ?? getFallbackAvatar(user.name ?? String(user.id))}
+              src={user.avatar ?? getFallbackAvatar(user.name ?? String(user.id))}
               alt={user.name}
               variants={{ tap: { scale: 0.85 } }}
               transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
