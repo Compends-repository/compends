@@ -39,7 +39,7 @@ export default function Main_perfil_image({
       <div className="avatar-upload sticky 2xl:w-[200px] 2xl:h-[200px] 3xl:ml-[21%] h-sm:ml-[17%] sm:w-[180px] sm:h-[180px] rounded-[48px] overflow-hidden flex shrink-0 mb-[3.5%] 2xl:ml-[17%] h-sm:mt-[5.5%] 2xl:mt-[3%] mt-[3%] 3xl:mt-[3%] border-[#dbdbdb6e] border-[1] shadow-[3px_6px_15px_0px_rgba(0,0,0,0.24)] opacity-[0.9]">
         {isOwner && editorStarted ? (
           <ImageUpload
-            key={`avatar-${user.id ?? user.avatar ?? "sem-avatar"}`}
+            key={`avatar-${user.id ?? user.avatar ?? null}`}
             labelIdle="Procurar imagens"
             field="avatar"
             initialUrl={session?.user.avatar || null}

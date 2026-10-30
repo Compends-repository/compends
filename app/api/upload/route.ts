@@ -33,27 +33,31 @@ export async function POST(req: Request) {
     return Response.json({ error: "Arquivo inválido" }, { status: 400 });
   }
 
-  const key = `${field}s/${session.user.id}-${randomUUID()}.${ext}`;
-  
-  await r2.send(
-    new PutObjectCommand({
-      Bucket: process.env.R2_BUCKET!,
-      Key: key,
-      Body: Buffer.from(await file.arrayBuffer()),
-      ContentType: file.type,
-    }),
-  );
+  try {
+    const key = `${field}s/${session.user.id}-${randomUUID()}.${ext}`;
 
-  const url = `${process.env.R2_PUBLIC_URL}/${key}`;
+    await r2.send(
+      new PutObjectCommand({
+        Bucket: process.env.R2_BUCKET!,
+        Key: key,
+        Body: Buffer.from(await file.arrayBuffer()),
+        ContentType: file.type,
+      }),
+    );
 
-  await db.user.update({
-    where: { id: session.user.id },
-    data: field === 'avatar' ? { avatar: url }: { background: url },
-  });
+    const url = `${process.env.R2_PUBLIC_URL}/${key}`;
 
-  return Response.json({ url });
+    await db.user.update({
+      where: { id: session.user.id },
+      data: field === "avatar" ? { avatar: url } : { background: url },
+    });
+
+    return Response.json({ url });
+  } catch (e) {
+    console.error("[upload] falha:", e);
+    return Response.json({ error: "Falha no upload" }, { status: 500 });
+  }
 }
-
 
 export async function DELETE(req: Request) {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -72,13 +76,11 @@ export async function DELETE(req: Request) {
   });
   const oldUrl = current?.[field as "avatar" | "background"];
 
-  // 1. Limpa a coluna no banco
   await db.user.update({
     where: { id: session.user.id },
     data: field === "avatar" ? { avatar: null } : { background: null },
   });
 
-  // 2. Apaga o arquivo do R2 (se falhar, o banco já está limpo)
   const prefix = `${process.env.R2_PUBLIC_URL}/`;
   if (oldUrl && oldUrl.startsWith(prefix)) {
     try {
