@@ -31,7 +31,7 @@ export default function FriendsList({
   //
   return (
     <>
-      <h2 className="absolute text-white mt-[7%] ml-[5%] 2xl:text-[30px] 3xl:text-[36px] font-Changa bg-[#00000006] rounded-lg">
+      <h2 className="absolute text-white mt-[7%] ml-[5%] 2xl:text-[30px] 3xl:text-[36px] font-Changa bg-[#00000000] rounded-lg">
         Friends
       </h2>
       <div className="mt-[10%] flex">
