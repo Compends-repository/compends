@@ -72,7 +72,7 @@ export default function Main_perfil_div({
           backgroundImage: `url('${user.background ?? "/perfilBackExample.png"}')`,
         }}
       />
-      <div className="absolute inset-0 bg-black/38 w-100% h-100%" />
+      <div className="absolute inset-0 bg-black/38 w-100% h-100% -z-30" />
 
       <div>
         {isReduced ? (
