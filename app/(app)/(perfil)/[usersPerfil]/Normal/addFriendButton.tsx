@@ -65,7 +65,7 @@ export default function Add_friend_button({ targetId, state }: Props) {
         ? `Invite sent${".".repeat(dots)}`
         : state === "REQUEST_RECEIVED"
           ? "Accept invite"
-          : "You guys are friend";
+          : "Your friend";
 
   return (
     <>
