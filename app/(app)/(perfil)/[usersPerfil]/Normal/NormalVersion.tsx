@@ -28,7 +28,7 @@ export default function NormalPerfilDivVersion({
   friendship,
 }: Props) {
   return (
-    <div className="w-full h-[calc((100vh-90px)*0.506+90px)] flex items-center sticky top-0 z-20 backdrop-blur-[3px] backdrop-brightness-95 bg-black/10 border-b-2 rounded-b-[45px] border-[#ececec63] no-scrollbar shadow-[3px_6px_15px_0px_rgba(0,0,0,0.38)] contrast-125">
+    <div className="w-full h-[calc((100vh-90px)*0.506+90px)] flex items-center sticky top-0 z-20 backdrop-blur-[3px] backdrop-brightness-95 bg-black/10 border-b-2 rounded-b-[45px] border-[#ececec63] no-scrollbar shadow-[3px_3px_13px_0px_rgba(0,0,0,0.23)] contrast-125">
       <div className="flex items-center gap-6">
         <Main_perfil_image
           session={session}

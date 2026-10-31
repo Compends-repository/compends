@@ -30,7 +30,7 @@ export default async function Discover_new_preople() {
   return (
     <div className="relative isolate">
       <div
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat brightness-78"
+        className="fixed inset-0 -z-100 scale-110 bg-cover bg-center bg-no-repeat brightness-60 blur-[2px]"
         style={{ backgroundImage: `url('${background}')` }}
       />
 

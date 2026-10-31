@@ -67,12 +67,11 @@ export default function Main_perfil_div({
   return (
     <div className="relative isolate">
       <div
-        className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 -z-100 scale-110 bg-cover bg-center bg-no-repeat brightness-60 blur-[2px]"
         style={{
           backgroundImage: `url('${user.background ?? "/perfilBackExample.png"}')`,
         }}
       />
-      <div className="absolute inset-0 bg-black/38 w-100% h-100% -z-30" />
 
       <div>
         {isReduced ? (

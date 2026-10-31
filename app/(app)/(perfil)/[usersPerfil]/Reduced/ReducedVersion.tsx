@@ -13,7 +13,7 @@ type Props = { onToggle: () => void; session: Session | null; user: PublicUser }
 
 export default function ReducedPerfilDivVersion({ onToggle, session, user }: Props) {
   return (
-    <div className="w-full h-[270] 3xl:h-[270] 2xl:h-[240] flex items-center sticky top-0 z-10 backdrop-blur-[3px] backdrop-brightness-95 bg-black/10 border-b rounded-b-[45px] border-[#ececec63] no-scrollbar shadow-[3px_6px_15px_0px_rgba(0,0,0,0.38)] contrast-125">
+    <div className="w-full h-[270] 3xl:h-[270] 2xl:h-[240] flex items-center sticky top-0 z-10 backdrop-blur-[3px] backdrop-brightness-95 bg-black/10 border-b rounded-b-[45px] border-[#ececec63] no-scrollbar shadow-[3px_3px_13px_0px_rgba(0,0,0,0.23)] contrast-125">
       <Main_perfil_image image={session?.user.avatar} session={session} user={user}/>
       <motion.button
         onClick={onToggle}
