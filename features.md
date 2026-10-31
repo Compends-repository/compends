@@ -5,7 +5,7 @@
 - [x] Perfil dinâmico com os dados vindos do supabase
 - [x] Lista Discover dinâmica
 - [x] Terminar o Special thanks
-- [] Convencer 5 devs a postarem um jogo na minha plataforma
+- [] Convencer 5 devs a postarem um jogo na minha plataforma  <!-->! Depois -->
 <!-- (Lançar dia 14/11) -->
 
 
@@ -19,6 +19,7 @@
 - [] Denúnciar perfil
 - [] Mensagem do dono do perfil (Ver Excalidraw)
 - [] Modo claro e escuro da plataforma
+- [] Diminuir tamanho de imagem
 - [] Feedbacks
 - [] Termos e condições
 <!-- (Lançar dia 08/12) -->
