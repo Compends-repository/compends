@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "@/lib/db";
-import type { FriendshipState } from "@/lib/types";
+import type { FriendshipState, FriendPreview } from "@/lib/types";
 
 const publicUser = {
   id: true,
@@ -46,4 +46,35 @@ export async function getFriends(userId: string) {
   return friendships.map((f) =>
     f.requesterId === userId ? f.addressee : f.requester
   );
+}
+
+export async function getMyFriendships(userId: string) {
+  const rows = await db.friendship.findMany({
+    where: {
+      OR: [{ requesterId: userId }, { addresseeId: userId }],
+      status: { not: "BLOCKED" },
+    },
+    select: {
+      requesterId: true,
+      status: true,
+      requester: { select: publicUser },
+      addressee: { select: publicUser },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+
+  const friends: FriendPreview[] = [];
+  const received: FriendPreview[] = [];
+  const sent: FriendPreview[] = [];
+
+  for (const r of rows) {
+    const iAmRequester = r.requesterId === userId;
+    const other = iAmRequester ? r.addressee : r.requester;
+
+    if (r.status === "ACCEPTED") friends.push(other);
+    else if (iAmRequester) sent.push(other);
+    else received.push(other);
+  }
+
+  return { friends, received, sent };
 }

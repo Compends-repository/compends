@@ -39,7 +39,7 @@ export default function Add_friend_button({ targetId, state }: Props) {
     }, 1000);
     return () => clearInterval(id);
   }, [requestSent]);
-  
+
   if (state === "SELF") return null;
 
   const run = (action: () => Promise<void>) =>
@@ -65,7 +65,7 @@ export default function Add_friend_button({ targetId, state }: Props) {
         ? `Invite sent${".".repeat(dots)}`
         : state === "REQUEST_RECEIVED"
           ? "Accept invite"
-          : "Friends";
+          : "You guys are friend";
 
   return (
     <>

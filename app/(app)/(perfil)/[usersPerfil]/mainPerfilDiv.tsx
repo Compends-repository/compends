@@ -23,6 +23,8 @@ type Props = {
   isOwner: boolean;
   friendship: FriendshipState;
   friends: FriendPreview[];
+  received: FriendPreview[];
+  sent: FriendPreview[];
 };
 
 export default function Main_perfil_div({
@@ -31,6 +33,8 @@ export default function Main_perfil_div({
   isOwner,
   friendship,
   friends,
+  received,
+  sent,
 }: Props) {
   const [isReduced, setIsReduced] = useState(false);
 
@@ -42,7 +46,6 @@ export default function Main_perfil_div({
 
   return (
     <div className="relative isolate">
-      {/* Background: fecha sozinho, sem filhos */}
       <div
         className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat brightness-78"
         style={{ backgroundImage: "url('/perfilBackExample.png')" }}
@@ -67,12 +70,16 @@ export default function Main_perfil_div({
           />
         )}
 
-        <FriendsList session={session} />
+        <FriendsList
+          friends={friends}
+          received={received}
+          sent={sent}
+          isOwner={isOwner}
+        />
 
         <div className="h-300 pointer-events-none" />
       </div>
 
-      {/* Distância entre a base do header e o footer */}
       <div className="h-[200] pointer-events-none" aria-hidden />
 
       <Footer />

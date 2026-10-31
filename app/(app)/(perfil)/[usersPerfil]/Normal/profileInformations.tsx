@@ -42,7 +42,7 @@ export default function Main_perfil_image({
             key={`avatar-${user.id ?? user.avatar ?? null}`}
             labelIdle="Procurar imagens"
             field="avatar"
-            initialUrl={session?.user.avatar || null}
+            initialUrl={user.avatar || null}
             alt={user.name}
           />
         ) : (

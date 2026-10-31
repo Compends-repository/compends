@@ -3,8 +3,11 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import Main_perfil_div from "./mainPerfilDiv";
-import { getFriendshipState, getFriends } from "./friendShip";
-
+import {
+  getFriendshipState,
+  getFriends,
+  getMyFriendships,
+} from "./friendShip";
 
 export default async function PerfilPage({
   params,
@@ -23,18 +26,22 @@ export default async function PerfilPage({
 
   if (!user) notFound();
 
-const [friendship, friends] = await Promise.all([
-  getFriendshipState(session?.user.id, user.id),
-  getFriends(user.id),
-]);
+  const friendship = await getFriendshipState(session?.user.id, user.id);
+  const isOwner = friendship === "SELF";
 
-return (
-  <Main_perfil_div
-    session={session}
-    user={user}
-    isOwner={friendship === "SELF"}
-    friendship={friendship}
-    friends={friends}
-  />
-);
+  const { friends, received, sent } = isOwner
+    ? await getMyFriendships(user.id)
+    : { friends: await getFriends(user.id), received: [], sent: [] };
+
+  return (
+    <Main_perfil_div
+      session={session}
+      user={user}
+      isOwner={isOwner}
+      friendship={friendship}
+      friends={friends}
+      received={received}
+      sent={sent}
+    />
+  );
 }
