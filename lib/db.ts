@@ -13,6 +13,8 @@ function createClient() {
   return new PrismaClient({ adapter });
 }
 
-export const db = globalForPrisma.prisma ?? createClient();
+const cached = globalForPrisma.prisma;
+export const db =
+  cached && "friendship" in cached ? cached : createClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;

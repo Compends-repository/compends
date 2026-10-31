@@ -72,7 +72,7 @@ export function ImageUpload({
         stylePanelAspectRatio={undefined}
         allowMultiple={false}
         acceptedFileTypes={ALLOWED}
-        maxFileSize="500KB"
+        maxFileSize="300KB"
         credits={false}
         labelIdle={labelIdle ?? "Enviar foto"}
         server={{
@@ -88,7 +88,7 @@ export function ImageUpload({
             xhr.onload = () => {
               if (xhr.status >= 200 && xhr.status < 300) {
                 load(JSON.parse(xhr.responseText).url);
-                router.refresh(); // user.avatar chega e vira <img>
+                router.refresh();
               } else {
                 error("Falha no upload");
               }

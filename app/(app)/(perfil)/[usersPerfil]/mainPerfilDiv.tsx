@@ -8,9 +8,10 @@ import Add_friend_button from "./Normal/addFriendButton.tsx";
 import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
 import Main_perfil_image from "./Normal/profileInformations.tsx";
 import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
+import FriendsList from "./friendsList.tsx";
 
 import type { auth } from "@/lib/auth";
-import type { PublicUser } from "@/lib/types";
+import type { FriendPreview, FriendshipState, PublicUser } from "@/lib/types";
 
 import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
 
@@ -20,12 +21,20 @@ type Props = {
   session: Session | null;
   user: PublicUser;
   isOwner: boolean;
+  friendship: FriendshipState;
+  friends: FriendPreview[];
 };
 
-export default function Main_perfil_div({ session, user, isOwner }: Props) {
+export default function Main_perfil_div({
+  session,
+  user,
+  isOwner,
+  friendship,
+  friends,
+}: Props) {
   const [isReduced, setIsReduced] = useState(false);
 
-  const { editorStarted } = useEditor()
+  const { editorStarted } = useEditor();
 
   const onClickChangeDiminuted = () => {
     setIsReduced((prev) => !prev);
@@ -54,8 +63,11 @@ export default function Main_perfil_div({ session, user, isOwner }: Props) {
             user={user}
             isOwner={isOwner}
             editorStarted={editorStarted}
+            friendship={friendship}
           />
         )}
+
+        <FriendsList session={session} />
 
         <div className="h-300 pointer-events-none" />
       </div>
