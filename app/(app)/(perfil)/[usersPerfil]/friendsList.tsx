@@ -22,27 +22,34 @@ export default function FriendsList({
   const style = new Style(definition);
 
   function getFallbackAvatar(seed: string) {
-    return new Avatar(style, { seed, size: 120, backgroundColor: ["ffffff10"] }).toDataUri();
+    return new Avatar(style, {
+      seed,
+      size: 120,
+      backgroundColor: ["ffffff10"],
+    }).toDataUri();
   }
   //
   return (
-    <div className="mt-[10%] flex ">
-      <ul className="flex flex-nowrap gap-12 overflow-x-auto ml-[5%] h-70 w-[142vh]">
-        {friends.map((f) => (
-          <Link key={f.id} href={`/${f.id}`}>
-            <motion.li
-            whileHover={{ scale: 1.1}}
-            className="mt-4 ml-4"
-            >
-              <img className="w-40 h-40 mb-3 rounded-[30px] border-[#dbdbdb6e] border"
-                src={f.avatar ?? getFallbackAvatar(f.name ?? String(f.id))}
-                alt={f.name}
-              />
-              <p className="text-center text-white font-Asap">{f.name}</p>
-            </motion.li>
-          </Link>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h2 className="absolute text-white mt-[7%] ml-[5%] text-[36px] font-Changa bg-[#00000006] rounded-lg">
+        Friends
+      </h2>
+      <div className="mt-[10%] flex">
+        <ul className="flex flex-nowrap gap-6 overflow-x-auto ml-[5%] 2xl:h-50 3xl:h-55 w-[190vh]">
+          {friends.map((f) => (
+            <Link key={f.id} href={`/${f.id}`}>
+              <motion.li whileHover={{ scale: 1.08 }} className="mt-4 ml-4">
+                <img
+                  className="2xl:w-35 2xl:h-35 3xl:w-40 3xl:h-40 mb-3 2xl:rounded-[25px] 3xl:rounded-[30px] border-[#dbdbdb6e] border"
+                  src={f.avatar ?? getFallbackAvatar(f.name ?? String(f.id))}
+                  alt={f.name}
+                />
+                <p className="text-center text-white font-Asap">{f.name}</p>
+              </motion.li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
