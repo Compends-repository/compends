@@ -54,7 +54,7 @@ export default function User_Informations_List({ GETusers }: any) {
               transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
             />
 
-            <Text_info_user_list name={user.name} bio={user.bio} />
+            <Text_info_user_list name={user.name} bio={user.bio}/>
             <Separator
               className="w-[40%]! 2xl:mt-[11%] 3xl:mt-[9%] mt-[12%] mb-[4%] bg-chart-1 h-[1.8]!"
               style={{ opacity: hoveredId === user.id ? 0.5 : 1 }}

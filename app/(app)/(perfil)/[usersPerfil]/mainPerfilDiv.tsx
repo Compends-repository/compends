@@ -2,6 +2,7 @@
 
 import { IconArrowDownFromArc } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useRouter } from "next/navigation"; // 👈 NOVO: import
 import { useState } from "react";
 import Footer from "./footer.tsx";
 import Add_friend_button from "./Normal/addFriendButton.tsx";
@@ -14,6 +15,7 @@ import type { auth } from "@/lib/auth";
 import type { FriendPreview, FriendshipState, PublicUser } from "@/lib/types";
 
 import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
+import UploadButton from "@/app/actions/fileUpload.tsx";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -37,6 +39,7 @@ export default function Main_perfil_div({
   sent,
 }: Props) {
   const [isReduced, setIsReduced] = useState(false);
+  const router = useRouter(); // 👈 NOVO
 
   const { editorStarted } = useEditor();
 
@@ -44,14 +47,32 @@ export default function Main_perfil_div({
     setIsReduced((prev) => !prev);
   };
 
+  // 👈 NOVO: função de envio
+  async function enviar(file: File, field: "avatar" | "background") {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("field", field);
+
+    const res = await fetch("/api/upload", { method: "POST", body: formData });
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error);
+      return;
+    }
+
+    router.refresh();
+  }
+
   return (
     <div className="relative isolate">
       <div
         className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat brightness-78"
-        style={{ backgroundImage: "url('/perfilBackExample.png')" }}
+        style={{
+          backgroundImage: `url('${user.background ?? "/perfilBackExample.png"}')`,
+        }}
       />
 
-      {/* Wrapper: o header só gruda aqui dentro */}
       <div>
         {isReduced ? (
           <ReducedPerfilDivVersion
@@ -78,6 +99,13 @@ export default function Main_perfil_div({
         />
 
         <div className="h-300 pointer-events-none" />
+
+
+        {isOwner && (
+          <div className="flex gap-3 ml-[5%]">
+            <UploadButton onSelect={(file) => enviar(file, "background")} />
+          </div>
+        )}
       </div>
 
       <div className="h-[200] pointer-events-none" aria-hidden />
