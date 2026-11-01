@@ -3,7 +3,7 @@
 import { IconArrowDownFromArc } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRouter } from "next/navigation"; // 👈 NOVO: import
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Footer from "./footer.tsx";
 import Add_friend_button from "./Normal/addFriendButton.tsx";
 import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
@@ -23,6 +23,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { Upload } from "lucide-react";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -46,9 +47,11 @@ export default function Main_perfil_div({
   sent,
 }: Props) {
   const [isReduced, setIsReduced] = useState(false);
-  const router = useRouter(); // 👈 NOVO
+  const router = useRouter();
 
   const { editorStarted } = useEditor();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onClickChangeDiminuted = () => {
     setIsReduced((prev) => !prev);
@@ -108,7 +111,7 @@ export default function Main_perfil_div({
         <div className="h-300 pointer-events-none" />
       </div>
 
-      <div className="h-[200px] pointer-events-none" aria-hidden />
+      <div className="h-[200] pointer-events-none" aria-hidden />
       <Footer />
     </>
   );
@@ -121,8 +124,11 @@ export default function Main_perfil_div({
             <div>{content}</div>
           </ContextMenuTrigger>
           <ContextMenuContent>
-            <ContextMenuItem>
-              <UploadButton onSelect={(file) => enviar(file, "background")} />
+            <ContextMenuItem className="flex gap-2 cursor-pointer"
+            onSelect={() => fileInputRef.current?.click()}
+          >
+            <Upload size={18} />
+            <span>Change Wallpaper</span>
             </ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
