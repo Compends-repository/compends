@@ -1,9 +1,10 @@
+// Main_perfil_div.tsx
 "use client";
 
 import { IconArrowDownFromArc } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useRouter } from "next/navigation"; // 👈 NOVO: import
-import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Footer from "./footer.tsx";
 import Add_friend_button from "./Normal/addFriendButton.tsx";
 import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
@@ -15,7 +16,7 @@ import type { auth } from "@/lib/auth";
 import type { FriendPreview, FriendshipState, PublicUser } from "@/lib/types";
 
 import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
-import UploadButton from "@/app/actions/fileUpload.tsx";
+import FileInput from "@/app/actions/fileUpload.tsx";
 
 import {
   ContextMenu,
@@ -50,8 +51,6 @@ export default function Main_perfil_div({
   const router = useRouter();
 
   const { editorStarted } = useEditor();
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onClickChangeDiminuted = () => {
     setIsReduced((prev) => !prev);
@@ -118,17 +117,25 @@ export default function Main_perfil_div({
 
   return (
     <div className="relative isolate">
+      <FileInput
+        id="wallpaper-file-input"
+        onSelect={(file) => enviar(file, "background")}
+      />
+
       {isOwner && editorStarted ? (
         <ContextMenu>
           <ContextMenuTrigger>
             <div>{content}</div>
           </ContextMenuTrigger>
           <ContextMenuContent>
-            <ContextMenuItem className="flex gap-2 cursor-pointer"
-            onSelect={() => fileInputRef.current?.click()}
-          >
-            <Upload size={18} />
-            <span>Change Wallpaper</span>
+            <ContextMenuItem>
+              <label 
+                htmlFor="wallpaper-file-input" 
+                className="flex gap-2 cursor-pointer items-center w-full"
+              >
+                <Upload size={18} />
+                <span>Change Wallpaper</span>
+              </label>
             </ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
