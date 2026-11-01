@@ -43,7 +43,7 @@ export default function NormalPerfilDivVersion({
         className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white cursor-pointer"
         whileHover={{ scale: 1.13 }}
       >
-        <IconArrowAutofitUp className="w-[30] h-[30] z-3" />
+        <IconArrowAutofitUp className="w-[30] h-[30]" />
       </motion.button>
     </div>
   );

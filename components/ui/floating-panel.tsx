@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import { ArrowLeftIcon } from "lucide-react";
 import { AnimatePresence, motion, MotionConfig, Variants } from "motion/react";
+import { createPortal } from "react-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -98,14 +99,14 @@ interface FloatingPanelTriggerProps {
   children: React.ReactNode;
   className?: string;
   title: string;
-  animateLabel?: boolean
+  animateLabel?: boolean;
 }
 
 export function FloatingPanelTrigger({
   children,
   className,
   title,
-  animateLabel
+  animateLabel,
 }: FloatingPanelTriggerProps) {
   const { openFloatingPanel, uniqueId, setTitle } = useFloatingPanel();
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -166,6 +167,9 @@ export function FloatingPanelContent({
     useFloatingPanel();
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -192,7 +196,9 @@ export function FloatingPanelContent({
     visible: { opacity: 1, scale: 1, y: 0 },
   };
 
-  return (
+  if(!mounted) return null
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -228,7 +234,8 @@ export function FloatingPanelContent({
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 
