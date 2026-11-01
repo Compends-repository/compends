@@ -32,7 +32,7 @@ export default function FriendsList({
   return (
     <>
       <h2 className="absolute text-white mt-[7%] ml-[5%] 2xl:text-[30px] 3xl:text-[36px] font-Changa bg-[#00000000] rounded-lg">
-        Friends
+        Friends - <span className="font-normal font-josefin">{friends.length}</span>
       </h2>
       <div className="mt-[10%] flex">
         {friends.length != 0 ? (
@@ -41,7 +41,7 @@ export default function FriendsList({
               <Link key={f.id} href={`/${f.id}`}>
                 <motion.li whileHover={{ scale: 1.08 }} className="mt-4 ml-4">
                   <img
-                    className="2xl:w-35 2xl:h-35 3xl:w-40 3xl:h-40 mb-3 2xl:rounded-[25px] 3xl:rounded-[30px] border-[#dbdbdb6e] border"
+                    className="aspect-square shrink-0 object-cover 2xl:w-35 3xl:w-38 w-28 mb-3 2xl:rounded-[25px] 3xl:rounded-[30px] rounded-[20px] border-[#dbdbdb6e] border"
                     src={f.avatar ?? getFallbackAvatar(f.name ?? String(f.id))}
                     alt={f.name}
                   />

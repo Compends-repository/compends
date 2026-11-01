@@ -67,12 +67,12 @@ export default function Main_perfil_div({
   return (
     <div className="relative isolate">
       <div
-        className="fixed inset-0 -z-100 scale-110 bg-cover bg-center bg-no-repeat brightness-80 blur-[1.5px]"
+        className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('${user.background ?? "/perfilBackExample.png"}')`,
         }}
       />
-
+      <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-sm" />
       <div>
         {isReduced ? (
           <ReducedPerfilDivVersion
@@ -100,16 +100,13 @@ export default function Main_perfil_div({
 
         <div className="h-300 pointer-events-none" />
 
-
         {isOwner && (
           <div className="flex gap-3 ml-[5%]">
             <UploadButton onSelect={(file) => enviar(file, "background")} />
           </div>
         )}
       </div>
-
       <div className="h-[200] pointer-events-none" aria-hidden />
-
       <Footer />
     </div>
   );

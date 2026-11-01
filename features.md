@@ -15,10 +15,10 @@
 - [] Posts básicos na área social
 - [] Bio customizada
 - [] Pagamento
-- [] Add friend funcionando
+- [x] Add friend funcionando
 - [] Denúnciar perfil
 - [] Mensagem do dono do perfil (Ver Excalidraw)
-- [] Modo claro e escuro da plataforma
+- [] Modo claro e escuro da plataforma  <!--Não necessário-->
 - [] Diminuir tamanho de imagem
 - [] Feedbacks
 - [] Termos e condições
@@ -59,7 +59,7 @@
 
 
 <!-- Extra -->
-- [] Nível intermediário / avançado em TypeScript
+- [] Aprender C# e aplicar no backend
 - [] Nível intermediário / avançado em React
 - [] Estudar finanças
 - [] Terminar A Startup Enxuta

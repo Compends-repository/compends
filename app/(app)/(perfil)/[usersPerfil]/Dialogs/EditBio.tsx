@@ -1,124 +1,63 @@
-'use client'
-
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IconPencil } from "@tabler/icons-react";
 
-import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Field, FieldGroup } from "@/components/ui/field";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+  FloatingPanelCloseButton,
+  FloatingPanelContent,
+  FloatingPanelFooter,
+  FloatingPanelForm,
+  FloatingPanelLabel,
+  FloatingPanelRoot,
+  FloatingPanelSubmitButton,
+  FloatingPanelTextarea,
+  FloatingPanelTrigger,
+} from "@/components/ui/floating-panel";
 
 import type { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
-
 
 type Session = typeof auth.$Infer.Session;
 
 type Props = {
   session: Session | null;
-  editorStarted: boolean
+  editorStarted: boolean;
 };
 
 export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
-    const router = useRouter()
-    const [open, setOpen] = useState(false)
-    const [bio, setBio] = useState(session?.user.bio ?? '')
-    const [saving, setSaving] = useState(false)
+  const router = useRouter();
 
-    function handleOpenChange(next: boolean) {
-        setOpen(next)
-        if (!next) setBio(session?.user.bio ?? '')
+  async function handleSave(bio: string) {
+    const { error } = await authClient.updateUser({ bio });
+    if (error) {
+      console.log(error);
+      return;
     }
+    router.refresh();
+  }
 
-    async function handleSave(e:React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        setSaving(true)
-
-        const { error } = await authClient.updateUser({ bio })
-
-        setSaving(false)
-        if ( error ) {
-            console.log(error)
-            return
-        }
-
-        setOpen(false)
-        router.refresh()
-    }
+  if (!editorStarted) return null;
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      {editorStarted ? (<Tooltip>
-        <TooltipTrigger
-          render={
-            <DialogTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  className="absolute left-full top-1/2 ml-2 -translate-y-1/2 w-[35px] h-[35px] cursor-pointer z-[100]"
-                >
-                  <IconPencil className="w-[20]! h-[20]!" stroke={2} />
-                </Button>
-              }
-            />
-          }
-        />
-        <TooltipContent>
-          <p>Edit bio</p>
-        </TooltipContent>
-      </Tooltip>) : null}
+    <FloatingPanelRoot className="shrink-0 z-100">
+      <FloatingPanelTrigger
+        className="w-9 h-9 p-0 justify-center cursor-pointer"
+        title="Editar bio"
+        animateLabel={false}
+      >
+        <IconPencil size={16} />
+      </FloatingPanelTrigger>
 
-      <DialogContent className="sm:max-w-sm">
-        <form onSubmit={handleSave} className="grid gap-4">
-          <DialogHeader>
-            <DialogTitle className='[text-shadow:-1px_-1px_0_#1a1a2e,1px_-1px_0_#1a1a2e,-1px_1px_0_#1a1a2e,1px_1px_0_#1a1a2e,0_-1px_0_#1a1a2e,0_1px_0_#1a1a2e,-1px_0_0_#1a1a2e,1px_0_0_#1a1a2e] text-white font-jetBrains font-bold'>Edit Bio</DialogTitle>
-            <DialogDescription className='text-[#e8e8e8] font-josefin'>
-              Make changes to your bio here. Click save when you&apos;re done.
-            </DialogDescription>
-          </DialogHeader>
-
-          <FieldGroup>
-            <Field>
-              <Label htmlFor="bio-1" className='text-[#e8e8e8] font-roboto font-semibold'>Bio</Label>
-              <Textarea
-                className="max-h-[240] text-[#e5e3e3] font-author text-[35px]"  // text-[#272727]
-                id="bio-1"
-                name="bio"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </Field>
-          </FieldGroup>
-
-          <DialogFooter>
-            <DialogClose
-              className="cursor-pointer"
-              render={<Button type="button" variant="outline">Cancel</Button>}
-            />
-            <Button className="cursor-pointer" type="submit" disabled={saving}>
-              {saving ? "Saving..." : "Save changes"}
-            </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+      <FloatingPanelContent className="w-80">
+        <FloatingPanelForm onSubmit={handleSave}>
+          <FloatingPanelTextarea id="bio-input" className="min-h-32" />
+          <FloatingPanelFooter>
+            <FloatingPanelCloseButton />
+            <FloatingPanelSubmitButton />
+          </FloatingPanelFooter>
+        </FloatingPanelForm>
+      </FloatingPanelContent>
+    </FloatingPanelRoot>
   );
 }

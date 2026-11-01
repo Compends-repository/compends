@@ -30,9 +30,12 @@ export default async function Discover_new_preople() {
   return (
     <div className="relative isolate">
       <div
-        className="fixed inset-0 -z-100 scale-110 bg-cover bg-center bg-no-repeat brightness-80 blur-[1.5px]"
-        style={{ backgroundImage: `url('${background}')` }}
+        className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('${background ?? "/perfilBackExample.png"}')`,
+        }}
       />
+      <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-sm" />
 
       <div>
         <User_Informations_List GETusers={users} />
