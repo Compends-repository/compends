@@ -51,7 +51,7 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
 
       <FloatingPanelContent className="w-80">
         <FloatingPanelForm onSubmit={handleSave}>
-          <FloatingPanelTextarea id="bio-input" className="min-h-32" />
+          <FloatingPanelTextarea id="bio-input" className="min-h-32 text-white" />
           <FloatingPanelFooter>
             <FloatingPanelCloseButton />
             <FloatingPanelSubmitButton />
