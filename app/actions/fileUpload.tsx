@@ -14,11 +14,11 @@ export default function UploadButton({ onSelect }: Props) {
     <>
       <button
         type="button"
+        className="flex gap-2"
         onClick={() => inputRef.current?.click()}
-        className="flex h-10 w-10 items-center justify-center rounded-lg border bg-[#ffffff10] text-white transition hover:bg-[#ffffff20]"
         aria-label="Enviar imagem"
       >
-        <Upload size={18} />
+       <Upload size={18}/><span>Change Wallpaper</span>
       </button>
 
       <input

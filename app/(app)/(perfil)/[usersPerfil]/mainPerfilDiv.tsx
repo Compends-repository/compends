@@ -17,6 +17,13 @@ import type { FriendPreview, FriendshipState, PublicUser } from "@/lib/types";
 import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
 import UploadButton from "@/app/actions/fileUpload.tsx";
 
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+
 type Session = typeof auth.$Infer.Session;
 
 type Props = {
@@ -47,7 +54,6 @@ export default function Main_perfil_div({
     setIsReduced((prev) => !prev);
   };
 
-  // 👈 NOVO: função de envio
   async function enviar(file: File, field: "avatar" | "background") {
     const formData = new FormData();
     formData.append("file", file);
@@ -64,8 +70,8 @@ export default function Main_perfil_div({
     router.refresh();
   }
 
-  return (
-    <div className="relative isolate">
+  const content = (
+    <>
       <div
         className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat"
         style={{
@@ -73,6 +79,7 @@ export default function Main_perfil_div({
         }}
       />
       <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-sm" />
+
       <div>
         {isReduced ? (
           <ReducedPerfilDivVersion
@@ -99,15 +106,29 @@ export default function Main_perfil_div({
         />
 
         <div className="h-300 pointer-events-none" />
-
-        {isOwner && (
-          <div className="flex gap-3 ml-[5%]">
-            <UploadButton onSelect={(file) => enviar(file, "background")} />
-          </div>
-        )}
       </div>
-      <div className="h-[200] pointer-events-none" aria-hidden />
+
+      <div className="h-[200px] pointer-events-none" aria-hidden />
       <Footer />
+    </>
+  );
+
+  return (
+    <div className="relative isolate">
+      {isOwner && editorStarted ? (
+        <ContextMenu>
+          <ContextMenuTrigger>
+            <div>{content}</div>
+          </ContextMenuTrigger>
+          <ContextMenuContent>
+            <ContextMenuItem>
+              <UploadButton onSelect={(file) => enviar(file, "background")} />
+            </ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+      ) : (
+        content
+      )}
     </div>
   );
 }
