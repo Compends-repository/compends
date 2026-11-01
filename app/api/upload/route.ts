@@ -17,7 +17,7 @@ type Field = (typeof FIELDS)[number];
 
 const MAX_SIZE: Record<Field, number> = {
   avatar: 500 * 1024, // 500KB
-  background: 2 * 1024 * 1024, // 2MB
+  background: 600 * 1024, // 600KB
 };
 
 function isField(value: unknown): value is Field {
