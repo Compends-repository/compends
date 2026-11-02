@@ -46,7 +46,7 @@ export default function GamePresentation() {
         <motion.img
           variants={imageVariants}
           className="aspect-[5/3] w-full rounded-[2cqw] object-cover"
-          src="https://cdn.phototourl.com/member/2026-10-03-bebfc521-ec84-49a7-bdbc-aa35b911c749.png"
+          src="blank"
           alt="Preview image top of the game"
         />
       </motion.div>
@@ -89,7 +89,7 @@ export default function GamePresentation() {
           <motion.img
             variants={imageVariants}
             className="aspect-[17/11] w-full rounded-[2cqw] object-cover"
-            src="https://i.kickstarter.com/assets/054/802/594/594904620ceb6254ded930402419cce6_original.png?anim=false&fit=cover&gravity=auto&height=576&origin=ugc&q=92&v=1787077835&width=1024&sig=7qeTQfR4PSoSKMxX7YA5Nj2Aqm2NfPmdEeuHoPfnf40%3D"
+            src="blank"
             alt=""
           />
         </motion.div>
