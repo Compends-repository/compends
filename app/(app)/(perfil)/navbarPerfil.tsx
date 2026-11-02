@@ -28,7 +28,7 @@ export default function NavbarPerfil({
   session,
   user,
   avatar,
-  isOwner
+  isOwner,
 }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
 
@@ -43,7 +43,7 @@ export default function NavbarPerfil({
     if (editorStarted) return;
 
     setClicked((prev) => !prev);
-  }
+  };
 
   return (
     <>
@@ -70,8 +70,9 @@ export default function NavbarPerfil({
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-transparent 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
+              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] object-cover object-center"
               src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
+              alt={session?.user.name ?? "Avatar"}
             />
             {editorStarted ? (
               <HugeiconsIcon

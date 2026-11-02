@@ -9,9 +9,8 @@ import { auth } from "@/lib/auth";
 
 type Session = typeof auth.$Infer.Session;
 
-
 type PrincipalLayoutProps = {
-  session: Session
+  session: Session;
   user: PublicUser;
   avatar: string;
 };
@@ -19,7 +18,7 @@ type PrincipalLayoutProps = {
 export default function NavbarPrincipal({
   session,
   user,
-  avatar
+  avatar,
 }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
   return (
@@ -41,10 +40,13 @@ export default function NavbarPrincipal({
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] bg-transparent 3xl:rounded-[13px] 2xl:rounded-[12px] bg-center bg-cover bg-no-repeat"
+              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] object-cover object-center"
               src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
+              alt={session?.user.name ?? "Avatar"}
             />
-            <h2 className="font-Asap text-[17px] font-black">{session?.user.name}</h2>
+            <h2 className="font-Asap text-[17px] font-black">
+              {session?.user.name}
+            </h2>
           </Link>
 
           {clicked ? (
