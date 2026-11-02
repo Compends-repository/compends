@@ -7,6 +7,7 @@ import DropdownMenuPerfil from "../dropdownMenu";
 import EditorMenu from "./editorMenu";
 
 import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
+import { Highlighter } from "@/components/ui/highlighter";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Edit03Icon } from "@hugeicons/core-free-icons";
@@ -87,7 +88,7 @@ export default function NavbarPerfil({
                 className="absolute w-[14] h-[14] mt-[15%] ml-[10%] z-70"
               />
             )}
-            <h2 className="font-Asap text-[17px] font-black">
+            <h2 className="font-Asap text-[17px] font-black max-w-[100px] truncate">
               {session?.user.name}
             </h2>
           </button>

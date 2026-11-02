@@ -90,6 +90,8 @@ export default function Step1({ register, errors, watch }: any) {
             onBlur={() => setIsFocused1(false)}
             whileHover={{ scale: 1.02, borderRadius: "6px" }}
             whileFocus={{ borderRadius: "6px", scale: 1.02 }}
+            minLength={4}
+            maxLength={18}
             transition={spring}
             placeholder="e.g: Luninjag"
           />
@@ -138,6 +140,7 @@ export default function Step1({ register, errors, watch }: any) {
             onFocus={() => setIsFocused2(true)}
             whileHover={{ scale: 1.02, borderRadius: "6px" }}
             whileFocus={{ borderRadius: "6px", scale: 1.02 }}
+            maxLength={35}
             transition={spring}
             placeholder="e.g: compends@gmail.com"
           />
@@ -207,6 +210,8 @@ export default function Step1({ register, errors, watch }: any) {
             onFocus={() => setIsFocused3(true)}
             whileHover={{ scale: 1.02, borderRadius: "6px" }}
             whileFocus={{ borderRadius: "6px", scale: 1.02 }}
+            minLength={3}
+            maxLength={18}
             transition={spring}
             placeholder="Your password here..."
           />

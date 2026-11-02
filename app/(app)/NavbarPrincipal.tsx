@@ -44,7 +44,7 @@ export default function NavbarPrincipal({
               src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
               alt={session?.user.name ?? "Avatar"}
             />
-            <h2 className="font-Asap text-[17px] font-black">
+            <h2 className="font-Asap text-[17px] font-black max-w-[100px] truncate">
               {session?.user.name}
             </h2>
           </Link>
