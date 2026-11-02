@@ -41,7 +41,7 @@ export default function GamePresentation() {
         variants={cardVariants}
         initial="rest"
         whileHover="hover"
-        className="z-30 w-[33%] 2xl:w-[37%] 3xl:w-[33%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)]"
+        className="z-30 w-[33%] 2xl:w-[37%] 3xl:w-[33%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)] bg-white"
       >
         <motion.img
           variants={imageVariants}
@@ -54,7 +54,7 @@ export default function GamePresentation() {
       <div className="2xl:shrink-0 z-20 -mt-[15%] 2xl:-mt-[19%] 3xl:-mt-[17%] flex w-[70%] items-end justify-center">
         <motion.div
           variants={cardVariants}
-          className="2xl:shrink-0 z-10 w-[42%] 2xl:w-[47%] 3xl:w-[42%] rotate-[-1deg] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)]"
+          className="2xl:shrink-0 z-10 w-[42%] 2xl:w-[47%] 3xl:w-[42%] rotate-[-1deg] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)] bg-white"
           style={{ zIndex: 10 }}
           whileHover="hover"
         >
@@ -68,7 +68,7 @@ export default function GamePresentation() {
 
         <motion.div
           variants={cardVariants}
-          className="2xl:shrink-0 z-10 ml-[20%] w-[42%] 2xl:w-[47%] 3xl:w-[42%] rotate-[1deg] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[2px_2px_4px_2px_rgba(0,0,0,0.4)]"
+          className="2xl:shrink-0 z-10 ml-[20%] w-[42%] 2xl:w-[47%] 3xl:w-[42%] rotate-[1deg] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[2px_2px_4px_2px_rgba(0,0,0,0.4)] bg-white"
           whileHover="hover"
         >
           <motion.img
@@ -83,7 +83,7 @@ export default function GamePresentation() {
       <div className="2xl:shrink-0 z-10 -mt-[15%] 2xl:-mt-[18%] 3xl:-mt-[16%] flex w-[90%] items-end justify-center">
         <motion.div
           variants={cardVariants}
-          className="2xl:shrink-0 3xl:shrink z-10 w-[41%] 2xl:w-[34%] 3xl:w-[42%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)]"
+          className="2xl:shrink-0 3xl:shrink z-10 w-[41%] 2xl:w-[34%] 3xl:w-[42%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[-2px_2px_4px_2px_rgba(0,0,0,0.4)] bg-white"
           whileHover="hover"
         >
           <motion.img
@@ -96,7 +96,7 @@ export default function GamePresentation() {
 
         <motion.div
           variants={cardVariants}
-          className="2xl:shrink-0 3xl:shrink z-10 2xl:w-[34%] ml-[40%] w-[41%] 3xl:w-[42%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[2px_2px_4px_2px_rgba(0,0,0,0.4)]"
+          className="2xl:shrink-0 3xl:shrink z-10 2xl:w-[34%] ml-[40%] w-[41%] 3xl:w-[42%] rounded-[2cqw] border-2 border-transparent overflow-hidden shadow-[2px_2px_4px_2px_rgba(0,0,0,0.4)] bg-white"
           whileHover="hover"
         >
           <motion.img
