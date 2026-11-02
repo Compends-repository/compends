@@ -25,6 +25,7 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { Upload } from "lucide-react";
+import { ComicText } from "@/components/ui/comic-text.tsx";
 
 type Session = typeof auth.$Infer.Session;
 

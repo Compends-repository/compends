@@ -1,5 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useState } from "react";
+import { Highlighter } from "@/components/ui/highlighter";
 
 export default function Footer() {
   const [active, setActive] = useState(false)
@@ -13,32 +14,32 @@ export default function Footer() {
 
       <ul className="text-[14px] font-semibold font-author mt-[1%] w-[900] ml-[2.5%] space-y-3">
         <li>
-          To <span className="underline">my mother</span>, who supported me by providing a home, food, an
+          To <Highlighter color="white" action="underline">My mother</Highlighter>, who supported me by providing a home, food, an
           incredible family, and a good environment in which to live and study.
           she is the reason Compends exists. She will always be the most important person to Compends, and to me.
         </li>
 
-       <li><span className="underline">My father, Henrique</span>... a man who passed away when I was 12 years old; a father who could no longer see his children at the end of the day... He was—and remains—very important in my life, for after his death, I began to take care of myself, earn good grades, and strive for self-improvement each and every day.</li>
+       <li><Highlighter color="white" action="underline">My father, Henrique</Highlighter>... a man who passed away when I was 12 years old; a father who could no longer see his children at the end of the day... He was—and remains—very important in my life, for after his death, I began to take care of myself, earn good grades, and strive for self-improvement each and every day.</li>
 
-        <li>To <span className="underline">my grandfather, Silvestro</span> — he was one of the most important people in my life. The day he passed away was very sad... but months later, I began building my company. That is why I am here: I want to honor everyone mentioned in this description and make them proud of me.</li>
+        <li>To <Highlighter color="white" action="underline">My grandfather, Silvestro</Highlighter> — he was one of the most important people in my life. The day he passed away was very sad... but months later, I began building my company. That is why I am here: I want to honor everyone mentioned in this description and make them proud of me.</li>
 
         <li>
-          To my friend <span className="underline">Eduardo Jorge</span>, who has been
+          To my friend <Highlighter color="white" action="underline">Eduardo Jorge</Highlighter>, who has been
           by my side for 5 years. He has helped me grow both personally and
           within Compends by sharing opinions, ideas, and examples.
         </li>
 
         <li>
-          To <span className="underline">Victor Romero</span>, who helped us a
+          To <Highlighter color="white" action="underline">Victor Romero</Highlighter>, who helped us a
           lot with his opinions and ideas. He will always be a part of Compends'
           story and foundation.
         </li>
 
-        <li>To my <span className="underline">English teacher, Victor</span>... he told me not to give up, to keep developing my website, my work... At the time he said this, he didn’t know about Compends, or about its importance and its goals, but... he simply gave me that piece of advice, which helped me a great deal; I didn’t give up, and today, here we still are, with billions of people using our website.</li>
+        <li>To my <Highlighter color="white" action="underline">English teacher, Victor</Highlighter>... he told me not to give up, to keep developing my website, my work... At the time he said this, he didn’t know about Compends, or about its importance and its goals, but... he simply gave me that piece of advice, which helped me a great deal; I didn’t give up, and today, here we still are, with billions of people using our website.</li>
 
 
         <ol>
-          <li className="text-[26px] pt-[5%]">Services used</li>
+          <li className="text-[26px] pt-[5%]"><Highlighter color="white" action="box">Services used</Highlighter></li>
           <li>React</li>
           <li>Next js</li>
           <li>Vercel</li>

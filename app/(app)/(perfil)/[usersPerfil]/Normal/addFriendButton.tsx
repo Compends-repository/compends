@@ -83,7 +83,7 @@ export default function Add_friend_button({ targetId, state }: Props) {
         disabled={pending}
         onClick={onClickHandler}
       >
-        {pending ? <Spinner /> : label}
+        {pending ? <Spinner className="mx-auto"/> : label}
       </motion.button>
 
       <CancelSendAddFriend

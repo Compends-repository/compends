@@ -32,6 +32,7 @@
 - [] Melhorar barra de navegação
 - [] Mudança de jogo no login (seleção de cards)
 - [] Lançamento do Jornal
+- [] Mensagens na página (não a mensagem do dono, mas mensagens na página abaixo... a decidir como ficará)
 - [] Termos e condições (melhor preparado)
 <!-- (Lançar dia 7/01) -->
 
