@@ -7,9 +7,9 @@ export default function Text_camps(props: any) {
         @{props.userName}
       </h1>
       <div
-        className="ml-[1.9] mt-[2%] md:ml-[2%] max-w-md text-[12.8px] text-pretty 2xl:text-[13.4px] 3xl:text-[14px] text-[#e6e6e6] text-balance"
+          className="ml-[1.9] mt-[2%] md:ml-[2%] max-w-md text-[12.8px] text-pretty 2xl:text-[13.4px] 3xl:text-[14px] text-[#e6e6e6] line-clamp-2"
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(props.bio || props.email || ""),
+          __html: DOMPurify.sanitize(props.userBio || ""),
         }}
       />
     </div>
