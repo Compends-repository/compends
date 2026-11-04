@@ -55,8 +55,7 @@ export function BioEditor({ initialContent }: Props) {
     ],
     editorProps: {
       attributes: {
-        class:
-          "min-h-32 max-h-64 overflow-y-auto px-4 py-3 outline-none overscroll-contain",
+        class: "min-h-32 px-4 py-3 outline-none",
       },
     },
     onUpdate: ({ editor }) => {
@@ -94,14 +93,15 @@ export function BioEditor({ initialContent }: Props) {
     };
   }, [editor]);
 
-  // se o usuário salvar sem editar, o note já tem a bio atual
   useEffect(() => {
     setNote(initialContent ?? "");
   }, [initialContent, setNote]);
 
   return (
     <EditorContext.Provider value={{ editor }}>
-      <EditorContent editor={editor} />
+      <div className="bio-editor-scroll">
+        <EditorContent editor={editor} />
+      </div>
 
       {editor &&
         menuPos &&
