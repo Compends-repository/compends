@@ -72,7 +72,7 @@ export function ImageUpload({
         stylePanelAspectRatio={undefined}
         allowMultiple={false}
         acceptedFileTypes={ALLOWED}
-        maxFileSize="300KB"
+        maxFileSize="350KB"
         credits={false}
         labelIdle={labelIdle ?? "Enviar foto"}
         server={{

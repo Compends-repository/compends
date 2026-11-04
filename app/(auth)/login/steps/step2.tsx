@@ -1,18 +1,17 @@
 "use client";
 
 import React from "react";
-import type {
-  Control,
-  FieldErrors,
-  UseFormWatch,
-} from "react-hook-form";
+import type { Control, FieldErrors, UseFormWatch } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FieldDescription } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
 
+import termsAndCondition from "../../../terms/page";
+
 import type { FormValues } from "../labels";
+import Link from "next/link";
 
 type Step2Props = {
   control: Control<FormValues>;
@@ -104,7 +103,6 @@ export default function Step2({ control, watch, errors }: Step2Props) {
               onCheckedChange={field.onChange}
               className="w-4 h-4 focus:ring-0 focus:outline-none"
             />
-
             Declaro que as informações fornecidas, incluindo minha data de
             nascimento, são verdadeiras.
           </label>
@@ -128,8 +126,16 @@ export default function Step2({ control, watch, errors }: Step2Props) {
               onCheckedChange={field.onChange}
               className="w-4 h-4 focus:ring-0 focus:outline-none"
             />
-
-            Accept the terms of Compends
+            Accept the{" "}
+            <Link
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              terms of Compends
+            </Link>
           </label>
         )}
       />

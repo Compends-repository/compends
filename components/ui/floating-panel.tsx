@@ -157,11 +157,15 @@ export function FloatingPanelTrigger({
 interface FloatingPanelContentProps {
   children: React.ReactNode;
   className?: string;
+  position?: "top" | "bottom";
+  align?: "left" | "center" | "right";
 }
 
 export function FloatingPanelContent({
   children,
   className,
+  position = "bottom",
+  align = "left",
 }: FloatingPanelContentProps) {
   const { isOpen, closeFloatingPanel, uniqueId, triggerRect, title } =
     useFloatingPanel();
@@ -196,7 +200,25 @@ export function FloatingPanelContent({
     visible: { opacity: 1, scale: 1, y: 0 },
   };
 
-  if(!mounted) return null
+  if (!mounted) return null;
+
+  const horizontalStyle = (): React.CSSProperties => {
+    if (!triggerRect) return { left: "50%" };
+
+    if (align === "right") {
+      return { left: triggerRect.right };
+    }
+
+    if (align === "center") {
+      return { left: triggerRect.left + triggerRect.width / 2 };
+    }
+
+    return { left: triggerRect.left };
+  };
+
+  const originX =
+    align === "right" ? "right" : align === "center" ? "center" : "left";
+  const originY = position === "top" ? "bottom" : "top";
 
   return createPortal(
     <AnimatePresence>
@@ -217,9 +239,18 @@ export function FloatingPanelContent({
             )}
             style={{
               borderRadius: 12,
-              left: triggerRect ? triggerRect.left : "50%",
-              top: triggerRect ? triggerRect.bottom + 8 : "50%",
-              transformOrigin: "top left",
+              ...horizontalStyle(),
+              top: triggerRect
+                ? position === "top"
+                  ? undefined
+                  : triggerRect.bottom + 8
+                : "50%",
+              bottom:
+                position === "top" && triggerRect
+                  ? window.innerHeight - triggerRect.top + 8
+                  : undefined,
+              transformOrigin: `${originY} ${originX}`,
+              x: align === "center" ? "-50%" : align === "right" ? "-100%" : 0,
             }}
             initial="hidden"
             animate="visible"
@@ -235,7 +266,7 @@ export function FloatingPanelContent({
         </>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 }
 

@@ -54,7 +54,8 @@ export default function Add_friend_button({ targetId, state }: Props) {
 
   function onClickHandler() {
     if (state === "NONE") run(() => sendFriendRequest(targetId));
-    else if (state === "REQUEST_RECEIVED") run(() => acceptFriendRequest(targetId));
+    else if (state === "REQUEST_RECEIVED")
+      run(() => acceptFriendRequest(targetId));
     else setDialogOpen(true);
   }
 
@@ -83,7 +84,14 @@ export default function Add_friend_button({ targetId, state }: Props) {
         disabled={pending}
         onClick={onClickHandler}
       >
-        {pending ? <Spinner className="mx-auto"/> : label}
+        {pending ? (
+         <span className="flex items-center justify-center gap-2 whitespace-nowrap">
+            <p>Calculating</p>
+            <Spinner />
+          </span>
+        ) : (
+          label
+        )}
       </motion.button>
 
       <CancelSendAddFriend

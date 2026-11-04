@@ -5,7 +5,7 @@ import { IconArrowDownFromArc } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Footer from "./footer.tsx";
+import Footer from "./Footer/footer.tsx";
 import Add_friend_button from "./Normal/addFriendButton.tsx";
 import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
 import Main_perfil_image from "./Normal/profileInformations.tsx";

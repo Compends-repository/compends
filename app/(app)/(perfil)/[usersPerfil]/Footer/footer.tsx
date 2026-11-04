@@ -1,9 +1,10 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useState } from "react";
 import { Highlighter } from "@/components/ui/highlighter";
+import Vs from "./versionHistoric";
+
 
 export default function Footer() {
-  const [active, setActive] = useState(false)
   return (
     <footer className="relative z-30 bg-[#222222] text-white pb-10 min-h-[300]">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[50] mb-[-1%] -translate-y-full bg-linear-to-b from-transparent to-[#222222]" />
@@ -59,24 +60,7 @@ export default function Footer() {
         </ol>
       </ul>
 
-      {/*<button className="h-8 rounded-md border w-23 bg-white" onClick={() => setActive(prev => !prev)}>
-        {active && (
-          <ScrollArea className='absolute -mt-190 ml-[810] h-64 w-49 rounded-md border'>
-            <h4>Versions</h4>
-            <ul>
-              <li>Compends - v1.0.0 (terminal)</li>
-              <li>Compends - v1.0.2 (terminal)</li>
-              <li>Compends - v1.1.0 (terminal)</li>
-              <li>Compends - v1.1.5 (terminal)</li>
-              <li>Compends - v1.2.0 (terminal)</li>
-              <li>Compends - v1.3.0 (terminal)</li>
-              <li>Compends - v1.4.0 (terminal)</li>
-              <li>Compends - v1.5.0 (terminal)</li>
-              <li>Compends - v1.5.6 (terminal)</li>
-            </ul>
-          </ScrollArea>
-        )}
-      </button>*/}
+      <Vs />
     </footer>
   );
 }

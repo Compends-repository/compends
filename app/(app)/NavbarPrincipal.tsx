@@ -40,7 +40,7 @@ export default function NavbarPrincipal({
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] object-cover object-center"
+              className="sm:w-9 sm:h-9 2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] sm:rounded-[12px] sm:ml-[-7%] object-cover object-center"
               src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
               alt={session?.user.name ?? "Avatar"}
             />

@@ -36,7 +36,8 @@ export const auth = betterAuth({
     "http://192.168.56.1:3000",
     "https://compends.com",
     "https://www.compends.com",
-    "http://192.168.15.6:3000",
+    "http://192.168.15.4:3000",
+    "http://10.138.113.195:3000",
     "www.compends.com"
   ],
   plugins: [nextCookies()],

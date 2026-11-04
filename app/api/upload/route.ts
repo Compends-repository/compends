@@ -16,7 +16,7 @@ const FIELDS = ["avatar", "background"] as const;
 type Field = (typeof FIELDS)[number];
 
 const MAX_SIZE: Record<Field, number> = {
-  avatar: 500 * 1024, // 500KB
+  avatar: 350 * 1024, // 500KB
   background: 1.2 * 1024 * 1024, // 1.2MB
 };
 

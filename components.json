@@ -25,6 +25,7 @@
     "@supabase": "https://supabase.com/ui/r/{name}.json",
     "@coss": "https://coss.com/ui/r/{name}.json",
     "@cult-ui": "https://cult-ui.com/r/{name}.json",
-    "@magicui": "https://magicui.design/r/{name}"
+    "@magicui": "https://magicui.design/r/{name}",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }
