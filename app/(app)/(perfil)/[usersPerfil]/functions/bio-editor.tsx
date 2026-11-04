@@ -22,11 +22,14 @@ import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button";
 import { LinkPopover } from "@/components/tiptap-ui/link-popover";
 import { CodeBlock } from "@tiptap/extension-code-block";
 
+import { Highlight } from "@tiptap/extension-highlight";
+import { FontFamily } from "@tiptap/extension-font-family";
+
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
 import "@/components/tiptap-node/list-node/list-node.scss";
 import "@/components/tiptap-node/blockquote-node/blockquote-node.scss";
-// ADICIONE ESTA LINHA ABAIXO (ajuste o caminho correto da sua pasta):
+
 import "@/components/tiptap-node/code-block-node/code-block-node.scss";
 
 import { useFloatingPanel } from "@/components/ui/floating-panel";
@@ -52,6 +55,12 @@ export function BioEditor({ initialContent }: Props) {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
+
+      Highlight.configure({
+        multicolor: true,
+      }),
+
+      FontFamily,
     ],
     editorProps: {
       attributes: {
