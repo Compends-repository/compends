@@ -1,0 +1,41 @@
+.tiptap-toaster {
+  --tt-toaster-bg-color: var(--tt-card-bg-color);
+  --tt-toaster-text-color: var(--tt-gray-light-a-900);
+  --tt-toaster-description-color: var(--tt-gray-light-a-600);
+  --tt-toaster-border-color: var(--tt-border-color);
+}
+
+.tiptap-toast {
+  font-family: inherit;
+}
+
+.tiptap-toaster .tiptap-toast[data-styled="true"] [data-description] {
+  color: var(--tt-toaster-description-color);
+}
+
+.tiptap-toast-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.tiptap-toast-icon-loading {
+  animation: tiptap-toast-spin 1s linear infinite;
+}
+
+:root.dark .tiptap-toaster,
+.dark .tiptap-toaster {
+  --tt-toaster-text-color: var(--tt-gray-dark-a-900);
+  --tt-toaster-description-color: var(--tt-gray-dark-a-600);
+}
+
+@keyframes tiptap-toast-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiptap-toast-icon-loading {
+    animation-duration: 2s;
+  }
+}

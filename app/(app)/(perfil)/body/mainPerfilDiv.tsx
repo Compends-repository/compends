@@ -5,17 +5,17 @@ import { IconArrowDownFromArc } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Footer from "./Footer/footer.tsx";
-import Add_friend_button from "./Normal/addFriendButton.tsx";
-import NormalPerfilDivVersion from "./Normal/NormalVersion.tsx";
-import Main_perfil_image from "./Normal/profileInformations.tsx";
-import ReducedPerfilDivVersion from "./Reduced/ReducedVersion.tsx";
-import FriendsList from "./friendsList.tsx";
+import Footer from "../[usersPerfil]/Footer/footer.tsx";
+import Add_friend_button from "../[usersPerfil]/Normal/addFriendButton.tsx";
+import NormalPerfilDivVersion from "../[usersPerfil]/Normal/NormalVersion.tsx";
+import Main_perfil_image from "../[usersPerfil]/Normal/profileInformations.tsx";
+import ReducedPerfilDivVersion from "../[usersPerfil]/Reduced/ReducedVersion.tsx";
+import FriendsList from "../[usersPerfil]/functions/friendsList.tsx";
 
 import type { auth } from "@/lib/auth";
 import type { FriendPreview, FriendshipState, PublicUser } from "@/lib/types";
 
-import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
+import { useEditor } from "@/app/(app)/(perfil)/functions/EditorContext.tsx";
 import FileInput from "@/app/actions/fileUpload.tsx";
 
 import {
@@ -130,8 +130,8 @@ export default function Main_perfil_div({
           </ContextMenuTrigger>
           <ContextMenuContent>
             <ContextMenuItem>
-              <label 
-                htmlFor="wallpaper-file-input" 
+              <label
+                htmlFor="wallpaper-file-input"
                 className="flex gap-2 cursor-pointer items-center w-full"
               >
                 <Upload size={18} />

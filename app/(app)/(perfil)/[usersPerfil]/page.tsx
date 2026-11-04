@@ -2,12 +2,8 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import Main_perfil_div from "./mainPerfilDiv";
-import {
-  getFriendshipState,
-  getFriends,
-  getMyFriendships,
-} from "./friendShip";
+import Main_perfil_div from "../body/mainPerfilDiv";
+import { getFriendshipState, getFriends, getMyFriendships } from "./friendShip";
 
 export default async function PerfilPage({
   params,
@@ -20,7 +16,14 @@ export default async function PerfilPage({
     auth.api.getSession({ headers: await headers() }),
     db.user.findUnique({
       where: { id: usersPerfil },
-      select: { id: true, name: true, bio: true, avatar: true, background: true, image: true },
+      select: {
+        id: true,
+        name: true,
+        bio: true,
+        avatar: true,
+        background: true,
+        image: true,
+      },
     }),
   ]);
 

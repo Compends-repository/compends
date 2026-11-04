@@ -1,0 +1,166 @@
+.tiptap,
+.ProseMirror {
+  .compends-code-block {
+    --code-bg: #1e1e1e;
+    --code-header: #070707;
+    --code-border: #343434;
+    --code-text: #d4d4d4;
+
+    margin: 1.5rem 0;
+    width: 100%;
+
+    .compends-code-window {
+      overflow: hidden;
+      width: 100%;
+
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-radius: 9px;
+
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    // HEADER
+    .compends-code-header {
+      display: flex;
+      justify-content: space-between; // Joga a linguagem na esquerda e o botão na direita
+      align-items: center;
+
+      height: 42px;
+      padding: 0 14px; // Espaçamento nas bordas da janela
+
+      background: var(--code-bg) !important;
+      border-bottom: 1px solid var(--code-border);
+    }
+
+    // LANGUAGE (Fica alinhado à esquerda naturalmente pelo flex)
+    .compends-code-language {
+      color: #a1a1aa;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      user-select: none;
+      text-align: left;
+    }
+
+    // COPY BUTTON AREA (Fica alinhado à direita naturalmente)
+    .compends-code-header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    // CODE AREA
+    .compends-code-pre {
+      display: block;
+
+      width: 100%;
+      max-width: 100%;
+      margin: 0 !important;
+      padding: 16px 18px !important;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+
+      color: var(--code-text) !important;
+
+      font-family: "JetBrains Mono NL", "JetBrains Mono", monospace !important;
+
+      font-size: 13px !important;
+      line-height: 1.75 !important;
+
+      tab-size: 2;
+    }
+
+    .compends-code-content {
+      display: block;
+      min-width: max-content;
+
+      padding: 0;
+      margin: 0;
+
+      background: transparent !important;
+      border: none !important;
+
+      color: inherit !important;
+
+      font-family: inherit !important;
+      font-size: inherit !important;
+      line-height: inherit !important;
+
+      white-space: pre;
+      outline: none;
+    }
+
+    // SYNTAX HIGHLIGHTING (Classes geradas pelo lowlight)
+    .hljs-comment,
+    .hljs-quote {
+      color: #6a9955;
+      font-style: italic;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-literal {
+      color: #c586c0;
+    }
+
+    .hljs-string,
+    .hljs-attr {
+      color: #ce9178;
+    }
+
+    .hljs-number,
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #b5cea8;
+    }
+
+    .hljs-title,
+    .hljs-title.function_,
+    .hljs-function {
+      color: #dcdcaa;
+    }
+
+    .hljs-built_in,
+    .hljs-type {
+      color: #4ec9b0;
+    }
+
+    .hljs-variable,
+    .hljs-params,
+    .hljs-property {
+      color: #9cdcfe;
+    }
+
+    .hljs-meta {
+      color: #c586c0;
+    }
+
+    .hljs-operator,
+    .hljs-punctuation {
+      color: #d4d4d4;
+    }
+
+    .hljs-tag,
+    .hljs-name {
+      color: #569cd6;
+    }
+
+    .hljs-attribute {
+      color: #9cdcfe;
+    }
+
+    .hljs-regexp {
+      color: #d16969;
+    }
+
+    .hljs-template-variable {
+      color: #9cdcfe;
+    }
+  }
+}

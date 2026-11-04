@@ -11,6 +11,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@import '../styles/_variables.scss';                                       
+@import '../styles/_keyframe-animations.scss';
+
+
 @theme {
   --breakpoint-3xl: 120rem; /*1920px*/
   --breakpoint-4xl: 160rem; /*2560px*/
@@ -204,7 +208,6 @@
   overflow: hidden;
 }
 
-/* Força o root do FilePond a ocupar 100% de largura e altura */
 .avatar-upload > .filepond--root {
   box-sizing: border-box;
   width: 100% !important;
@@ -213,12 +216,10 @@
   margin: 0 !important;
 }
 
-/* Força o wrapper interno do FilePond */
 .avatar-upload .filepond--wrapper {
   height: 100% !important;
 }
 
-/* Painel principal do FilePond com a borda arredondada e pontilhada externa */
 .avatar-upload .filepond--panel-root {
   background: transparent !important;
   border: 2px dashed rgb(255 255 255 / 0.35) !important;
@@ -226,13 +227,11 @@
   height: 100% !important;
 }
 
-/* Remove quaisquer fundos ou bordas indesejadas em sub-camadas */
 .avatar-upload .filepond--panel-root div {
   background-color: transparent !important;
   border-color: transparent !important;
 }
 
-/* Garante que a área de listagem ocupe o espaço todo */
 .avatar-upload .filepond--item-list-wrapper {
   left: 0;
   right: 0;
@@ -240,7 +239,6 @@
   bottom: 0;
 }
 
-/* Centraliza absolutamente a área de seleção preenchendo 100% */
 .avatar-upload .filepond--drop-label {
   position: absolute !important;
   top: 0 !important;
@@ -257,7 +255,6 @@
   justify-content: center !important;
 }
 
-/* Força o elemento interno <label> a centralizar com precisão */
 .avatar-upload .filepond--drop-label label {
   display: flex !important;
   flex-direction: column !important;
@@ -275,4 +272,57 @@
   color: rgb(255 255 255 / 0.75);
   cursor: pointer;
   line-height: 1.2 !important;
+}
+
+[data-bubble-menu] {
+  --tt-button-default-icon-color: #ffffff;
+  --tt-button-hover-icon-color: #ffffff;
+  --tt-button-active-icon-color: #ffffff;
+  --tt-button-default-text-color: #ffffff;
+  --tt-button-hover-text-color: #ffffff;
+  --tt-button-active-text-color: #ffffff;
+  --tt-button-default-bg-color: transparent;
+  --tt-button-hover-bg-color: rgba(255, 255, 255, 0.1);
+  --tt-button-active-bg-color: rgba(255, 255, 255, 0.15);
+}
+
+.bio-bubble-menu .tiptap-button {
+  --tt-button-default-icon-color: #fff;
+  --tt-button-hover-icon-color: #fff;
+  --tt-button-active-icon-color: #fff;
+  --tt-button-default-text-color: #fff;
+  --tt-button-hover-text-color: #fff;
+  --tt-button-active-text-color: #fff;
+  --tt-button-default-bg-color: transparent;
+  --tt-button-hover-bg-color: rgba(255, 255, 255, 0.1);
+  --tt-button-active-bg-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.bio-bubble-menu .tiptap-button svg,
+.bio-bubble-menu .tiptap-button .tiptap-button-icon {
+  color: #fff !important;
+}
+
+.bio-bubble-menu:hover {
+  color: black
+}
+
+.bio-bubble-menu .tiptap-button {
+  cursor: pointer;
+}
+
+.bio-bubble-menu .tiptap-button:hover,
+.bio-bubble-menu .tiptap-button:focus-visible {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+.bio-bubble-menu .tiptap-button:hover svg,
+.bio-bubble-menu .tiptap-button:hover .tiptap-button-icon {
+  color: #fff !important;
+}
+
+.bio-bubble-menu .tiptap-button[data-active-state="on"] {
+  background-color: rgba(255, 255, 255, 0.25) !important;
 }

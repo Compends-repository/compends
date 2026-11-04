@@ -1,19 +1,10 @@
-"use client";
-
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import DropdownMenuPerfil from "../dropdownMenu";
-import EditorMenu from "./editorMenu";
-
-import { useEditor } from "@/app/(app)/(perfil)/EditorContext.tsx";
-import { Highlighter } from "@/components/ui/highlighter";
-
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Edit03Icon } from "@hugeicons/core-free-icons";
-import { EditOff03Icon } from "@hugeicons/core-free-icons";
+import DropdownMenuPerfil from "../components/dropdownMenu";
 
 import type { PublicUser } from "@/lib/types";
+
 import { auth } from "@/lib/auth";
 
 type Session = typeof auth.$Infer.Session;
@@ -22,30 +13,14 @@ type PrincipalLayoutProps = {
   session: Session;
   user: PublicUser;
   avatar: string;
-  isOwner: boolean;
 };
 
-export default function NavbarPerfil({
+export default function NavbarPrincipal({
   session,
   user,
   avatar,
-  isOwner,
 }: PrincipalLayoutProps) {
   const [clicked, setClicked] = useState(false);
-
-  const { editorStarted, setEditorStarted } = useEditor();
-
-  const toggleEditor = () => {
-    if (clicked) return;
-    setEditorStarted((prev) => !prev);
-  };
-
-  const toggleDropdown = () => {
-    if (editorStarted) return;
-
-    setClicked((prev) => !prev);
-  };
-
   return (
     <>
       <header className="fixed z-50 top-[1.7%] left-[18%] right-[4.5%] flex items-start gap-[2%]">
@@ -59,57 +34,36 @@ export default function NavbarPerfil({
           </Link>
         </nav>
 
-        {/* 
-        
-        
-        
-        */}
-
         <nav className="relative shrink-0 h-sm:h-[52] 2xl:h-[52] h-lg:h-[55] 3xl:h-[55] flex items-center p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d]">
-          <button
-            onClick={toggleEditor}
+          <Link
+            href={`/${session?.user.id}`}
             className="flex items-center gap-3 cursor-pointer"
           >
             <img
-              className="sm:w-9 sm:h-9 sm:rounded-[12px] sm:ml-[-7%] 2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] object-cover object-center"
+              className="sm:w-9 sm:h-9 2xl:w-9 2xl:h-9 h-lg:w-10 h-lg:h-10 3xl:w-10 3xl:h-10 shrink-0 2xl:ml-[-7%] 3xl:ml-[-6%] 3xl:rounded-[13px] 2xl:rounded-[12px] sm:rounded-[12px] sm:ml-[-7%] object-cover object-center"
               src={user.avatar ?? user.image ?? avatar ?? "/default-avatar.png"}
               alt={session?.user.name ?? "Avatar"}
             />
-            {editorStarted ? (
-              <HugeiconsIcon
-                icon={EditOff03Icon}
-                strokeWidth={3}
-                className="absolute w-[14] h-[14] mt-[15%] ml-[10%] z-70"
-              />
-            ) : (
-              <HugeiconsIcon
-                icon={Edit03Icon}
-                strokeWidth={3}
-                className="absolute w-[14] h-[14] mt-[15%] ml-[10%] z-70"
-              />
-            )}
             <h2 className="font-Asap text-[17px] font-black max-w-[100px] truncate">
               {session?.user.name}
             </h2>
-          </button>
-
-          {editorStarted && <EditorMenu />}
+          </Link>
 
           {clicked ? (
             <IconChevronUp
-              onClick={toggleDropdown}
+              onClick={() => setClicked(false)}
               stroke={1.5}
               className="shrink-0 ml-3 cursor-pointer hover:bg-[#9999991b] hover:rounded-[7px] hover:border border-[#cccdc717]"
             />
           ) : (
             <IconChevronDown
-              onClick={toggleDropdown}
+              onClick={() => setClicked(true)}
               stroke={1.5}
               className="shrink-0 ml-3 cursor-pointer hover:bg-[#9999991b] hover:rounded-[7px] hover:border border-[#cccdc717]"
             />
           )}
 
-          {clicked && <DropdownMenuPerfil />}
+          {clicked ? <DropdownMenuPerfil /> : null}
         </nav>
       </header>
     </>

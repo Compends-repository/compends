@@ -17,6 +17,7 @@ import {
 
 import type { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
+import { BioEditor } from "../functions/bio-editor";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -50,8 +51,8 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
       </FloatingPanelTrigger>
 
       <FloatingPanelContent className="w-80">
-        <FloatingPanelForm onSubmit={handleSave}>
-          <FloatingPanelTextarea id="bio-input" className="min-h-32 text-white" />
+        <FloatingPanelForm onSubmit={handleSave} className="text-white">
+          <BioEditor initialContent={session?.user?.bio} />
           <FloatingPanelFooter>
             <FloatingPanelCloseButton />
             <FloatingPanelSubmitButton />

@@ -36,7 +36,7 @@ const FloatingPanelContext = createContext<
   FloatingPanelContextType | undefined
 >(undefined);
 
-function useFloatingPanel() {
+export function useFloatingPanel() {
   const context = useContext(FloatingPanelContext);
   if (!context) {
     throw new Error(
@@ -176,10 +176,17 @@ export function FloatingPanelContent({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
       if (
-        contentRef.current &&
-        !contentRef.current.contains(event.target as Node)
+        target.closest(
+          ".bio-bubble-menu, [data-radix-popper-content-wrapper], [data-floating-ui-portal], .tiptap-popover, .tiptap-dropdown-menu",
+        )
       ) {
+        return;
+      }
+
+      if (contentRef.current && !contentRef.current.contains(target as Node)) {
         closeFloatingPanel();
       }
     };
@@ -232,7 +239,6 @@ export function FloatingPanelContent({
           />
           <motion.div
             ref={contentRef}
-            layoutId={`floating-panel-${uniqueId}`}
             className={cn(
               "fixed z-50 overflow-hidden border border-zinc-950/10 bg-white shadow-lg outline-none dark:border-zinc-50/10 dark:bg-zinc-800",
               className,

@@ -3,9 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import NavbarPerfil from "./(perfil)/navbarPerfil";
-import NavbarPrincipal from "./NavbarPrincipal";
-import { EditorProvider } from "@/app/(app)/(perfil)/EditorContext.tsx"; // ajusta o caminho
+import NavbarPerfil from "./(perfil)/navbar/navbarPerfil";
+import NavbarPrincipal from "./(social-page)/all_social-page/navbar/NavbarPrincipal";
+import { EditorProvider } from "@/app/(app)/(perfil)/functions/EditorContext"; // ajusta o caminho
 
 import { Avatar, Style } from "@dicebear/core";
 import definition from "@dicebear/styles/gaze.json" with { type: "json" };
@@ -43,7 +43,11 @@ export default function PrincipalLayout({
   return (
     <EditorProvider>
       {!isPerfil ? (
-        <NavbarPrincipal session={session} user={user} avatar={fallbackAvatar} />
+        <NavbarPrincipal
+          session={session}
+          user={user}
+          avatar={fallbackAvatar}
+        />
       ) : (
         <NavbarPerfil
           session={session}
