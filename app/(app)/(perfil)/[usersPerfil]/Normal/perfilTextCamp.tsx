@@ -2,7 +2,7 @@ import type { auth } from "@/lib/auth";
 import EditBio_OnPerfil from "../Dialogs/EditBio";
 import type { PublicUser } from "@/lib/types";
 
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 type Session = typeof auth.$Infer.Session;
 
