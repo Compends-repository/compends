@@ -361,15 +361,16 @@ export function FloatingPanelForm({
   };
 
   return (
-    <form
-      className={cn(
-        "flex h-full min-h-0 flex-1 flex-col overflow-hidden",
-        className,
-      )}
-    >
-      {children}
-    </form>
-  );
+  <form
+    onSubmit={handleSubmit}
+    className={cn(
+      "flex h-full min-h-0 flex-1 flex-col overflow-hidden",
+      className,
+    )}
+  >
+    {children}
+  </form>
+);
 }
 
 interface FloatingPanelLabelProps {

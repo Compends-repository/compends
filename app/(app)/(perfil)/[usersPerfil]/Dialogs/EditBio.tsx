@@ -30,11 +30,9 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
   const router = useRouter();
 
   async function handleSave(bio: string) {
-    const { error } = await authClient.updateUser({ bio });
-    if (error) {
-      console.log(error);
-      return;
-    }
+    const { data, error } = await authClient.updateUser({ bio });
+    console.log("updateUser", { bio, data, error });
+    if (error) return;
     router.refresh();
   }
 

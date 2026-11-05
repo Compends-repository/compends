@@ -27,7 +27,7 @@ export const auth = betterAuth({
         birthDate: { type: 'date', required: true},
         opt1: { type: 'boolean', required: true, defaultValue: false},
         opt2: { type: 'boolean', required: true, defaultValue: false},
-        bio: {type: 'string', required: false, defaultValue: null},
+        bio: {type: 'string', required: false, defaultValue: null, input: true},
         avatar: { type: "string", required: false },
     }
   },
@@ -36,7 +36,7 @@ export const auth = betterAuth({
     "http://192.168.56.1:3000",
     "https://compends.com",
     "https://www.compends.com",
-    "http://192.168.15.4:3000",
+    "http://192.168.15.6:3000",
     "http://10.138.113.195:3000",
     "www.compends.com"
   ],
