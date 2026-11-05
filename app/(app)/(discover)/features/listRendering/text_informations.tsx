@@ -17,7 +17,7 @@ export default function Text_info_user_list({
       </h1>
 
       <div
-        className="text-[#e6e6e6] w-98 text-[14.8px] backdrop-brightness-99 max-h-15 overflow-hidden ml-[0.4%]"
+        className="text-[#e6e6e6] w-98 text-[14.8px] backdrop-brightness-99 max-h-16 overflow-hidden ml-[0.4%]"
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(bio || ""),
         }}

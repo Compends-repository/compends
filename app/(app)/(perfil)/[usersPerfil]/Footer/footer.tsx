@@ -36,7 +36,7 @@ export default function Footer() {
           story and foundation.
         </li>
 
-        <li>To my <Highlighter color="white" action="underline">English teacher, Victor</Highlighter>... he told me not to give up, to keep developing my website, my work... At the time he said this, he didn’t know about Compends, or about its importance and its goals, but... he simply gave me that piece of advice, which helped me a great deal; I didn’t give up, and today, here we still are, with billions of people using our website.</li>
+        <li>To my <Highlighter color="white" action="underline">English teacher, Victor</Highlighter>... he told me not to give up, to keep developing my website, my work... At the time he said this, he didn’t know about Compends, or about its importance and its goals, but... he simply gave me that piece of advice, which helped me a great deal; I didn’t give up, and today, here we still are...</li>
 
 
         <ol>

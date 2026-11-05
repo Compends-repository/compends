@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { IconPencil } from "@tabler/icons-react";
 
@@ -10,16 +11,13 @@ import {
   FloatingPanelContent,
   FloatingPanelFooter,
   FloatingPanelForm,
-  FloatingPanelLabel,
   FloatingPanelRoot,
   FloatingPanelSubmitButton,
-  FloatingPanelTextarea,
   FloatingPanelTrigger,
 } from "@/components/ui/floating-panel";
 
 import type { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
-import { BioEditor } from "../functions/bio-editor";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -27,6 +25,19 @@ type Props = {
   session: Session | null;
   editorStarted: boolean;
 };
+
+
+const loadBioEditor = () =>
+  import("../functions/bio-editor").then((m) => m.BioEditor);
+
+const BioEditor = dynamic(loadBioEditor, {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-32 px-4 py-3 text-sm text-zinc-400">
+      Carregando editor...
+    </div>
+  ),
+});
 
 export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
   const router = useRouter();
@@ -40,11 +51,14 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
 
   if (!editorStarted) return null;
 
-  const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`
+  const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`;
 
   return (
     <FloatingPanelRoot className="shrink-0 z-100">
-      <Tooltip containerClassName="text-neutral-600 rounded-lg! dark:text-neutral-400" content={contentDrop}>
+      <Tooltip
+        containerClassName="text-neutral-600 rounded-lg! dark:text-neutral-400"
+        content={contentDrop}
+      >
         <FloatingPanelTrigger
           className="w-9 h-9 p-0 justify-center cursor-pointer"
           title="Editar bio"

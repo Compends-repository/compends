@@ -22,8 +22,9 @@ import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button";
 import { LinkPopover } from "@/components/tiptap-ui/link-popover";
 import { CodeBlock } from "@tiptap/extension-code-block";
 
-import { Highlight } from "@tiptap/extension-highlight";
+import { TextStyle } from "@tiptap/extension-text-style";
 import { FontFamily } from "@tiptap/extension-font-family";
+import { Highlight } from "@tiptap/extension-highlight";
 
 import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";
 import "@/components/tiptap-node/heading-node/heading-node.scss";
@@ -39,6 +40,15 @@ type Props = {
   initialContent?: string | null;
 };
 
+const FONTS = [
+  { label: "Padrão", value: "" },
+  { label: "Serif", value: "Georgia, serif" },
+  { label: "Mono", value: "ui-monospace, monospace" },
+  { label: "Cursiva", value: "'Comic Sans MS', cursive" },
+];
+
+const HIGHLIGHTS = ["#fde047", "#86efac", "#7dd3fc", "#f9a8d4"];
+
 export function BioEditor({ initialContent }: Props) {
   const { setNote } = useFloatingPanel();
 
@@ -46,21 +56,12 @@ export function BioEditor({ initialContent }: Props) {
     immediatelyRender: false,
     content: initialContent ?? "",
     extensions: [
-      StarterKit.configure({
-        codeBlock: false,
-      }),
-
+      StarterKit.configure({ codeBlock: false }),
       CodeBlockExtension,
-
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-
-      Highlight.configure({
-        multicolor: true,
-      }),
-
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      TextStyle, // necessário para o FontFamily
       FontFamily,
+      Highlight.configure({ multicolor: true }),
     ],
     editorProps: {
       attributes: {
@@ -139,10 +140,51 @@ export function BioEditor({ initialContent }: Props) {
             </ToolbarGroup>
             <ToolbarSeparator />
             <ToolbarGroup>
-              <TextAlignButton align="left" />
-              <TextAlignButton align="center" />
+              <select
+                className="rounded bg-zinc-700 px-1 text-sm text-white outline-none"
+                value={editor.getAttributes("TextStyle").FontFamily ?? ""}
+                onChange={(e) => {
+                  const font = e.target.value;
+                  if (font) editor.chain().focus().setFontFamily(font).run();
+                  else editor.chain().focus().unsetFontFamily().run();
+                }}
+              >
+                {FONTS.map((f) => (
+                  <option key={f.label} value={f.value}>
+                    {f.label}
+                  </option>
+                ))}
+              </select>
             </ToolbarGroup>
             <ToolbarSeparator />
+
+            <ToolbarSeparator />
+
+            <ToolbarGroup>
+              {HIGHLIGHTS.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() =>
+                    editor.chain().focus().toggleHighlight({ color }).run()
+                  }
+                  className="h-5 w-5 rounded-full border text-black border-white/30"
+                  style={{ backgroundColor: color, color: 'black' }}
+                  title="Destacar"
+                />
+              ))}
+              <button
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => editor.chain().focus().unsetHighlight().run()}
+                className="px-1 text-xs text-white"
+                title="Remover destaque"
+              >
+                ✕
+              </button>
+            </ToolbarGroup>
+
             <ToolbarGroup>
               <button
                 type="button"

@@ -11,9 +11,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@import '../styles/_variables.scss';                                       
-@import '../styles/_keyframe-animations.scss';
-
+@import "../styles/_variables.scss";
+@import "../styles/_keyframe-animations.scss";
 
 @theme {
   --breakpoint-3xl: 120rem; /*1920px*/
@@ -200,9 +199,6 @@
   }
 }
 
-
-
-
 .avatar-upload {
   position: sticky;
   overflow: hidden;
@@ -305,7 +301,7 @@
 }
 
 .bio-bubble-menu:hover {
-  color: black
+  color: black;
 }
 
 .bio-bubble-menu .tiptap-button {
@@ -327,8 +323,6 @@
   background-color: rgba(255, 255, 255, 0.25) !important;
 }
 
-
-
 .bio-editor-scroll {
   flex: 1;
   min-height: 0;
@@ -338,4 +332,18 @@
 
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
+}
+
+mark,
+.tiptap mark {
+  color: #000 !important;
+  display: inline-block;
+  line-height: 1.5 !important;
+  vertical-align: top;
+  padding: 0 0.15em;
+}
+
+mark *,
+.tiptap mark * {
+  line-height: inherit !important;
 }
