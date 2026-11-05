@@ -28,7 +28,7 @@ export default function Text_camps({
       <div className="mt-2 ml-[2%] max-w-[calc(100%-2rem)]">
         <div className="mt-2 ml-[2%] flex w-fit max-w-[calc(100%-1rem)] items-center gap-3">
           <div
-            className="min-w-0 text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3"
+            className="min-w-0 text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3 select-none"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(user.bio || user.email || ""),
             }}

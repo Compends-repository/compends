@@ -49,7 +49,7 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
   }
 }
 
@@ -347,5 +347,3 @@ mark *,
 .tiptap mark * {
   line-height: inherit !important;
 }
-
-/* oi */

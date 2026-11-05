@@ -18,7 +18,7 @@ export default function DropdownMenuPerfil() {
   };
 
   return (
-    <div className="absolute z-50 top-[calc(100%+8px)] right-0 min-h-[155px] w-full min-w-[160px] flex p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d]">
+    <div className="absolute z-50 top-[calc(100%+8px)] right-0 min-h-[155px] w-full min-w-[160px] flex p-4 backdrop-blur-3xl backdrop-contrast-125 backdrop-brightness-95 backdrop-opacity-65 bg-black/20 rounded-[20px] text-white border border-[#cccdc76d] select-none text-center justify-center">
       <nav>
         <motion.button
           type="button"

@@ -41,11 +41,11 @@ export default function FriendsList({
               <Link key={f.id} href={`/${f.id}`}>
                 <motion.li whileHover={{ scale: 1.08 }} className="mt-4 ml-4">
                   <img
-                    className="aspect-square shrink-0 object-cover 2xl:w-35 3xl:w-38 w-28 mb-3 2xl:rounded-[25px] 3xl:rounded-[30px] rounded-[20px] border-[#dbdbdb6e] border"
+                    className="aspect-square shrink-0 object-cover 2xl:w-35 3xl:w-38 w-28 mb-3 2xl:rounded-[25px] 3xl:rounded-[30px] rounded-[20px] border-[#dbdbdb6e] border select-none"
                     src={f.avatar ?? getFallbackAvatar(f.name ?? String(f.id))}
                     alt={f.name}
                   />
-                  <p className="text-center text-white font-Asap">{f.name}</p>
+                  <p className="text-center text-white font-Asap font-bold">@{f.name}</p>
                 </motion.li>
               </Link>
             ))}

@@ -27,7 +27,7 @@ export default function User_Informations_List({ GETusers }: any) {
         <Link key={user.id} href={`/${user.id}`} className="block">
           <motion.li
             key={user.id}
-            className="relative isolate pl-[6%] cursor-pointer"
+            className="relative isolate pl-[6%] cursor-pointer select-none"
             onHoverStart={() => setHoveredId(user.id)}
             onHoverEnd={() => setHoveredId(null)}
             initial="rest"
@@ -37,7 +37,7 @@ export default function User_Informations_List({ GETusers }: any) {
           >
             <motion.div
               aria-hidden
-              className="w-[96%] mx-auto absolute inset-x-0 bottom-0 top-[-40] -z-10 bg-cover bg-center bg-no-repeat pointer-events-none brightness-65 rounded-[35px] border border-[#dbdbdb6e] bg-black/6"
+              className="w-[96%] mx-auto absolute inset-x-0 bottom-0 top-[-40] -z-10 bg-cover bg-center bg-no-repeat pointer-events-none brightness-65 rounded-[35px] border border-[#dbdbdb6e] bg-black/6 select-none"
               variants={{
                 rest: { opacity: 0 },
                 hover: { opacity: 1 },
@@ -47,7 +47,7 @@ export default function User_Informations_List({ GETusers }: any) {
             />
 
             <motion.img
-              className="w-36.25 mt-[4%] h-37.5 object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[2px_2px_10px_0px_rgba(0,0,0,0.09)] pointer-events-none"
+              className="w-36.25 mt-[4%] h-37.5 object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[2px_2px_10px_0px_rgba(0,0,0,0.09)] pointer-events-none select-none"
               src={user.avatar ?? getFallbackAvatar(user.name ?? String(user.id))}
               alt={user.name}
               variants={{ tap: { scale: 0.85 } }}
@@ -56,7 +56,7 @@ export default function User_Informations_List({ GETusers }: any) {
 
             <Text_info_user_list name={user.name} bio={user.bio}/>
             <Separator
-              className="w-[40%]! 2xl:mt-[11%] 3xl:mt-[9%] mt-[12%] mb-[4%] bg-chart-1 h-[1.8]!"
+              className="w-[40%]! 2xl:mt-[11%] 3xl:mt-[9%] mt-[12%] mb-[4%] bg-chart-1 h-[1.8]! select-none"
               style={{ opacity: hoveredId === user.id ? 0.5 : 1 }}
             />
           </motion.li>

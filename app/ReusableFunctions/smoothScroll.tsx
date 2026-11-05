@@ -1,23 +1,13 @@
 "use client";
 
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import { useEffect } from "react";
 
 export default function SmoothScroll() {
   useEffect(() => {
-    const lenis = new Lenis();
-
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
+    const lenis = new Lenis({ autoRaf: true });
+    return () => lenis.destroy();
   }, []);
 
   return null;
