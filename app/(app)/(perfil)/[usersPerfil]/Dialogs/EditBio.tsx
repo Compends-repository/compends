@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { IconPencil } from "@tabler/icons-react";
 
+import { Tooltip } from "@/components/ui/tooltip-card";
+
 import {
   FloatingPanelCloseButton,
   FloatingPanelContent,
@@ -38,15 +40,19 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
 
   if (!editorStarted) return null;
 
+  const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`
+
   return (
     <FloatingPanelRoot className="shrink-0 z-100">
-      <FloatingPanelTrigger
-        className="w-9 h-9 p-0 justify-center cursor-pointer"
-        title="Editar bio"
-        animateLabel={false}
-      >
-        <IconPencil size={16} />
-      </FloatingPanelTrigger>
+      <Tooltip containerClassName="text-neutral-600 rounded-lg! dark:text-neutral-400" content={contentDrop}>
+        <FloatingPanelTrigger
+          className="w-9 h-9 p-0 justify-center cursor-pointer"
+          title="Editar bio"
+          animateLabel={false}
+        >
+          <IconPencil size={16} />
+        </FloatingPanelTrigger>
+      </Tooltip>
 
       <FloatingPanelContent className="w-80">
         <FloatingPanelForm onSubmit={handleSave} className="text-white">

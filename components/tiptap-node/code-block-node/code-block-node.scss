@@ -23,11 +23,11 @@
     // HEADER
     .compends-code-header {
       display: flex;
-      justify-content: space-between; // Joga a linguagem na esquerda e o botão na direita
+      justify-content: space-between;
       align-items: center;
 
       height: 42px;
-      padding: 0 14px; // Espaçamento nas bordas da janela
+      padding: 0 14px;
 
       background: var(--code-bg) !important;
       border-bottom: 1px solid var(--code-border);

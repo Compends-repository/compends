@@ -10,7 +10,6 @@ async function getViewerId() {
   return session.user.id;
 }
 
-// Procura a amizade em qualquer direção
 function findBetween(a: string, b: string) {
   return db.friendship.findFirst({
     where: {
@@ -42,7 +41,6 @@ export async function acceptFriendRequest(requesterId: string) {
   });
 }
 
-// Serve para cancelar pedido enviado, recusar pedido recebido e desfazer amizade
 export async function removeFriendship(otherId: string) {
   const me = await getViewerId();
   await db.friendship.deleteMany({
