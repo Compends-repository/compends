@@ -347,3 +347,63 @@ mark *,
 .tiptap mark * {
   line-height: inherit !important;
 }
+
+
+
+/* reset de layout: vale para tudo dentro da bio */
+.bio-html {
+  white-space: pre-wrap; /* preserva espaços múltiplos como no editor */
+}
+
+/* só neutraliza o que desalinha o layout */
+.bio-html * {
+  line-height: 1.5rem !important;
+  letter-spacing: inherit !important;
+  text-indent: 0 !important;
+  float: none !important;
+  position: static !important;
+  max-width: 100% !important;
+  vertical-align: baseline !important;
+}
+
+/* parágrafos e títulos: blocos de verdade, sem margem */
+.bio-html :is(p, h1, h2, h3, h4, h5, h6, blockquote, pre) {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  font-weight: inherit;
+  min-height: 1.5rem; /* parágrafo vazio continua ocupando uma linha */
+}
+
+.bio-html br {
+  display: inline;
+}
+
+/* listas */
+.bio-html ul,
+.bio-html ol {
+  margin: 0 !important;
+  padding-left: 1.25rem !important;
+}
+.bio-html ul { list-style: disc; }
+.bio-html ol { list-style: decimal; }
+.bio-html li { display: list-item; }
+.bio-html li > p { display: inline; min-height: 0; }
+
+/* highlight: altura fixa, independente da fonte */
+.bio-html mark {
+  display: inline-block !important;
+  vertical-align: top !important;
+  line-height: 1.5rem !important;
+  padding: 0 0.25em !important;
+  margin: 0 0px !important;
+  border-radius: 0px;
+  color: #000 !important;
+}
+
+.bio-html img,
+.bio-html svg,
+.bio-html video {
+  display: none !important;
+}
