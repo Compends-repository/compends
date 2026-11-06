@@ -2,6 +2,18 @@ import type { auth } from "@/lib/auth";
 import EditBio_OnPerfil from "../Dialogs/EditBio";
 import type { PublicUser } from "@/lib/types";
 
+import {
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverForm,
+  PopoverLabel,
+  PopoverRoot,
+  PopoverSubmitButton,
+  PopoverTextarea,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import DOMPurify from "isomorphic-dompurify";
 
 type Session = typeof auth.$Infer.Session;
@@ -25,20 +37,35 @@ export default function Text_camps({
         @{user.name}
       </h1>
 
-      <div className="mt-2 ml-[2%] max-w-[calc(100%-2rem)]">
-        <div className="mt-2 ml-[2%] flex w-fit max-w-[calc(100%-1rem)] items-center gap-3">
+      <PopoverRoot animation="blur">
+        <PopoverTrigger className="bg-transparent! border-none! text-justify!">
+          <div className="mt-16 ml-[-0.8%] max-w-[calc(100%-2rem)]">
+            <div className="mt-2 ml-[2%] flex w-fit max-w-[calc(100%-1rem)] items-center gap-3">
+              <div
+                className="min-w-0 text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3 select-none"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(user.bio || user.email || ""),
+                }}
+              />
+
+              {isOwner && editorStarted && (
+                <EditBio_OnPerfil
+                  session={session}
+                  editorStarted={editorStarted}
+                />
+              )}
+            </div>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="mt-[40%] ml-[-11%] backdrop-blur-3xl bg-transparent! backdrop-brightness-115!">
           <div
-            className="min-w-0 text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3 select-none"
+            className="min-w-0 text-[14.8px] 2xl:text-[14px] leading-6 text-[#e6e6e6] text-pretty line-clamp-3 select-none m-3"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(user.bio || user.email || ""),
             }}
           />
-
-          {isOwner && editorStarted && (
-            <EditBio_OnPerfil session={session} editorStarted={editorStarted} />
-          )}
-        </div>
-      </div>
+        </PopoverContent>
+      </PopoverRoot>
     </div>
   );
 }
