@@ -56,7 +56,7 @@ export default function Text_camps({
 
       <PopoverRoot
         animation="blur"
-        className="h-[4.5rem] items-start justify-start mt-[4%] ml-[0.8%]"
+        className="h-[4.5rem] items-start justify-start mt-[3%] ml-[3%]"
       >
         <PopoverTrigger className="bg-transparent! border-none! w-full h-auto! items-start! justify-start px-0! text-left!">
           <div className="flex w-full items-start gap-3 text-left">
