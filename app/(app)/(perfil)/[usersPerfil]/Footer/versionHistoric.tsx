@@ -25,7 +25,10 @@ export default function Vs() {
   return (
     <div className="flex w-full">
       <FloatingPanelRoot>
-        <FloatingPanelTrigger title="Versions" className="absolute 3xl:left-[90vw] 2xl:left-[88vw] bottom-[-1vw] whitespace-nowrap">
+        <FloatingPanelTrigger
+          title="Versions"
+          className="absolute bottom-0 2xl:left-[88vw] 3xl:left-[90vw] whitespace-nowrap"
+        >
           {ultimo}
         </FloatingPanelTrigger>
 
