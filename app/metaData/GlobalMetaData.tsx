@@ -17,6 +17,6 @@ export const metadata: Metadata = {
     siteName: "Compends",
     locale: "pt_BR",
     type: "website",
-    images: ["/og.png"], // 1200x630, aparece ao compartilhar em redes/WhatsApp
+    images: ["/og.png"],
   },
 };

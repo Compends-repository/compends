@@ -13,12 +13,12 @@
 <!-- Update 2.0.0 -->
 - [] Aba loja
 - [] Posts básicos na área social
-- [] Bio customizada
+- [x] Bio customizada
 - [] Pagamento
 - [x] Add friend funcionando
 - [] Denúnciar perfil
 - [] Mensagem do dono do perfil (Ver Excalidraw)
-- [] Modo claro e escuro da plataforma  <!--Não necessário-->
+- [] Modo claro e escuro da plataforma  <!-- Não necessário -->
 - [] Diminuir tamanho de imagem
 - [] Feedbacks
 - [] Termos e condições

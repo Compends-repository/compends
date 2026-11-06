@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import Main_perfil_div from "../body/mainPerfilDiv";
-import { getFriendshipState, getFriends, getMyFriendships } from "./friendShip";
+import { getFriendshipState, getFriends, getMyFriendships } from "../functions/friendShip";
 
 export default async function PerfilPage({
   params,
