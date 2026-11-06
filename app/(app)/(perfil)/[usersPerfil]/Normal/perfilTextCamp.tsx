@@ -71,7 +71,7 @@ export default function Text_camps({
           </div>
         </PopoverTrigger>
 
-        <PopoverContent className="mt-0 ml-0 backdrop-blur-3xl bg-transparent! backdrop-brightness-115!">
+        <PopoverContent className="mt-[-3.2%] ml-[-3%] backdrop-blur-3xl bg-transparent! backdrop-brightness-115!">
           <BioHtml
             html={bio}
             className="m-3 h-[calc(100%-1.5rem)] overflow-y-auto"

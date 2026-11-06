@@ -349,13 +349,10 @@ mark *,
 }
 
 
-
-/* reset de layout: vale para tudo dentro da bio */
 .bio-html {
-  white-space: pre-wrap; /* preserva espaços múltiplos como no editor */
+  white-space: pre-wrap;
 }
 
-/* só neutraliza o que desalinha o layout */
 .bio-html * {
   line-height: 1.5rem !important;
   letter-spacing: inherit !important;
@@ -366,21 +363,19 @@ mark *,
   vertical-align: baseline !important;
 }
 
-/* parágrafos e títulos: blocos de verdade, sem margem */
 .bio-html :is(p, h1, h2, h3, h4, h5, h6, blockquote, pre) {
   display: block;
   margin: 0 !important;
   padding: 0 !important;
   font-size: inherit !important;
   font-weight: inherit;
-  min-height: 1.5rem; /* parágrafo vazio continua ocupando uma linha */
+  min-height: 1.5rem;
 }
 
 .bio-html br {
   display: inline;
 }
 
-/* listas */
 .bio-html ul,
 .bio-html ol {
   margin: 0 !important;
@@ -391,7 +386,6 @@ mark *,
 .bio-html li { display: list-item; }
 .bio-html li > p { display: inline; min-height: 0; }
 
-/* highlight: altura fixa, independente da fonte */
 .bio-html mark {
   display: inline-block !important;
   vertical-align: top !important;
@@ -406,4 +400,57 @@ mark *,
 .bio-html svg,
 .bio-html video {
   display: none !important;
+}
+
+.bio-html pre,
+.bio-html code {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere;
+  overflow-x: hidden;
+}
+
+
+.bio-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+.bio-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.bio-scroll::-webkit-scrollbar-track,
+.bio-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.bio-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.bio-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+  background-clip: padding-box;
+}
+.bio-scroll::-webkit-scrollbar-button {
+  display: none;
+}
+
+
+
+@supports not selector(::-webkit-scrollbar) {
+  .bio-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+}
+
+.bio-html pre,
+.bio-html pre *,
+.bio-html code {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  max-width: 100%;
 }

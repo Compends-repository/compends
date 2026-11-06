@@ -40,6 +40,19 @@ type Props = {
   initialContent?: string | null;
 };
 
+const CODE_LANGUAGES = [
+  { label: "Auto", value: "" },
+  { label: "JavaScript", value: "javascript" },
+  { label: "TypeScript", value: "typescript" },
+  { label: "Python", value: "python" },
+  { label: "C#", value: "csharp" },
+  { label: "HTML", value: "xml" },
+  { label: "CSS", value: "css" },
+  { label: "JSON", value: "json" },
+  { label: "Bash", value: "bash" },
+  { label: "SQL", value: "sql" },
+];
+
 const FONTS = [
   { label: "Padrão", value: "" },
   { label: "Serif", value: "Georgia, serif" },
@@ -170,7 +183,7 @@ export function BioEditor({ initialContent }: Props) {
                     editor.chain().focus().toggleHighlight({ color }).run()
                   }
                   className="h-5 w-5 rounded-full border text-black border-white/30"
-                  style={{ backgroundColor: color, color: 'black' }}
+                  style={{ backgroundColor: color, color: "black" }}
                   title="Destacar"
                 />
               ))}
@@ -188,19 +201,52 @@ export function BioEditor({ initialContent }: Props) {
             <ToolbarGroup>
               <button
                 type="button"
-                onClick={() =>
-                  editor
-                    ?.chain()
-                    .focus()
-                    .toggleCodeBlock({ language: "javascript" })
-                    .run()
-                }
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => {
+                  const { from, to, $from, $to } = editor.state.selection;
+                  const chain = editor.chain().focus();
+
+                  if ($to.parentOffset < $to.parent.content.size) {
+                    chain.setTextSelection(to).splitBlock();
+                  }
+                  if ($from.parentOffset > 0) {
+                    chain.setTextSelection(from).splitBlock();
+                  }
+
+                  chain.toggleCodeBlock().run();
+                }}
                 className="rounded px-2 py-1 text-white hover:bg-zinc-600"
                 title="Code block"
               >
                 <IconCode stroke={2} />
               </button>
             </ToolbarGroup>
+            {editor.isActive("codeBlock") && (
+              <>
+                <ToolbarSeparator />
+                <ToolbarGroup>
+                  <select
+                    className="rounded bg-zinc-700 px-1 text-sm text-white outline-none"
+                    value={editor.getAttributes("codeBlock").language ?? ""}
+                    onChange={(e) =>
+                      editor
+                        .chain()
+                        .focus()
+                        .updateAttributes("codeBlock", {
+                          language: e.target.value || null,
+                        })
+                        .run()
+                    }
+                  >
+                    {CODE_LANGUAGES.map((l) => (
+                      <option key={l.value} value={l.value}>
+                        {l.label}
+                      </option>
+                    ))}
+                  </select>
+                </ToolbarGroup>
+              </>
+            )}
           </div>,
           document.body,
         )}
