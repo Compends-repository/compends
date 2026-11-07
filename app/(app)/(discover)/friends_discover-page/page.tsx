@@ -25,14 +25,14 @@ export default async function Discover_new_preople() {
   }
 
   const users = usersRes.data ?? [];
-  const background = meRes.data?.background ?? "/layered-steps-haikei.svg";
+  const background = meRes.data?.background ?? "/perfilBackExample.png";
 
   return (
     <div className="relative isolate">
       <div
         className="fixed inset-0 -z-100 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('${background ?? "/layered-steps-haikei.svg"}')`,
+          backgroundImage: `url('${background ?? "/perfilBackExample.png"}')`,
         }}
       />
       <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-sm" />
