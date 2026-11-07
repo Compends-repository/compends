@@ -236,11 +236,9 @@ export function PopoverContent({ children, className }: PopoverContentProps) {
       {isOpen && (
         <motion.div
           ref={formContainerRef}
-          {...(isMorph
-            ? { layoutId: `popover-${uniqueId}` }
-            : ANIMATIONS[animation])}
+          {...(isMorph ? { layoutId: `popover-${uniqueId}` } : ANIMATIONS.fade)}
           className={cn(
-            "absolute z-50 h-[200px] w-[364px] overflow-hidden border border-zinc-950/10 bg-white outline-none dark:bg-zinc-700", // Changed z-90 to z-50
+            "absolute z-50 h-[200px] w-[364px] overflow-hidden border border-zinc-950/10 outline-none",
             className,
           )}
           style={{
@@ -250,7 +248,12 @@ export function PopoverContent({ children, className }: PopoverContentProps) {
             ...(isMorph ? { transform: "none" } : {}),
           }}
         >
-          {children}
+          <motion.div
+            className="h-full w-full"
+            {...(isMorph ? {} : ANIMATIONS[animation])}
+          >
+            {children}
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

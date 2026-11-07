@@ -49,14 +49,14 @@ export default function Text_camps({
   const bio = user.bio || user.email || "";
 
   return (
-    <div className="sticky text-white w-[26rem] shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[8%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
+    <div className="sticky z-40 text-white w-104 shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[8%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
       <h1 className="text-[34px] 2xl:text-[30px] font-black font-Asap truncate">
         @{user.name}
       </h1>
 
       <PopoverRoot
         animation="blur"
-        className="h-[4.5rem] items-start justify-start mt-[3%] ml-[3%]"
+        className="h-18 items-start justify-start mt-[3%] ml-[3%] z-300"
       >
         <PopoverTrigger className="bg-transparent! border-none! w-full h-auto! items-start! justify-start px-0! text-left!">
           <div className="flex w-full items-start gap-3 text-left">
@@ -71,7 +71,7 @@ export default function Text_camps({
           </div>
         </PopoverTrigger>
 
-        <PopoverContent className="mt-[-3.2%] ml-[-3%] backdrop-blur-3xl bg-transparent! backdrop-brightness-115!">
+        <PopoverContent className="mt-[-3.2%] ml-[-3%] backdrop-blur-3xl! bg-transparent! backdrop-brightness-115!">
           <BioHtml
             html={bio}
             className="m-3 h-[calc(100%-1.5rem)] overflow-y-auto"
