@@ -2,13 +2,16 @@ import { IconArrowAutofitDown } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Add_friend_button from "./Reduced_addFriendButton.tsx";
 import Main_perfil_image from "./Reduced_profileInformations.tsx";
-import { auth } from "@/lib/auth.ts";
-import { PublicUser } from "@/lib/types.ts";
 
+import type { auth } from "@/lib/auth";
 type Session = typeof auth.$Infer.Session;
+import type { PublicUser } from "@/lib/types";
 
-
-type Props = { onToggle: () => void; session: Session | null; user: PublicUser };
+type Props = {
+  session: Session | null;
+  user: PublicUser;
+  onToggle: () => void;
+};
 
 
 export default function ReducedPerfilDivVersion({ onToggle, session, user }: Props) {

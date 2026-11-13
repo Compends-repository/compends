@@ -5,7 +5,18 @@ import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 import definition2 from "@dicebear/styles/lorelei.json" with { type: "json" };
 import definition3 from '@dicebear/styles/marbles.json' with { type: 'json' };
 
-export default function Main_perfil_image(props: any) {
+import type { auth } from "@/lib/auth";
+type Session = typeof auth.$Infer.Session;
+import type { PublicUser } from "@/lib/types";
+
+type Props = {
+  session: Session | null;
+  user: PublicUser;
+  image: string | null | undefined;
+};
+
+
+export default function Main_perfil_image({ session, user, image }: Props) {
   const style = new Style(definition3);
   const avatar = new Avatar(style, {
     backgroundColor: [
@@ -17,12 +28,12 @@ export default function Main_perfil_image(props: any) {
       "f15bb5",
       "f55151",
     ],
-    seed: props.user.name ?? props.user.id,
+    seed: user.name ?? user.id,
     size: 200,
   });
   const fallbackAvatar = avatar.toDataUri();
 
-  const avatarSrc = props.user.avatar ?? fallbackAvatar;
+  const avatarSrc = user.avatar ?? fallbackAvatar;
 
 return (
   <>
@@ -44,9 +55,8 @@ return (
       </div>
     </div>
     <Text_camps
-      session={props.session}
-      userName={props.user.name}
-      userBio={props.user.bio ?? props.user.email}
+      session={session}
+      user={user}
     />
   </>
 );

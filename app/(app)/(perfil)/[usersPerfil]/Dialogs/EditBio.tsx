@@ -93,17 +93,35 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
     const svgEl = $svg.current?.svg;
     if (!svgEl) return;
 
-    const { width, height } = svgEl.getBoundingClientRect();
+    // nada desenhado
+    if (!svgEl.querySelector("path")) return;
+
+    const STROKE = 3;
+    const PAD = STROKE + 2; // margem pra o traço grosso não ser cortado
+
+    // bounding box de todos os traços, medido no SVG real (no DOM)
+    const box = svgEl.getBBox();
+    const x = box.x - PAD;
+    const y = box.y - PAD;
+    const w = box.width + PAD * 2;
+    const h = box.height + PAD * 2;
+
     const clone = svgEl.cloneNode(true) as SVGSVGElement;
-    clone.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    clone.setAttribute("width", String(width));
-    clone.setAttribute("height", String(height));
+
+    clone.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
+    clone.setAttribute("width", String(w));
+    clone.setAttribute("height", String(h));
     clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     clone.removeAttribute("class");
-    clone.removeAttribute("style"); // tira o fundo branco
-    clone
-      .querySelectorAll("path")
-      .forEach((p) => p.setAttribute("fill", "#fff")); // traço branco
+    clone.removeAttribute("style");
+
+    clone.querySelectorAll("path").forEach((p) => {
+      p.setAttribute("fill", "#fff");
+      p.setAttribute("stroke", "#fff");
+      p.setAttribute("stroke-width", String(STROKE));
+      p.setAttribute("stroke-linejoin", "round");
+      p.setAttribute("stroke-linecap", "round");
+    });
 
     const signature = new XMLSerializer().serializeToString(clone);
 
@@ -111,8 +129,6 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
     if (error) return;
     router.refresh();
   }
-
-  if (!editorStarted) return null;
 
   const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`;
 
@@ -133,7 +149,11 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
 
       <FloatingPanelContent className="w-100 h-100">
         <FloatingPanelForm onSubmit={handleSave} className="text-white">
-          <Signature ref={$svg} fill="white"  className="w-80 h-100 bg-[#262626]! rounded-8" />
+          <Signature
+            ref={$svg}
+            fill="white"
+            className="w-80 h-100 bg-[#262626]! rounded-8"
+          />
           <FloatingPanelFooter>
             <FloatingPanelCloseButton />
             <FloatingPanelSubmitButton />
