@@ -36,25 +36,6 @@ export default function FriendsList({
         "f15bb5",
         "f55151",
       ],
-      skinColor: ["fffdfb"],
-      hairColor: [
-        "1b1b3a",
-        "d90429",
-        "0466c8",
-        "007f5f",
-        "7b2cbf",
-        "f77f00",
-        "006d77",
-        "9d0208",
-      ],
-      eyebrowsColor: ["1b1b3a"],
-      eyesColor: ["1b1b3a"],
-      noseColor: ["1b1b3a"],
-      mouthColor: ["1b1b3a"],
-      frecklesColor: ["1b1b3a"],
-      glassesColor: ["1b1b3a"],
-      earringsColor: ["1b1b3a"],
-      hairAccessoriesColor: ["1b1b3a"],
     }).toDataUri();
   }
   //
