@@ -61,26 +61,42 @@ export default function Main_perfil_image({
   });
 
   const fallbackAvatar = avatar.toDataUri();
+  const avatarSrc = user.avatar ?? fallbackAvatar;
 
   return (
     <>
-      <div className="avatar-upload sticky 2xl:w-[200px] 2xl:h-[200px] 3xl:ml-[21%] h-sm:ml-[17%] sm:w-[180px] sm:h-[180px] rounded-[48px] overflow-hidden flex shrink-0 mb-[3.5%] 2xl:ml-[17%] h-sm:mt-[5.5%] 2xl:mt-[3%] mt-[3%] 3xl:mt-[3%] border-[#dbdbdb6e] border shadow-[3px_6px_15px_0px_rgba(0,0,0,0.24)] opacity-[0.9] select-none">
-        {isOwner && editorStarted ? (
-          <ImageUpload
-            key={`avatar-${user.id ?? user.avatar ?? null}`}
-            labelIdle="Procurar imagens"
-            field="avatar"
-            initialUrl={user.avatar || null}
-            alt={user.name}
+      <div className="avatar-upload sticky rounded-[48px] 2xl:w-[200px] 2xl:h-[200px] 3xl:ml-[21%] h-sm:ml-[17%] sm:w-[180px] sm:h-[180px] shrink-0 mb-[3.5%] 2xl:ml-[17%] h-sm:mt-[5.5%] 2xl:mt-[3%] mt-[3%] 3xl:mt-[3%] select-none">
+        
+        <div
+          aria-hidden
+          className="absolute inset-x-[8%] top-[14%] -bottom-[6%] -z-10 rounded-[47px] bg-cover bg-center blur-2xl saturate-[1.8] opacity-70 translate-y-3"
+          style={{ backgroundImage: `url(${JSON.stringify(avatarSrc)})` }}
+        />
+
+        <div className="relative isolate flex h-full w-full overflow-hidden rounded-[47px] border border-[#dbdbdb6e] shadow-[0_2px_6px_rgba(0,0,0,0.2)]">
+          {isOwner && editorStarted ? (
+            <ImageUpload
+              key={`avatar-${user.id ?? user.avatar ?? null}`}
+              labelIdle="Procurar imagens"
+              field="avatar"
+              initialUrl={user.avatar || null}
+              alt={user.name}
+            />
+          ) : (
+            <img
+              src={avatarSrc}
+              alt={user.name}
+              className="h-full w-full object-cover object-center select-none"
+            />
+          )}
+
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-[45px] bg-gradient-to-br from-white/25 via-transparent to-transparent shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)]"
           />
-        ) : (
-          <img
-            src={user.avatar ?? fallbackAvatar}
-            alt={user.name}
-            className="w-full h-full object-cover object-center select-none"
-          />
-        )}
+        </div>
       </div>
+
       <Text_camps
         session={session}
         user={user}

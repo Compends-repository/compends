@@ -16,6 +16,9 @@ import {
   FloatingPanelTrigger,
 } from "@/components/ui/floating-panel";
 
+import React, { useRef } from "react";
+import Signature, { SignatureRef } from "@uiw/react-signature";
+
 import type { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
 
@@ -25,7 +28,6 @@ type Props = {
   session: Session | null;
   editorStarted: boolean;
 };
-
 
 const loadBioEditor = () =>
   import("../functions/bio-editor").then((m) => m.BioEditor);
@@ -78,5 +80,28 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
         </FloatingPanelForm>
       </FloatingPanelContent>
     </FloatingPanelRoot>
+  );
+}
+
+export function EditName_OnPerfil({ session, editorStarted }: Props) {
+  const router = useRouter();
+
+  const $svg = useRef<SignatureRef>(null);
+  const handle = (evn: any) => $svg.current?.clear();
+
+  async function handleSave(bio: string) {
+    const { data, error } = await authClient.updateUser({ bio });
+    console.log("updateUser", { bio, data, error });
+    if (error) return;
+    router.refresh();
+  }
+
+  if (!editorStarted) return null;
+
+  return (
+    <Signature
+      ref={$svg}
+      style={{ width: 300, height: 150, background: "#fff", borderRadius: 8 }}
+    />
   );
 }
