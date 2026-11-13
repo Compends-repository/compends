@@ -12,21 +12,20 @@ export default async function AppLayout({
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) redirect("/login");
 
-  const userID = session.user.id
+  const userID = session.user.id;
 
   const user = await db.user.findUnique({
     where: {
-      id: userID
-
+      id: userID,
     },
     select: {
       id: true,
       name: true,
-      email: true,
       bio: true,
       avatar: true,
       background: true,
       image: true,
+      signature: true,
     },
   });
   if (!user) redirect("/login");
