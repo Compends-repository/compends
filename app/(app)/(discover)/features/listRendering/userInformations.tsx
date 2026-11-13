@@ -77,15 +77,40 @@ export default function User_Informations_List({ GETusers }: any) {
               transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
             />
 
-            <motion.img
-              className="w-36.25 mt-[4%] h-37.5 object-cover object-center rounded-[30px] border border-[#dbdbdb6e] shadow-[2px_2px_10px_0px_rgba(0,0,0,0.09)] pointer-events-none select-none"
-              src={
-                user.avatar ?? getFallbackAvatar(user.name ?? String(user.id))
-              }
-              alt={user.name}
+            <motion.div
+              className="relative isolate w-36.25 h-37.5 mt-[4%] rounded-[41px] pointer-events-none select-none"
               variants={{ tap: { scale: 0.85 } }}
               transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
-            />
+            >
+              {/* glow */}
+              <div
+                aria-hidden
+                className="absolute inset-x-[6%] top-[14%] -bottom-[6%] -z-10 rounded-[41px] bg-cover bg-center blur-[29px] saturate-[1.8] opacity-70 translate-y-[9px]"
+                style={{
+                  backgroundImage: `url(${JSON.stringify(
+                    user.avatar ??
+                      getFallbackAvatar(user.name ?? String(user.id)),
+                  )})`,
+                }}
+              />
+
+              {/* forma */}
+              <div className="relative isolate flex h-full w-full overflow-hidden rounded-[40px] border border-[#dbdbdb6e] shadow-[0_1.5px_4.5px_rgba(0,0,0,0.2)]">
+                <img
+                  src={
+                    user.avatar ??
+                    getFallbackAvatar(user.name ?? String(user.id))
+                  }
+                  alt={user.name}
+                  className="h-full w-full object-cover object-center select-none"
+                />
+
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-[40px] bg-gradient-to-br from-white/25 via-transparent to-transparent shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)]"
+                />
+              </div>
+            </motion.div>
 
             <Text_info_user_list name={user.name} bio={user.bio} />
             <Separator

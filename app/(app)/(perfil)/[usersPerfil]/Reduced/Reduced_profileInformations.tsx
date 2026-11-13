@@ -40,19 +40,32 @@ export default function Main_perfil_image(props: any) {
   });
   const fallbackAvatar = avatar.toDataUri();
 
-  return (
-    <>
-      <div className="sticky 2xl:w-[120] 2xl:h-[120] h-lg:w-[130] h-lg:h-[130] 3xl:w-[130] 3xl:h-[130] 3xl:ml-[3%] md:ml-[5%] rounded-[32px] overflow-hidden flex shrink-0 mb-[-3%] 2xl:ml-[5%] sm:w-[120] sm:h-[120] border-[#dbdbdb6e] border-[1] shadow-[3px_6px_15px_0px_rgba(0,0,0,0.24)] opacity-[0.9] select-none">
+  const avatarSrc = props.user.avatar ?? fallbackAvatar;
+
+return (
+  <>
+    <div className="sticky 2xl:w-[120] 2xl:h-[120] h-lg:w-[130] h-lg:h-[130] 3xl:w-[130] 3xl:h-[130] 3xl:ml-[3%] md:ml-[5%] flex shrink-0 mb-[-3%] 2xl:ml-[5%] sm:w-[120] sm:h-[120] rounded-[34px] h-lg:rounded-[36px] 3xl:rounded-[36px] select-none">
+      
+
+      {/* forma */}
+      <div className="relative isolate flex h-full w-full overflow-hidden rounded-[33px] h-lg:rounded-[35px] 3xl:rounded-[35px] border border-[#dbdbdb6e] shadow-[0_1.5px_4px_rgba(0,0,0,0.2)]">
         <img
-          src={props.user.avatar ?? fallbackAvatar}
-          className="w-full h-full object-cover object-center select-none"
+          src={avatarSrc}
+          className="h-full w-full object-cover object-center select-none"
+        />
+
+        {/* brilho */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-[33px] h-lg:rounded-[35px] 3xl:rounded-[35px] bg-gradient-to-br from-white/25 via-transparent to-transparent shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)]"
         />
       </div>
-      <Text_camps
-        session={props.session}
-        userName={props.user.name}
-        userBio={props.user.bio ?? props.user.email}
-      />
-    </>
-  );
+    </div>
+    <Text_camps
+      session={props.session}
+      userName={props.user.name}
+      userBio={props.user.bio ?? props.user.email}
+    />
+  </>
+);
 }
