@@ -6,8 +6,10 @@ import { BubbleMenu } from "@tiptap/react/menus";
 import { StarterKit } from "@tiptap/starter-kit";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { CodeBlockExtension } from "@/components/tiptap-node/code-block-node";
+import { Color } from "@tiptap/extension-color";
 
 import { IconCode } from "@tabler/icons-react";
+import { motion } from "motion/react";
 
 import {
   Toolbar,
@@ -72,7 +74,8 @@ export function BioEditor({ initialContent }: Props) {
       StarterKit.configure({ codeBlock: false }),
       CodeBlockExtension,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      TextStyle, // necessário para o FontFamily
+      TextStyle,
+      Color,
       FontFamily,
       Highlight.configure({ multicolor: true }),
     ],
@@ -89,6 +92,15 @@ export function BioEditor({ initialContent }: Props) {
   const [menuPos, setMenuPos] = useState<{ top: number; left: number } | null>(
     null,
   );
+
+  const TEXT_COLORS = [
+    "#ffffff",
+    "#ef4444",
+    "#f97316",
+    "#22c55e",
+    "#3b82f6",
+    "#a855f7",
+  ];
 
   useEffect(() => {
     if (!editor) return;
@@ -175,14 +187,17 @@ export function BioEditor({ initialContent }: Props) {
 
             <ToolbarGroup>
               {HIGHLIGHTS.map((color) => (
-                <button
+                <motion.button
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 700, damping: 25 }}
                   key={color}
                   type="button"
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() =>
                     editor.chain().focus().toggleHighlight({ color }).run()
                   }
-                  className="h-5 w-5 rounded-full border text-black border-white/30"
+                  className="h-5 w-5 rounded-full border text-black border-white/30 cursor-pointer!"
                   style={{ backgroundColor: color, color: "black" }}
                   title="Destacar"
                 />
@@ -247,6 +262,37 @@ export function BioEditor({ initialContent }: Props) {
                 </ToolbarGroup>
               </>
             )}
+
+            <ToolbarSeparator />
+
+            <ToolbarGroup>
+              {TEXT_COLORS.map((color) => (
+                <motion.button
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 700, damping: 25 }}
+                  key={color}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => editor.chain().focus().setColor(color).run()}
+                  className="h-5 w-5 rounded border border-white/30 cursor-pointer!"
+                  style={{ backgroundColor: color }}
+                  title="Cor do texto"
+                />
+              ))}
+              <motion.button
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.09 }}
+                transition={{ type: "spring", stiffness: 700, damping: 25 }}
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => editor.chain().focus().unsetColor().run()}
+                className="px-1 text-xs text-white cursor-pointer!"
+                title="Remover cor"
+              >
+                ✕
+              </motion.button>
+            </ToolbarGroup>
           </div>,
           document.body,
         )}

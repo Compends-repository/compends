@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import NavbarPerfil from "./(perfil)/navbar/navbarPerfil";
-import NavbarPrincipal from "./(social-page)/all_social-page/navbar/NavbarPrincipal";
+import NavbarPrincipal from "./navbar/NavbarPrincipal";
 import { EditorProvider } from "@/app/(app)/(perfil)/functions/EditorContext"; // ajusta o caminho
 
 import { Avatar, Style } from "@dicebear/core";

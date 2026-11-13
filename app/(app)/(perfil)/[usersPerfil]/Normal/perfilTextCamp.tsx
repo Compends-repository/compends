@@ -19,7 +19,6 @@ type Props = {
   editorStarted: boolean;
 };
 
-// 1) BioHtml: fora do componente principal
 function BioHtml({
   html,
   clamp = false,
@@ -71,7 +70,7 @@ export default function Text_camps({
           </div>
         </PopoverTrigger>
 
-        <PopoverContent className="mt-[-3.2%] ml-[-3%] backdrop-blur-3xl! bg-transparent! backdrop-brightness-115!">
+        <PopoverContent className="mt-[-3.2%] ml-[-3%] backdrop-blur-3xl! backdrop-brightness-115! bg-[#3d3d3d]! w-[105%]!">
           <BioHtml
             html={bio}
             className="m-3 h-[calc(100%-1.5rem)] overflow-y-auto"

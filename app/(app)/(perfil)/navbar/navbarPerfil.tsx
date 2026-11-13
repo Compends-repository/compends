@@ -3,7 +3,7 @@
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import DropdownMenuPerfil from "../../(social-page)/all_social-page/components/dropdownMenu";
+import DropdownMenuPerfil from "../../components/dropdownMenu";
 import EditorMenu from "../functions/editorMenu";
 
 import { useEditor } from "@/app/(app)/(perfil)/functions/EditorContext";

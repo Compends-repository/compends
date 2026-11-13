@@ -1,8 +1,7 @@
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { Highlighter } from "@/components/ui/highlighter";
 import Vs from "./versionHistoric";
-
 
 export default function Footer() {
   return (
@@ -15,32 +14,89 @@ export default function Footer() {
 
       <ul className="text-[14px] font-semibold font-author mt-[1%] w-[900] ml-[2.5%] space-y-3">
         <li>
-          To <Highlighter color="white" action="underline">My mother</Highlighter>, who supported me by providing a home, food, an
-          incredible family, and a good environment in which to live and study.
-          she is the reason Compends exists. She will always be the most important person to Compends, and to me.
-        </li>
-
-       <li><Highlighter color="white" action="underline">My father, Henrique</Highlighter>... a man who passed away when I was 12 years old; a father who could no longer see his children at the end of the day... He was—and remains—very important in my life, for after his death, I began to take care of myself, earn good grades, and strive for self-improvement each and every day.</li>
-
-        <li>To <Highlighter color="white" action="underline">My grandfather, Silvestro</Highlighter> — he was one of the most important people in my life. The day he passed away was very sad... but months later, I began building my company. That is why I am here: I want to honor everyone mentioned in this description and make them proud of me.</li>
-
-        <li>
-          To my friend <Highlighter color="white" action="underline">Eduardo Jorge</Highlighter>, who has been
-          by my side for 5 years. He has helped me grow both personally and
-          within Compends by sharing opinions, ideas, and examples.
+          To{" "}
+          <Highlighter color="white" action="underline">
+            My mother
+          </Highlighter>
+          , who supported me by providing a home, food, an incredible family,
+          and a good environment in which to live and study. she is the reason
+          Compends exists. She will always be the most important person to
+          Compends, and to me.
         </li>
 
         <li>
-          To <Highlighter color="white" action="underline">Victor Romero</Highlighter>, who helped us a
-          lot with his opinions and ideas. He will always be a part of Compends'
-          story and foundation.
+          <Highlighter color="white" action="underline">
+            My father, Henrique
+          </Highlighter>
+          ... a man who passed away when I was 12 years old; a father who could
+          no longer see his children at the end of the day... He was—and
+          remains—very important in my life, for after his death, I began to
+          take care of myself, earn good grades, and strive for self-improvement
+          each and every day.
         </li>
 
-        <li>To my <Highlighter color="white" action="underline">English teacher, Victor</Highlighter>... he told me not to give up, to keep developing my website, my work... At the time he said this, he didn’t know about Compends, or about its importance and its goals, but... he simply gave me that piece of advice, which helped me a great deal; I didn’t give up, and today, here we still are...</li>
+        <li>
+          To{" "}
+          <Highlighter color="white" action="underline">
+            My grandfather, Silvestro
+          </Highlighter>{" "}
+          — he was one of the most important people in my life. The day he
+          passed away was very sad... but months later, I began building my
+          company. That is why I am here: I want to honor everyone mentioned in
+          this description and make them proud of me.
+        </li>
 
+        <li>
+          To my friend{" "}
+          <Highlighter color="white" action="underline">
+            Eduardo Jorge
+          </Highlighter>
+          , who has been by my side for 5 years. He has helped me grow both
+          personally and within Compends by sharing opinions, ideas, and
+          examples.
+        </li>
+
+        <li>
+          To{" "}
+          <Highlighter color="white" action="underline">
+            Victor Romero
+          </Highlighter>
+          , who helped us a lot with his opinions and ideas. He will always be a
+          part of Compends' story and foundation.
+        </li>
+
+        <li>
+          To my{" "}
+          <Highlighter color="white" action="underline">
+            English teacher, Victor
+          </Highlighter>
+          ... he told me not to give up, to keep developing my website, my
+          work... At the time he said this, he didn’t know about Compends, or
+          about its importance and its goals, but... he simply gave me that
+          piece of advice, which helped me a great deal; I didn’t give up, and
+          today, here we still are...
+        </li>
+
+        <h2 className="text-[34px] mt-[6%]">Sponsors</h2>
+        <ul className="flex">
+          <li className="ml-[2%]">
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="./CapsuleDraft.webp"
+                alt="Foto de @UserName"
+                className="w-32 h-32 object-cover border rounded-[30px]"
+              />
+              <p className="text-white mt-1">@UserName</p>
+            </div>
+          </li>
+        </ul>
 
         <ol>
-          <li className="text-[26px] pt-[5%]"><Highlighter color="white" action="box">Services used</Highlighter></li>
+          <li className="text-[26px] pt-[5%]">
+            <Highlighter color="white" action="box">
+              Services used
+            </Highlighter>
+          </li>
           <li>React</li>
           <li>Next js</li>
           <li>Vercel</li>
