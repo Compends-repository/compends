@@ -3,6 +3,7 @@ import { FriendPreview } from "@/lib/types";
 import { Avatar, Style } from "@dicebear/core";
 import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 import definition2 from "@dicebear/styles/lorelei.json" with { type: "json" };
+import definition3 from '@dicebear/styles/marbles.json' with { type: 'json' };
 import { motion, scale } from "motion/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -20,7 +21,7 @@ export default function FriendsList({
   received,
   sent,
 }: Props) {
-  const style = new Style(definition2);
+  const style = new Style(definition3);
 
   function getFallbackAvatar(seed: string) {
     return new Avatar(style, {

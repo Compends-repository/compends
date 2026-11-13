@@ -6,6 +6,7 @@ import { ImageUpload } from "@/app/components/image-upload.tsx";
 
 import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 import definition2 from "@dicebear/styles/lorelei.json" with { type: "json" };
+import definition3 from '@dicebear/styles/marbles.json' with { type: 'json' };
 
 import type { auth } from "@/lib/auth";
 import type { PublicUser } from "@/lib/types";
@@ -25,7 +26,7 @@ export default function Main_perfil_image({
   isOwner,
   editorStarted,
 }: Props) {
-  const style = new Style(definition2);
+  const style = new Style(definition3);
 
   const avatar = new Avatar(style, {
     seed: user.name ?? user.id,
@@ -39,25 +40,6 @@ export default function Main_perfil_image({
       "f15bb5",
       "f55151",
     ],
-    skinColor: ["fffdfb"],
-    hairColor: [
-      "1b1b3a",
-      "d90429",
-      "0466c8",
-      "007f5f",
-      "7b2cbf",
-      "f77f00",
-      "006d77",
-      "9d0208",
-    ],
-    eyebrowsColor: ["1b1b3a"],
-    eyesColor: ["1b1b3a"],
-    noseColor: ["1b1b3a"],
-    mouthColor: ["1b1b3a"],
-    frecklesColor: ["1b1b3a"],
-    glassesColor: ["1b1b3a"],
-    earringsColor: ["1b1b3a"],
-    hairAccessoriesColor: ["1b1b3a"],
   });
 
   const fallbackAvatar = avatar.toDataUri();

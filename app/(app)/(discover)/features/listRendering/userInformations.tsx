@@ -11,8 +11,9 @@ import Link from "next/link";
 import { Avatar, Style } from "@dicebear/core";
 import definition from "@dicebear/styles/gaze.json" with { type: "json" };
 import definition2 from "@dicebear/styles/lorelei.json" with { type: "json" };
+import definition3 from '@dicebear/styles/marbles.json' with { type: 'json' };
 
-const style = new Style(definition2);
+const style = new Style(definition3);
 
 function getFallbackAvatar(seed: string) {
   return new Avatar(style, {
@@ -27,25 +28,6 @@ function getFallbackAvatar(seed: string) {
       "f15bb5",
       "f55151",
     ],
-    skinColor: ["fffdfb"],
-    hairColor: [
-      "1b1b3a",
-      "d90429",
-      "0466c8",
-      "007f5f",
-      "7b2cbf",
-      "f77f00",
-      "006d77",
-      "9d0208",
-    ],
-    eyebrowsColor: ["1b1b3a"],
-    eyesColor: ["1b1b3a"],
-    noseColor: ["1b1b3a"],
-    mouthColor: ["1b1b3a"],
-    frecklesColor: ["1b1b3a"],
-    glassesColor: ["1b1b3a"],
-    earringsColor: ["1b1b3a"],
-    hairAccessoriesColor: ["1b1b3a"],
   }).toDataUri();
 }
 
@@ -82,17 +64,6 @@ export default function User_Informations_List({ GETusers }: any) {
               variants={{ tap: { scale: 0.85 } }}
               transition={{ duration: 0.15, ease: [0.42, 1, 0.46, 1] }}
             >
-              {/* glow */}
-              <div
-                aria-hidden
-                className="absolute inset-x-[6%] top-[14%] -bottom-[6%] -z-10 rounded-[41px] bg-cover bg-center blur-[29px] saturate-[1.8] opacity-70 translate-y-[9px]"
-                style={{
-                  backgroundImage: `url(${JSON.stringify(
-                    user.avatar ??
-                      getFallbackAvatar(user.name ?? String(user.id)),
-                  )})`,
-                }}
-              />
 
               {/* forma */}
               <div className="relative isolate flex h-full w-full overflow-hidden rounded-[40px] border border-[#dbdbdb6e] shadow-[0_1.5px_4.5px_rgba(0,0,0,0.2)]">
