@@ -1,5 +1,5 @@
 import type { auth } from "@/lib/auth";
-import EditBio_OnPerfil from "../Dialogs/EditBio";
+import EditBio_OnPerfil, { EditName_OnPerfil } from "../Dialogs/EditBio";
 import type { PublicUser } from "@/lib/types";
 
 import {
@@ -44,14 +44,31 @@ export default function Text_camps({
   isOwner,
   editorStarted,
 }: Props) {
-  // 2) bio: dentro do componente, antes do return
   const bio = user.bio || user.email || "";
+
+  const signatureSrc = user.signature
+    ? `data:image/svg+xml;utf8,${encodeURIComponent(user.signature)}`
+    : null;
 
   return (
     <div className="sticky z-40 text-white w-104 shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[8%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
-      <h1 className="text-[34px] 2xl:text-[30px] font-black font-Asap truncate">
-        @{user.name}
-      </h1>
+      {signatureSrc ? (
+        <div className="relative h-16">
+          <img
+            src={signatureSrc}
+            alt={user.name}
+            className="absolute left-0 top-[105%] -translate-y-1/2 h-30 w-auto max-w-none select-none pointer-events-none"
+          />
+        </div>
+      ) : (
+        <h1 className="text-[34px] 2xl:text-[30px] font-black font-Asap truncate">
+          @{user.name}
+        </h1>
+      )}
+
+      {isOwner && editorStarted && (
+        <EditName_OnPerfil session={session} editorStarted={editorStarted} />
+      )}
 
       <PopoverRoot
         animation="blur"

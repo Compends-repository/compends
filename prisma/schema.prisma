@@ -30,6 +30,7 @@ model User {
   friendshipsSent     Friendship[] @relation("FriendshipsSent")
   friendshipsReceived Friendship[] @relation("FriendshipsReceived")
   image         String?
+  signature     String?
 
   @@unique([email])
   @@map("user")

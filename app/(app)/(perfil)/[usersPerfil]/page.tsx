@@ -23,6 +23,7 @@ export default async function PerfilPage({
         avatar: true,
         background: true,
         image: true,
+        signature: true,
       },
     }),
   ]);

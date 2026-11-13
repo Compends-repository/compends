@@ -29,6 +29,7 @@ export const auth = betterAuth({
         opt2: { type: 'boolean', required: true, defaultValue: false},
         bio: {type: 'string', required: false, defaultValue: null, input: true},
         avatar: { type: "string", required: false },
+        signature: { type: "string", required: false },
     }
   },
   trustedOrigins: [

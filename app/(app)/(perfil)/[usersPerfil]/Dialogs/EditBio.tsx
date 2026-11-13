@@ -89,19 +89,57 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
   const $svg = useRef<SignatureRef>(null);
   const handle = (evn: any) => $svg.current?.clear();
 
-  async function handleSave(bio: string) {
-    const { data, error } = await authClient.updateUser({ bio });
-    console.log("updateUser", { bio, data, error });
+  async function handleSave() {
+    const svgEl = $svg.current?.svg;
+    if (!svgEl) return;
+
+    const { width, height } = svgEl.getBoundingClientRect();
+    const clone = svgEl.cloneNode(true) as SVGSVGElement;
+    clone.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    clone.setAttribute("width", String(width));
+    clone.setAttribute("height", String(height));
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    clone.removeAttribute("class");
+    clone.removeAttribute("style"); // tira o fundo branco
+    clone
+      .querySelectorAll("path")
+      .forEach((p) => p.setAttribute("fill", "#fff")); // traço branco
+
+    const signature = new XMLSerializer().serializeToString(clone);
+
+    const { error } = await authClient.updateUser({ signature });
     if (error) return;
     router.refresh();
   }
 
   if (!editorStarted) return null;
 
+  const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`;
+
   return (
-    <Signature
-      ref={$svg}
-      style={{ width: 300, height: 150, background: "#fff", borderRadius: 8 }}
-    />
+    <FloatingPanelRoot className="shrink-0 z-100">
+      <Tooltip
+        containerClassName="text-neutral-600 rounded-lg! dark:text-neutral-400"
+        content={contentDrop}
+      >
+        <FloatingPanelTrigger
+          className="w-9 h-9 p-0 justify-center cursor-pointer"
+          title="Draw your signature here"
+          animateLabel={false}
+        >
+          <IconPencil size={16} />
+        </FloatingPanelTrigger>
+      </Tooltip>
+
+      <FloatingPanelContent className="w-100 h-100">
+        <FloatingPanelForm onSubmit={handleSave} className="text-white">
+          <Signature ref={$svg} fill="white"  className="w-80 h-100 bg-[#262626]! rounded-8" />
+          <FloatingPanelFooter>
+            <FloatingPanelCloseButton />
+            <FloatingPanelSubmitButton />
+          </FloatingPanelFooter>
+        </FloatingPanelForm>
+      </FloatingPanelContent>
+    </FloatingPanelRoot>
   );
 }

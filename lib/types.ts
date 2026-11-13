@@ -2,7 +2,7 @@ import type { User } from "@/lib/generated/prisma/client";
 
 export type PublicUser = Pick<
   User,
-  "id" | "name" | "bio" | "avatar" | "background" | "image"
+  "id" | "name" | "bio" | "avatar" | "background" | "image" | "signature"
 > & { email?: string };
 
 export type FriendshipState =
