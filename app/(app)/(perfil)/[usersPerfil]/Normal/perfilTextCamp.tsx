@@ -51,26 +51,42 @@ export default function Text_camps({
   const signatureSrc = signatureToDataUri(user.signature);
 
   return (
-    <div className="sticky z-40 text-white w-104 shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[8%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
+    <div className="sticky z-40 text-white w-104 shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[6%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
       {signatureSrc ? (
-        <>
-          <div className="flex items-center gap-3">
-            <img
-              src={signatureSrc}
-              alt={user.name}
-              className="h-15 w-auto max-w-none shrink-0 select-none pointer-events-none"
-            />
-            <p className="truncate text-[#b1b1b1a3] text-[21px] font-Asap font-black">@{user.name}</p>
-          </div>
-        </>
-      ) : (
-        <h1 className="text-[34px] 2xl:text-[30px] font-black font-Asap truncate">
-          @{user.name}
-        </h1>
-      )}
+        <div className="flex items-center gap-3">
+          <img
+            src={signatureSrc}
+            alt={user.name}
+            className="h-15 w-auto max-w-none shrink-0 select-none pointer-events-none"
+          />
 
-      {isOwner && editorStarted && (
-        <EditName_OnPerfil session={session} editorStarted={editorStarted} />
+          {/* nome + botão: o grupo só ocupa a largura do conteúdo */}
+          <div className="flex min-w-0 items-center gap-2">
+            <p className="min-w-0 truncate text-[#b1b1b1a3] text-[21px] font-Asap font-black">
+              @{user.name}
+            </p>
+
+            {isOwner && editorStarted && (
+              <EditName_OnPerfil
+                session={session}
+                editorStarted={editorStarted}
+              />
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="flex min-w-0 items-center gap-2">
+          <h1 className="min-w-0 truncate text-[34px] 2xl:text-[30px] font-black font-Asap">
+            @{user.name}
+          </h1>
+
+          {isOwner && editorStarted && (
+            <EditName_OnPerfil
+              session={session}
+              editorStarted={editorStarted}
+            />
+          )}
+        </div>
       )}
 
       <PopoverRoot
