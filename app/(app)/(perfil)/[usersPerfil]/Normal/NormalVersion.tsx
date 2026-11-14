@@ -1,5 +1,7 @@
 "use client";
 
+import { DistortedGlass } from "@/components/ui/distorted-glass";
+
 import { IconArrowAutofitUp } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Add_friend_button from "./addFriendButton";
