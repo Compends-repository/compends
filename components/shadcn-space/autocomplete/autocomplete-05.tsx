@@ -170,7 +170,7 @@ const AutocompleteWithAsync = () => {
                       </AvatarFallback>
                     </Avatar2>
                     <p className="truncate text-sm font-medium text-[15.5px] text-white! font-Asap">
-                      {member.name}
+                      @{member.name}
                     </p>
                   </motion.div>
                 </AutocompleteItem>
