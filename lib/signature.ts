@@ -5,7 +5,7 @@ export type Stroke = [number, number][];
 export type SignatureData = { w: number; h: number; s: number[][] };
 
 const PAD = 6;
-export const STROKE_OPTIONS = { size: 5, thinning: 0.5, smoothing: 0.5, streamline: 0.5 };
+export const STROKE_OPTIONS = { size: 9, thinning: 0.5, smoothing: 0.5, streamline: 0.5 };
 
 export function encodeSignature(strokes: Stroke[]): string | null {
   const all = strokes.flat();
