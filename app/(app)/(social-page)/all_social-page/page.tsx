@@ -34,7 +34,7 @@ export default async function main_social() {
           backgroundImage: `url('${background ?? "/perfilBackExample.png"}')`,
         }}
       />
-      <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-[2.3px]" />
+      <div className="fixed inset-0 -z-100 bg-black/15 backdrop-contrast-90 backdrop-blur-[2.3px]" />
       <p>Hello, World!</p>
     </div>
   );
