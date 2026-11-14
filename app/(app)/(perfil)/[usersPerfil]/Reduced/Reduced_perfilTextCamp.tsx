@@ -25,7 +25,7 @@ export default function Text_camps({ session, user }: Props) {
               alt={user.name}
               className="h-15 w-auto max-w-none shrink-0 select-none pointer-events-none"
             />
-            <p className="truncate text-[#b1b1b1a3] text-[21px] font-Asap font-black">@{user.name}</p>
+            <p className="truncate text-[#b1b1b1a3] text-[19px] font-Asap font-black">@{user.name}</p>
           </div>
         </>
       ) : (
