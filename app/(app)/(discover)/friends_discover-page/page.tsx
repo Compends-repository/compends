@@ -35,7 +35,7 @@ export default async function Discover_new_preople() {
           backgroundImage: `url('${background ?? "/perfilBackExample.png"}')`,
         }}
       />
-      <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-[3.5px]" />
+      <div className="fixed inset-0 -z-100 bg-black/20 backdrop-blur-[2.3px]" />
 
       <div>
         <User_Informations_List GETusers={users} />
