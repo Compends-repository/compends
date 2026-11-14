@@ -4,6 +4,7 @@ import { propagateSubtreeBits } from "next/dist/shared/lib/app-router-types";
 import type { auth } from "@/lib/auth";
 type Session = typeof auth.$Infer.Session;
 import type { PublicUser } from "@/lib/types";
+import { signatureToDataUri } from "@/lib/signature";
 
 type Props = {
   session: Session | null;
@@ -12,9 +13,7 @@ type Props = {
 
 export default function Text_camps({ session, user }: Props) {
 
-   const signatureSrc = user.signature
-    ? `data:image/svg+xml;utf8,${encodeURIComponent(user.signature)}`
-    : null;
+   const signatureSrc = signatureToDataUri(user.signature);
 
   return (
     <div className="sticky text-white mb-[-2%] ml-5 2xl:mb-[-1.8%] 3xl:mb-[-1.8%] h-sm:mb-[-1.8%]">
