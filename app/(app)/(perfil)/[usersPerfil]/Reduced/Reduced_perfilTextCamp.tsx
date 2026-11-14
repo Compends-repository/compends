@@ -16,7 +16,7 @@ export default function Text_camps({ session, user }: Props) {
    const signatureSrc = signatureToDataUri(user.signature);
 
   return (
-    <div className="sticky text-white mb-[-2%] ml-5 2xl:mb-[-1.8%] 3xl:mb-[-1.8%] h-sm:mb-[-1.8%]">
+    <div className="sticky text-white mb-[-2%] ml-5 2xl:mb-[-1.8%] 3xl:mb-[-2.3%] h-sm:mb-[-1.8%]">
       {signatureSrc ? (
         <>
           <div className="flex items-center gap-3">
