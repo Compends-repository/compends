@@ -106,7 +106,7 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
     }
   }
 
-  const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`;
+  const contentDrop = `Modify your username by putting your signature, or a draw!`;
 
   return (
     <FloatingPanelRoot className="shrink-0 z-100">
