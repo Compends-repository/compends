@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { IconPencil } from "@tabler/icons-react";
+import { IconPencil, IconArrowBackUp, IconTrash } from "@tabler/icons-react";
 
 import { Tooltip } from "@/components/ui/tooltip-card";
 
@@ -16,11 +16,12 @@ import {
   FloatingPanelTrigger,
 } from "@/components/ui/floating-panel";
 
-import React, { useRef } from "react";
-import Signature, { SignatureRef } from "@uiw/react-signature";
+import { SignaturePad } from "@/app/(app)/components/signature-pad";
+import { encodeSignature, type Stroke } from "@/lib/signature";
 
 import type { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -85,49 +86,24 @@ export default function EditBio_OnPerfil({ session, editorStarted }: Props) {
 
 export function EditName_OnPerfil({ session, editorStarted }: Props) {
   const router = useRouter();
-
-  const $svg = useRef<SignatureRef>(null);
-  const handle = (evn: any) => $svg.current?.clear();
+  const [strokes, setStrokes] = useState<Stroke[]>([]);
 
   async function handleSave() {
-    const svgEl = $svg.current?.svg;
-    if (!svgEl) return;
-
-    // nada desenhado
-    if (!svgEl.querySelector("path")) return;
-
-    const STROKE = 3;
-    const PAD = STROKE + 2; // margem pra o traço grosso não ser cortado
-
-    // bounding box de todos os traços, medido no SVG real (no DOM)
-    const box = svgEl.getBBox();
-    const x = box.x - PAD;
-    const y = box.y - PAD;
-    const w = box.width + PAD * 2;
-    const h = box.height + PAD * 2;
-
-    const clone = svgEl.cloneNode(true) as SVGSVGElement;
-
-    clone.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
-    clone.setAttribute("width", String(w));
-    clone.setAttribute("height", String(h));
-    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    clone.removeAttribute("class");
-    clone.removeAttribute("style");
-
-    clone.querySelectorAll("path").forEach((p) => {
-      p.setAttribute("fill", "#fff");
-      p.setAttribute("stroke", "#fff");
-      p.setAttribute("stroke-width", String(STROKE));
-      p.setAttribute("stroke-linejoin", "round");
-      p.setAttribute("stroke-linecap", "round");
-    });
-
-    const signature = new XMLSerializer().serializeToString(clone);
-
+    const signature = encodeSignature(strokes);
+    if (!signature) return;
     const { error } = await authClient.updateUser({ signature });
     if (error) return;
     router.refresh();
+  }
+
+  const undo = () => setStrokes((s) => s.slice(0, -1));
+  const clear = () => setStrokes([]);
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
+      e.preventDefault();
+      undo();
+    }
   }
 
   const contentDrop = `Edit your bio\nClick the button to open the editor screen and personalize your text`;
@@ -149,11 +125,39 @@ export function EditName_OnPerfil({ session, editorStarted }: Props) {
 
       <FloatingPanelContent className="w-100 h-100">
         <FloatingPanelForm onSubmit={handleSave} className="text-white">
-          <Signature
-            ref={$svg}
-            fill="white"
-            className="w-80 h-100 bg-[#262626]! rounded-8"
-          />
+          <div
+            className="relative w-80 h-100 outline-none"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            onPointerDown={(e) => e.currentTarget.focus()}
+          >
+            <SignaturePad
+              strokes={strokes}
+              onChange={setStrokes}
+              className="w-[190%] h-full bg-[#262626] rounded-lg"
+            />
+
+            <div className="absolute top-2 right-2 flex gap-1.5">
+              <button
+                type="button"
+                onClick={undo}
+                disabled={!strokes.length}
+                title="Desfazer (Ctrl+Z)"
+                className="w-8 h-8 grid place-items-center rounded-md bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              >
+                <IconArrowBackUp size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={clear}
+                disabled={!strokes.length}
+                title="Limpar tudo"
+                className="w-8 h-8 grid place-items-center rounded-md bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              >
+                <IconTrash size={16} />
+              </button>
+            </div>
+          </div>
           <FloatingPanelFooter>
             <FloatingPanelCloseButton />
             <FloatingPanelSubmitButton />

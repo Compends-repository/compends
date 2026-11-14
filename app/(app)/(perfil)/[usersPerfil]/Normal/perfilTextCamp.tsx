@@ -2,6 +2,8 @@ import type { auth } from "@/lib/auth";
 import EditBio_OnPerfil, { EditName_OnPerfil } from "../Dialogs/EditBio";
 import type { PublicUser } from "@/lib/types";
 
+import { signatureToDataUri } from "@/lib/signature";
+
 import {
   PopoverContent,
   PopoverRoot,
@@ -46,9 +48,7 @@ export default function Text_camps({
 }: Props) {
   const bio = user.bio || user.email || "";
 
-  const signatureSrc = user.signature
-    ? `data:image/svg+xml;utf8,${encodeURIComponent(user.signature)}`
-    : null;
+  const signatureSrc = signatureToDataUri(user.signature);
 
   return (
     <div className="sticky z-40 text-white w-104 shrink-0 mb-[6.2%] ml-3 2xl:mb-[6%] 3xl:mb-[8%] h-sm:mb-[5%] bg-black/2 rounded-[15px]">
