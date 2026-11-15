@@ -10,6 +10,7 @@ const EXT: Record<string, string> = {
   "image/jpeg": "jpg",
   "image/webp": "webp",
   "image/avif": "avif",
+  "image/gif": "gif",
 };
 
 const FIELDS = ["avatar", "background"] as const;
@@ -39,7 +40,7 @@ function matchesSignature(type: string, b: Uint8Array) {
         b[8] === 0x57 &&
         b[9] === 0x45 &&
         b[10] === 0x42 &&
-        b[11] === 0x50 
+        b[11] === 0x50
       );
     case "image/avif":
       return (
@@ -51,6 +52,15 @@ function matchesSignature(type: string, b: Uint8Array) {
         b[9] === 0x76 &&
         b[10] === 0x69 &&
         (b[11] === 0x66 || b[11] === 0x73)
+      );
+    case "image/gif":
+      return (
+        b[0] === 0x47 &&
+        b[1] === 0x49 &&
+        b[2] === 0x46 &&
+        b[3] === 0x38 &&
+        (b[4] === 0x37 || b[4] === 0x39) &&
+        b[5] === 0x61
       );
     default:
       return false;
