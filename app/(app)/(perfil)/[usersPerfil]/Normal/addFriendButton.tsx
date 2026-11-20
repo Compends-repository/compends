@@ -19,7 +19,7 @@ type Props = {
 };
 
 const POSITION =
-  "absolute top-[calc(50%+8vw)] left-[34%] sm:top-[calc(50%+4.6vw)] sm:left-[37%] h-sm:top-[calc(50%+4vw)] h-sm:left-[23.2%] 1xl:top-[calc(50%+8vw)] 2xl:top-[calc(50%+4vw)] 2xl:left-[23.2%] h-lg:top-[calc(50%+3vw)] h-lg:left-[19.9%] 3xl:top-[calc(50%+3vw)] 3xl:left-[19.9%] w-34 py-1.5 bg-white cursor-pointer text-[17px] font-semibold border border-[#bababaab] z-10";
+  "absolute top-[calc(50%+8vw)] left-[33%] sm:top-[calc(50%+4.6vw)] sm:left-[37%] h-sm:top-[calc(50%+4vw)] h-sm:left-[22%] h-md:top-[calc(50%+4vw)] h-md:left-[22%] xl:top-[calc(50%+4vw)] xl:left-[22%] 2xl:top-[calc(50%+4vw)] 2xl:left-[23.2%] h-lg:top-[calc(50%+3vw)] h-lg:left-[19.9%] 3xl:top-[calc(50%+3vw)] 3xl:left-[19.9%] w-34 py-1.5 bg-white cursor-pointer text-[17px] font-semibold border border-[#bababaab] z-10";
 
 export default function Add_friend_button({ targetId, state }: Props) {
   const router = useRouter();
