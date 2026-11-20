@@ -75,8 +75,7 @@
   translate: 0 calc(var(--card-w) * 0.12);
 }
 
-/* font Limelight googlefonts para a loja */
-/*---break---*/
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
@@ -154,7 +153,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-/*---break---*/
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

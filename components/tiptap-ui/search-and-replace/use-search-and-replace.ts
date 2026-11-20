@@ -198,12 +198,6 @@ export function scrollCurrentResultIntoView(
   const prefersReducedMotion =
     typeof window.matchMedia === "function" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-  target.scrollIntoView({
-    behavior: "smooth",
-    ...scrollIntoViewOptions,
-    ...(prefersReducedMotion ? { behavior: "auto" } : {}),
-  })
 }
 
 /**

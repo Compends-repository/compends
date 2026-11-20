@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_EXTRA_CA_CERTS=\"C:/Dev/compends/prod-ca-2021.crt\" next dev",
+    "dev": "next dev",
     "postinstall": "prisma generate",
     "build": "prisma generate && next build",
     "start": "next start",
@@ -74,6 +74,7 @@
     "react-textarea-autosize": "^8.5.9",
     "rough-notation": "^0.5.1",
     "shadcn": "^4.21.1",
+    "sharp": "^0.35.5",
     "simplify-js": "^1.2.4",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0",

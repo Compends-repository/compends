@@ -12,9 +12,8 @@
 
 <!-- Update 2.0.0 -->
 - [] Aba loja
-- [] Posts básicos na área social
+- [] Votações na área social
 - [x] Bio customizada
-- [] Pagamento
 - [x] Add friend funcionando
 - [] Denúnciar perfil
 - [] Mensagem do dono do perfil (Ver Excalidraw)
@@ -28,9 +27,7 @@
 
 <!-- Update 2.0.1 -->
 - [] Quadro com formas geométricas no perfil (Ver Excalidraw)
-- [] Votações na área social
 - [] Melhorar barra de navegação
-- [] Mudança de jogo no login (seleção de cards)
 - [] Lançamento do Jornal
 - [] Mensagens na página (não a mensagem do dono, mas mensagens na página abaixo... a decidir como ficará)
 - [] Termos e condições (melhor preparado)
@@ -44,6 +41,9 @@
 - [] Moderação de imagens
 - [] Melhora no sistema social
 - [] Adição dos orgulhos pessoais
+- [] Loja de jogos
+- [] Pagamentos
+- [] Mudança de jogo no login (seleção de cards)
 
 
 
@@ -60,9 +60,7 @@
 
 
 <!-- Extra -->
-- [] Aprender C# e aplicar no backend
-- [] Nível intermediário / avançado em React
-- [] Estudar finanças
-- [] Terminar A Startup Enxuta
-- [] Terminar A Psicologia Financeira
+- (logo) [] Aprender C# e aplicar no backend
+- [x] Nível intermediário / avançado em React
+- (depois) [] Estudar finanças
 - [] Estudar custo de compartilhamento e fluxo de arquivos

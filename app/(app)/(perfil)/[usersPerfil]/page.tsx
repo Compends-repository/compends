@@ -12,6 +12,11 @@ export default async function PerfilPage({
 }) {
   const { usersPerfil } = await params;
 
+  // 1. Barra arquivos estáticos ANTES de bater no banco ou no Better Auth
+  if (usersPerfil.includes(".")) {
+    notFound();
+  }
+
   const [session, user] = await Promise.all([
     auth.api.getSession({ headers: await headers() }),
     db.user.findUnique({

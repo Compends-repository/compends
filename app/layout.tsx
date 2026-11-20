@@ -16,8 +16,6 @@ export { metadata } from "./metaData/GlobalMetaData";
 
 import localFont from "next/font/local";
 
-import SmoothScroll from "./ReusableFunctions/smoothScroll";
-
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const josefin = Josefin_Sans({
@@ -130,7 +128,6 @@ export default function EnterLayout({
     >
       <body>
         {children}
-        <SmoothScroll />
       </body>
     </html>
   );
