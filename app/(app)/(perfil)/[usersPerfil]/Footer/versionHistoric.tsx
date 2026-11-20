@@ -27,7 +27,7 @@ export default function Vs() {
       <FloatingPanelRoot>
         <FloatingPanelTrigger
           title="Versions"
-          className="absolute bottom-0 2xl:left-[88vw] 3xl:left-[90vw] whitespace-nowrap cursor-pointer"
+          className="left-[88vw] h-xsm:left-[88vw] h-sm:left-[86vw] absolute bottom-0 2xl:left-[88vw] 3xl:left-[90vw] whitespace-nowrap cursor-pointer"
         >
           {ultimo}
         </FloatingPanelTrigger>
