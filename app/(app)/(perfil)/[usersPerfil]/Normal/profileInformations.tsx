@@ -47,7 +47,7 @@ export default function Main_perfil_image({
 
   return (
     <>
-      <div className="avatar-upload sticky rounded-[48px] 2xl:w-[200px] 2xl:h-[200px] 3xl:ml-[21%] h-sm:ml-[17%] sm:w-[180px] sm:h-[180px] shrink-0 mb-[3.5%] 2xl:ml-[17%] h-sm:mt-[5.5%] 2xl:mt-[3%] mt-[3%] 3xl:mt-[3%] select-none">
+      <div className="avatar-upload sticky rounded-[48px] w-[180px] h-[180px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] h-xsm:w-[200px] h-xsm:h-[200px] h-sm:w-[200px] h-sm:h-[200px] 2xl:w-[200px] 2xl:h-[200px] ml-[12%] h-xsm:ml-[12%] h-sm:ml-[12%] 2xl:ml-[17%] 3xl:ml-[21%] shrink-0 mb-[3.5%] mt-[3%] h-sm:mt-[5.5%] 2xl:mt-[3%] 3xl:mt-[3%] select-none">
         
         <div
           aria-hidden
