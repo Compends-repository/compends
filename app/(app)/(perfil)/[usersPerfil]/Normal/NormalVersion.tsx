@@ -47,6 +47,7 @@ export default function NormalPerfilDivVersion({
       >
         <IconArrowAutofitUp className="w-[30] h-[30]" />
       </motion.button>
+      {editorStarted ? (<div className="bg-[#ffffff]/30 ml-[25%] mt-[5%] w-[35%] h-[60%] border-1 rounded-[30px] border-dashed border-[#ececec63] text-center items-center">Click here to add some stuff</div>) : null}
     </div>
   );
 }
