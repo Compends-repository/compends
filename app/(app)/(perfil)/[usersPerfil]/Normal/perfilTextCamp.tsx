@@ -60,7 +60,6 @@ export default function Text_camps({
             className="h-15 w-auto max-w-none shrink-0 select-none pointer-events-none"
           />
 
-          {/* nome + botão: o grupo só ocupa a largura do conteúdo */}
           <div className="flex min-w-0 items-center gap-2">
             <p className="min-w-0 truncate text-[#b1b1b1a3] text-[20.5px] font-Asap font-black">
               @{user.name}

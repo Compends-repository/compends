@@ -85,7 +85,7 @@ export default function User_Informations_List({ GETusers }: any) {
 
             <Text_info_user_list name={user.name} bio={user.bio} />
             <Separator
-              className="w-[40%]! mt-[4%] 2xl:mt-[11%] 3xl:mt-[9%] mb-[4%] bg-chart-1 h-[1.8]! select-none"
+              className="w-[40%]! mt-[11%] 2xl:mt-[11%] 3xl:mt-[9%] mb-[4%] bg-chart-1 h-[1.8]! select-none"
               style={{ opacity: hoveredId === user.id ? 0.5 : 1 }}
             />
           </motion.li>

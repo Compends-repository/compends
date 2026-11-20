@@ -14,7 +14,7 @@ export default function Text_info_user_list({
   
 
   return (
-    <motion.div className="2xl:ml-[11%] h-lg:ml-[9%] 3xl:ml-[12%] 2xl:mt-[-9%] h-lg:mt-[-7%] 3xl:mt-[-7%] text-white">
+    <motion.div className="ml-[12%] h-xsm:ml-[9%] h-sm:ml-[9%] mt-[-9%] 2xl:ml-[11%] h-lg:ml-[9%] 3xl:ml-[11%] 2xl:mt-[-9%] h-lg:mt-[-7%] 3xl:mt-[-7%] text-white">
       <h1 className="text-[25px] font-semibold font-Asap backdrop-brightness-99 w-100 select-none">
         @{name}
       </h1>
