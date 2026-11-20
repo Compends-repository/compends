@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { r2 } from "@/lib/r2";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import sharp from "sharp";
 
 const EXT: Record<string, string> = {
   "image/png": "png",
@@ -17,8 +18,8 @@ const FIELDS = ["avatar", "background"] as const;
 type Field = (typeof FIELDS)[number];
 
 const MAX_SIZE: Record<Field, number> = {
-  avatar: 350 * 1024, // 500KB
-  background: 1.2 * 1024 * 1024, // 1.2MB
+  avatar: 3 * 1024 * 1024, // 3MB
+  background: 10 * 1024 * 1024, // 10MB
 };
 
 function isField(value: unknown): value is Field {
@@ -115,11 +116,29 @@ export async function POST(req: Request) {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
+
   if (!matchesSignature(file.type, buffer)) {
-    return Response.json({ error: "Arquivo inválido" }, { status: 400 });
+    return Response.json({ error: "Arquivo inválido" }, { status: 404 });
   }
 
-  const key = `${field}s/${session.user.id}-${randomUUID()}.${ext}`;
+  const optimizedBuffer = await sharp(buffer, {
+    animated: file.type === "image/gif",
+    limitInputPixels: 40_000_000,
+  })
+    .rotate()
+    .resize({
+      width: field === "avatar" ? 512 : 1920,
+      height: field === "avatar" ? 512 : 1920,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .webp({
+      quality: field === "avatar" ? 85 : 82,
+      effort: 4,
+    })
+    .toBuffer();
+
+  const key = `${field}s/${session.user.id}-${randomUUID()}.webp`;
   const url = `${process.env.R2_PUBLIC_URL}/${key}`;
   let uploaded = false;
 
@@ -134,8 +153,8 @@ export async function POST(req: Request) {
       new PutObjectCommand({
         Bucket: process.env.R2_BUCKET!,
         Key: key,
-        Body: buffer,
-        ContentType: file.type,
+        Body: optimizedBuffer,
+        ContentType: "image/webp",
       }),
     );
     uploaded = true;
