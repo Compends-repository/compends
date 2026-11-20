@@ -50,7 +50,7 @@ export default function NormalPerfilDivVersion({
       </motion.button>
       {editorStarted ? (
         <div className="flex bg-[#ffffff]/8 ml-[25%] mt-[5%] w-[35%] h-[60%] border-1 rounded-[30px] border-dashed border-[#ececec63] justify-center items-center text-white font-semibold text-[21px] gap-3">
-          <button className="flex bg-black w-12 h-12 rounded-[14px] justify-center items-center"><IconPlus className="w-11 h-11" stroke={2} /></button>
+          <button className="flex w-12 h-12 rounded-[14px] justify-center items-center"><IconPlus className="w-11 h-11" stroke={2} /></button>
           Click here to add some stuff
         </div>
       ) : null}
