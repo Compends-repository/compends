@@ -7,9 +7,9 @@ import { motion } from "motion/react";
 import Add_friend_button from "./addFriendButton";
 import Main_perfil_image from "./profileInformations";
 import type { FriendshipState, PublicUser } from "@/lib/types";
-import { IconPlus } from '@tabler/icons-react';
 
 import type { auth } from "@/lib/auth";
+import Right_Side_Board from "../functions/right-board/right-side-board";
 
 type Session = typeof auth.$Infer.Session;
 
@@ -49,10 +49,7 @@ export default function NormalPerfilDivVersion({
         <IconArrowAutofitUp className="w-[30] h-[30]" />
       </motion.button>
       {editorStarted ? (
-        <div className="flex bg-[#ffffff]/5 ml-[25%] mt-[5%] w-[35%] h-[60%] border-1 rounded-[30px] border-dashed border-[#ececec63] justify-center items-center text-white font-semibold text-[20px] gap-3">
-          <button className="flex w-12 h-12 rounded-[14px] justify-center items-center"><IconPlus stroke={2} /></button>
-          Click here to add some stuff
-        </div>
+        <Right_Side_Board />
       ) : null}
     </div>
   );

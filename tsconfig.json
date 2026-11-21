@@ -31,7 +31,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "app/(auth)/login/labels.tsx",
-    "app/(auth)/login/steps/step2.tsx"
+    "app/(auth)/login/steps/step2.tsx",
+    "app/(app)/(perfil)/[usersPerfil]/functions/right-board/functions/widgets.tsx"
   ],
   "exclude": ["node_modules"]
 }
