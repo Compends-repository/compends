@@ -37,7 +37,9 @@ function createClient() {
 const cached = globalForPrisma.prisma;
 
 export const db =
-  cached && "friendship" in cached ? cached : createClient();
+  cached && "friendship" in cached && "profile_dashboard" in cached
+  ? cached
+  : createClient()
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = db;

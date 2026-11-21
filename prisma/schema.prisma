@@ -105,3 +105,9 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+model profile_dashboard {
+  id         String   @id
+  layout     Json 
+  updatedAt  DateTime @updatedAt
+}
