@@ -59,10 +59,10 @@ export default function Board() {
     return (
         <>
             <button onClick={AddBlock} className='absolute top-[50%] left-[1%]'>+</button>
-            <div ref={containerRef} className='w-full h-full flex flex-column'>
+            <div ref={containerRef} className='w-full min-w-0'>
                 {mounted && (
-                    <ReactGridLayout width=
-                        {width}
+                    <ReactGridLayout 
+                        width={width}
                         layout={layout}
                         onLayoutChange={AtChange}
                         gridConfig={{ cols: 12, rowHeight: 30 }}
